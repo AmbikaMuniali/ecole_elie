@@ -1,0 +1,428 @@
+ERROR - 2025-07-26 18:05:07 --> Error connecting to the database: mysqli_sql_exception: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON) in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Home->test()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON) in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#4 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Home->test()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-26 18:05:07 --> Unable to connect to the database.
+Main connection [MySQLi]: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON)
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`', [], false)
+ 3 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-07-26 18:06:38 --> Error connecting to the database: mysqli_sql_exception: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON) in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Home->test()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON) in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#4 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Home->test()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-26 18:06:38 --> Unable to connect to the database.
+Main connection [MySQLi]: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON)
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`', [], false)
+ 3 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-07-26 18:06:39 --> Error connecting to the database: mysqli_sql_exception: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON) in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Home->test()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON) in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#4 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Home->test()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-26 18:06:39 --> Unable to connect to the database.
+Main connection [MySQLi]: Accès refusé pour l'utilisateur: ''@'@localhost' (mot de passe: NON)
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`', [], false)
+ 3 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\Home.php(23): App\Models\MyParentModel->selectAll()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:07:35 --> Class "App\Controllers\UsersModel" not found
+in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:07:37 --> Class "App\Controllers\UsersModel" not found
+in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:07:37 --> Class "App\Controllers\UsersModel" not found
+in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:08:10 --> Class "App\Controllers\UsersModel" not found
+in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:16:46 --> Undefined variable $model
+in APPPATH\Controllers\Home.php on line 23.
+ 1 APPPATH\Controllers\Home.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $model', 'APPPATH\\Controllers\\Home.php', 23)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:19:49 --> Undefined variable $model
+in APPPATH\Controllers\Home.php on line 23.
+ 1 APPPATH\Controllers\Home.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $model', 'APPPATH\\Controllers\\Home.php', 23)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:21:04 --> Invalid file: "admindashboard.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admindashboard.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admindashboard', [], true)
+ 3 APPPATH\Controllers\Home.php(20): view('admindashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:22:14 --> Invalid file: "admindashboard.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admindashboard.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admindashboard', [], true)
+ 3 APPPATH\Controllers\Home.php(20): view('admindashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:25:30 --> Invalid file: "common.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('common.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('common', [], true)
+ 3 APPPATH\Controllers\Home.php(20): view('common')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:25:39 --> Invalid file: "Common.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Common.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Common', [], true)
+ 3 APPPATH\Controllers\Home.php(20): view('Common')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:27:00 --> Invalid file: "Common.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Common.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Common', [], true)
+ 3 APPPATH\Controllers\Home.php(21): view('Common')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:27:05 --> Invalid file: "Common.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Common.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Common', [], true)
+ 3 APPPATH\Controllers\Home.php(15): view('Common')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:28:50 --> Invalid file: "Common.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Common.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Common', [], true)
+ 3 APPPATH\Controllers\Home.php(15): view('Common')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:34:07 --> Invalid file: "Common.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Common.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('Common', [], true)
+ 3 APPPATH\Controllers\Home.php(21): view('Common')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-26 18:36:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-07-26 18:46:23 --> Invalid file: ".php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('F:\\ArzenProjets\\web\\kasokooAPI', [], true)
+ 3 APPPATH\Controllers\Home.php(21): view('F:\\ArzenProjets\\web\\kasokooAPI')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:48:44 --> Invalid file: ".php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('F:\\ArzenProjets\\web\\kasokooAPI', [], true)
+ 3 APPPATH\Controllers\Home.php(21): view('F:\\ArzenProjets\\web\\kasokooAPI')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 18:48:45 --> Invalid file: ".php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('.php')
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('F:\\ArzenProjets\\web\\kasokooAPI', [], true)
+ 3 APPPATH\Controllers\Home.php(21): view('F:\\ArzenProjets\\web\\kasokooAPI')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-26 19:08:37 --> Call to undefined function App\Controllers\baseUrl()
+in APPPATH\Controllers\Home.php on line 21.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-07-26 19:21:05 --> Error connecting to the database: mysqli_sql_exception: Base 'tutuetsl_kasokoo_v1' inconnue in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'tutuetsl_kasoko...', 3306, '', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Compte->index()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Base 'tutuetsl_kasokoo_v1' inconnue in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#4 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Compte->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-26 19:21:05 --> Unable to connect to the database.
+Main connection [MySQLi]: Base 'tutuetsl_kasokoo_v1' inconnue
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `compte`', [], false)
+ 3 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Compte->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-07-26 19:21:25 --> Error connecting to the database: mysqli_sql_exception: Base 'tutuetsl_kasokoo_v1' inconnue in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'tutuetsl_kasoko...', 3306, '', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Compte->index()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Base 'tutuetsl_kasokoo_v1' inconnue in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#4 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Compte->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-26 19:21:25 --> Unable to connect to the database.
+Main connection [MySQLi]: Base 'tutuetsl_kasokoo_v1' inconnue
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `compte`', [], false)
+ 3 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 5 APPPATH\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Compte->index()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-07-26 19:24:12 --> mysqli_sql_exception: La table 'tutuetsl_kasokoo_v1.compte' n'existe pas in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Compte->index()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2025-07-26 19:24:12 --> La table 'tutuetsl_kasokoo_v1.compte' n'existe pas
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `compte`', [], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Compte->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-07-26 19:24:20 --> mysqli_sql_exception: La table 'tutuetsl_kasokoo_v1.compte' n'existe pas in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\app\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Compte->index()
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+#9 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2025-07-26 19:24:20 --> La table 'tutuetsl_kasokoo_v1.compte' n'existe pas
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `compte`', [], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Models\MyParentModel.php(87): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH\Controllers\Compte.php(19): App\Models\MyParentModel->selectAll()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Compte->index()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Compte))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-26 20:07:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 20:20:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 20:57:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 22:56:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:26:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:26:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:26:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:26:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:26:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:30:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:30:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:31:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:31:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:31:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:32:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:34:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:34:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:34:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:35:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:38:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:38:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:53:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:53:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:54:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:57:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:59:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-26 23:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

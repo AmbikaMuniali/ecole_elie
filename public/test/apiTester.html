@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+    <meta   charset="utf-8">
+<head>
+    <title>Test de requêtes POST</title>
+</head>
+<body>
+    <h1>MY API TESTER <label for="table">FOR TABLE:</label>
+        <select type="text" id="table" name="table">
+            <option value="0">UniteEmballage</option><option value="1">Produit</option><option value="2">CategorieProd</option><option value="3">User</option><option value="4">Parametre</option><option value="5">Adresse</option><option value="6">Commande</option><option value="7">Livraison</option><option value="8">Paiement</option><option value="9">ListeProduitsCommande</option><option value="10">Client</option><option value="11">Agent</option><option value="12">Achat</option><option value="13">ListeProduitsAchat</option><option value="14">Fournisseur</option><option value="15">Message</option><option value="16">Otp</option><option value="17">Publicite</option><option value="18">InfoPaiementClient</option><option value="19">InfoPaiementKasokoo</option><option value="20">Module</option><option value="21">Droits</option><option value="22">DroitsAgent</option><option value="23">ZoneCouverture</option>
+        </select> <span>&nbsp;&nbsp;&nbsp;</span></h1>
+
+
+    <div id="parametres">
+
+        <label for="method">method:</label>
+        <select type="text" id="method" name="method">
+            <option value="POST">POST</option>
+            <option value="GET">GET</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PATCH">PATCH</option>
+        </select> <span>&nbsp;&nbsp;&nbsp;</span>
+
+
+
+        <label for="action">action:</label>
+        <input type="text" id="action" style="width: 400px;" name="action" value="http://localhost/kasokoo/api/auth/register"> <br>
+        <hr>
+        
+    </div>
+
+    <form id="myForm" action="https://kasokoo.tutumeni.com/mobile/auth/register" method="POST">
+
+        <input type="text" name="username" >
+        <input type="text" name="password" >
+        <input type="submit" value="ENVOYER">
+    </form>
+    <br>
+    <input type="checkbox" name="usetoken" id="usetoken">  <label for="usetoken" >USE HEADER TOKEN</label> <span>&nbsp;&nbsp;&nbsp;</span>
+    <label for="token">Token :</label><input type="token" name="token" id="token" checked>  
+
+    <br>
+    <br>
+    <button id="testApi">TESTER L'API</button>
+    <div style="border: 1px solid black; margin: 10px; padding: 10px; min-height: 100px;">
+        <textarea id="resultat" style="width: 100%; min-height: 150px;"></textarea>
+    </div>
+
+    <!-- <script> 
+
+
+        const form = document.getElementById('myForm');
+        const table = document.getElementById('table');
+        const testApi = document.getElementById('testApi');
+        myForms = ['<label for="name_emb">name_emb:</label><span>&nbsp;&nbsp;</span><input type="text" id="name_emb" name="name_emb"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="code">code:</label><span>&nbsp;&nbsp;</span><input type="text" id="code" name="code"><br><label for="designation">designation:</label><span>&nbsp;&nbsp;</span><input type="text" id="designation" name="designation"><br><label for="description">description:</label><span>&nbsp;&nbsp;</span><input type="text" id="description" name="description"><br><label for="fkunite">fkunite:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkunite" name="fkunite"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><label for="prix_vente">prix_vente:</label><span>&nbsp;&nbsp;</span><input type="text" id="prix_vente" name="prix_vente"><br><label for="poids">poids:</label><span>&nbsp;&nbsp;</span><input type="text" id="poids" name="poids"><br><label for="volume">volume:</label><span>&nbsp;&nbsp;</span><input type="text" id="volume" name="volume"><br><label for="photo">photo:</label><span>&nbsp;&nbsp;</span><input type="text" id="photo" name="photo"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><label for="fkcategorie_prod">fkcategorie_prod:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkcategorie_prod" name="fkcategorie_prod"><br><button type="submit">Envoyer</button>', 
+'<label for="designation">designation:</label><span>&nbsp;&nbsp;</span><input type="text" id="designation" name="designation"><br><label for="description">description:</label><span>&nbsp;&nbsp;</span><input type="text" id="description" name="description"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="username">username:</label><span>&nbsp;&nbsp;</span><input type="text" id="username" name="username"><br><label for="email">email:</label><span>&nbsp;&nbsp;</span><input type="text" id="email" name="email"><br><label for="password">password:</label><span>&nbsp;&nbsp;</span><input type="text" id="password" name="password"><br><label for="access_token">access_token:</label><span>&nbsp;&nbsp;</span><input type="text" id="access_token" name="access_token"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><label for="pref_lang">pref_lang:</label><span>&nbsp;&nbsp;</span><input type="text" id="pref_lang" name="pref_lang"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><label for="taux_change">taux_change:</label><span>&nbsp;&nbsp;</span><input type="text" id="taux_change" name="taux_change"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><label for="adresse">adresse:</label><span>&nbsp;&nbsp;</span><input type="text" id="adresse" name="adresse"><br><label for="phone">phone:</label><span>&nbsp;&nbsp;</span><input type="text" id="phone" name="phone"><br><label for="email">email:</label><span>&nbsp;&nbsp;</span><input type="text" id="email" name="email"><br><label for="logo">logo:</label><span>&nbsp;&nbsp;</span><input type="text" id="logo" name="logo"><br><label for="app_version">app_version:</label><span>&nbsp;&nbsp;</span><input type="text" id="app_version" name="app_version"><br><button type="submit">Envoyer</button>', 
+'<label for="fkuser_create">fkuser_create:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkuser_create" name="fkuser_create"><br><label for="fkuser_validate">fkuser_validate:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkuser_validate" name="fkuser_validate"><br><label for="longitude">longitude:</label><span>&nbsp;&nbsp;</span><input type="text" id="longitude" name="longitude"><br><label for="latitude">latitude:</label><span>&nbsp;&nbsp;</span><input type="text" id="latitude" name="latitude"><br><label for="is_registred">is_registred:</label><span>&nbsp;&nbsp;</span><input type="text" id="is_registred" name="is_registred"><br><label for="code_OLC">code_OLC:</label><span>&nbsp;&nbsp;</span><input type="text" id="code_OLC" name="code_OLC"><br><label for="numero_rue">numero_rue:</label><span>&nbsp;&nbsp;</span><input type="text" id="numero_rue" name="numero_rue"><br><label for="description_batiment">description_batiment:</label><span>&nbsp;&nbsp;</span><input type="text" id="description_batiment" name="description_batiment"><br><label for="libelle_client">libelle_client:</label><span>&nbsp;&nbsp;</span><input type="text" id="libelle_client" name="libelle_client"><br><label for="libelle_kasokoo">libelle_kasokoo:</label><span>&nbsp;&nbsp;</span><input type="text" id="libelle_kasokoo" name="libelle_kasokoo"><br><label for="avenue">avenue:</label><span>&nbsp;&nbsp;</span><input type="text" id="avenue" name="avenue"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="type_commande">type_commande:</label><span>&nbsp;&nbsp;</span><input type="text" id="type_commande" name="type_commande"><br><label for="delivered_at">delivered_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="delivered_at" name="delivered_at"><br><label for="status_cmd">status_cmd:</label><span>&nbsp;&nbsp;</span><input type="text" id="status_cmd" name="status_cmd"><br><label for="status_payement">status_payement:</label><span>&nbsp;&nbsp;</span><input type="text" id="status_payement" name="status_payement"><br><label for="fkclient">fkclient:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkclient" name="fkclient"><br><label for="fkadresse">fkadresse:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkadresse" name="fkadresse"><br><label for="total_cmd">total_cmd:</label><span>&nbsp;&nbsp;</span><input type="text" id="total_cmd" name="total_cmd"><br><label for="frais_livraison">frais_livraison:</label><span>&nbsp;&nbsp;</span><input type="text" id="frais_livraison" name="frais_livraison"><br><label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="fkcommande">fkcommande:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkcommande" name="fkcommande"><br><label for="fkagent">fkagent:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkagent" name="fkagent"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><label for="delivered_at">delivered_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="delivered_at" name="delivered_at"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><button type="submit">Envoyer</button>', 
+'<label for="fkcommande">fkcommande:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkcommande" name="fkcommande"><br><label for="montant_paye">montant_paye:</label><span>&nbsp;&nbsp;</span><input type="text" id="montant_paye" name="montant_paye"><br><label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><label for="taux_change">taux_change:</label><span>&nbsp;&nbsp;</span><input type="text" id="taux_change" name="taux_change"><br><label for="id_transaction">id_transaction:</label><span>&nbsp;&nbsp;</span><input type="text" id="id_transaction" name="id_transaction"><br><label for="operateur">operateur:</label><span>&nbsp;&nbsp;</span><input type="text" id="operateur" name="operateur"><br><label for="numero_compte">numero_compte:</label><span>&nbsp;&nbsp;</span><input type="text" id="numero_compte" name="numero_compte"><br><label for="type_paiement">type_paiement:</label><span>&nbsp;&nbsp;</span><input type="text" id="type_paiement" name="type_paiement"><br><label for="motif_paiement">motif_paiement:</label><span>&nbsp;&nbsp;</span><input type="text" id="motif_paiement" name="motif_paiement"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="fkproduit">fkproduit:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkproduit" name="fkproduit"><br><label for="fkcommande">fkcommande:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkcommande" name="fkcommande"><br><label for="quantite">quantite:</label><span>&nbsp;&nbsp;</span><input type="text" id="quantite" name="quantite"><br><label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><label for="montant_total">montant_total:</label><span>&nbsp;&nbsp;</span><input type="text" id="montant_total" name="montant_total"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="fkuser">fkuser:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkuser" name="fkuser"><br><label for="solde_cdf">solde_cdf:</label><span>&nbsp;&nbsp;</span><input type="text" id="solde_cdf" name="solde_cdf"><br><label for="solde_usd">solde_usd:</label><span>&nbsp;&nbsp;</span><input type="text" id="solde_usd" name="solde_usd"><br><label for="name_complet">name_complet:</label><span>&nbsp;&nbsp;</span><input type="text" id="name_complet" name="name_complet"><br><label for="email">email:</label><span>&nbsp;&nbsp;</span><input type="text" id="email" name="email"><br><label for="primary_phone">primary_phone:</label><span>&nbsp;&nbsp;</span><input type="text" id="primary_phone" name="primary_phone"><br><label for="phone_is_verified">phone_is_verified:</label><span>&nbsp;&nbsp;</span><input type="text" id="phone_is_verified" name="phone_is_verified"><br><label for="pincode">pincode:</label><span>&nbsp;&nbsp;</span><input type="text" id="pincode" name="pincode"><br><label for="devise_pref">devise_pref:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise_pref" name="devise_pref"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="fkuser">fkuser:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkuser" name="fkuser"><br><label for="name_complet">name_complet:</label><span>&nbsp;&nbsp;</span><input type="text" id="name_complet" name="name_complet"><br><label for="fonction">fonction:</label><span>&nbsp;&nbsp;</span><input type="text" id="fonction" name="fonction"><br><label for="phone">phone:</label><span>&nbsp;&nbsp;</span><input type="text" id="phone" name="phone"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><label for="delivered_at">delivered_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="delivered_at" name="delivered_at"><br><label for="status_payement">status_payement:</label><span>&nbsp;&nbsp;</span><input type="text" id="status_payement" name="status_payement"><br><label for="fkagent">fkagent:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkagent" name="fkagent"><br><label for="total_achat">total_achat:</label><span>&nbsp;&nbsp;</span><input type="text" id="total_achat" name="total_achat"><br><label for="frais_logistique">frais_logistique:</label><span>&nbsp;&nbsp;</span><input type="text" id="frais_logistique" name="frais_logistique"><br><label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><button type="submit">Envoyer</button>', 
+'<label for="fkproduit">fkproduit:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkproduit" name="fkproduit"><br><label for="fkfournisseur">fkfournisseur:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkfournisseur" name="fkfournisseur"><br><label for="fkachat">fkachat:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkachat" name="fkachat"><br><label for="quantite">quantite:</label><span>&nbsp;&nbsp;</span><input type="text" id="quantite" name="quantite"><br><label for="devise">devise:</label><span>&nbsp;&nbsp;</span><input type="text" id="devise" name="devise"><br><label for="montant_total">montant_total:</label><span>&nbsp;&nbsp;</span><input type="text" id="montant_total" name="montant_total"><br><label for="prix_achat">prix_achat:</label><span>&nbsp;&nbsp;</span><input type="text" id="prix_achat" name="prix_achat"><br><label for="montant_paye">montant_paye:</label><span>&nbsp;&nbsp;</span><input type="text" id="montant_paye" name="montant_paye"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="denomination">denomination:</label><span>&nbsp;&nbsp;</span><input type="text" id="denomination" name="denomination"><br><label for="adresse">adresse:</label><span>&nbsp;&nbsp;</span><input type="text" id="adresse" name="adresse"><br><label for="phone">phone:</label><span>&nbsp;&nbsp;</span><input type="text" id="phone" name="phone"><br><label for="email">email:</label><span>&nbsp;&nbsp;</span><input type="text" id="email" name="email"><br><label for="fkadresse">fkadresse:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkadresse" name="fkadresse"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="fkuser">fkuser:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkuser" name="fkuser"><br><label for="fkmessage_prec">fkmessage_prec:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkmessage_prec" name="fkmessage_prec"><br><label for="isread">isread:</label><span>&nbsp;&nbsp;</span><input type="text" id="isread" name="isread"><br><label for="media">media:</label><span>&nbsp;&nbsp;</span><input type="text" id="media" name="media"><br><label for="media_type">media_type:</label><span>&nbsp;&nbsp;</span><input type="text" id="media_type" name="media_type"><br><label for="corps_message">corps_message:</label><span>&nbsp;&nbsp;</span><input type="text" id="corps_message" name="corps_message"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="value">value:</label><span>&nbsp;&nbsp;</span><input type="text" id="value" name="value"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><label for="expire_at">expire_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="expire_at" name="expire_at"><br><label for="sent_to">sent_to:</label><span>&nbsp;&nbsp;</span><input type="text" id="sent_to" name="sent_to"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><button type="submit">Envoyer</button>', 
+'<label for="fkproduit">fkproduit:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkproduit" name="fkproduit"><br><label for="image">image:</label><span>&nbsp;&nbsp;</span><input type="text" id="image" name="image"><br><label for="corps">corps:</label><span>&nbsp;&nbsp;</span><input type="text" id="corps" name="corps"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="fkclient">fkclient:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkclient" name="fkclient"><br><label for="operateur">operateur:</label><span>&nbsp;&nbsp;</span><input type="text" id="operateur" name="operateur"><br><label for="numero_compte">numero_compte:</label><span>&nbsp;&nbsp;</span><input type="text" id="numero_compte" name="numero_compte"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="operateur">operateur:</label><span>&nbsp;&nbsp;</span><input type="text" id="operateur" name="operateur"><br><label for="numero_compte">numero_compte:</label><span>&nbsp;&nbsp;</span><input type="text" id="numero_compte" name="numero_compte"><br><label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><button type="submit">Envoyer</button>', 
+'<label for="name">name:</label><span>&nbsp;&nbsp;</span><input type="text" id="name" name="name"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="name">name:</label><span>&nbsp;&nbsp;</span><input type="text" id="name" name="name"><br><label for="code">code:</label><span>&nbsp;&nbsp;</span><input type="text" id="code" name="code"><br><label for="fkmodule">fkmodule:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkmodule" name="fkmodule"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><label for="fkagent">fkagent:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkagent" name="fkagent"><br><label for="fkdroit">fkdroit:</label><span>&nbsp;&nbsp;</span><input type="text" id="fkdroit" name="fkdroit"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+'<label for="status">status:</label><span>&nbsp;&nbsp;</span><input type="text" id="status" name="status"><br><label for="designation">designation:</label><span>&nbsp;&nbsp;</span><input type="text" id="designation" name="designation"><br><label for="frontieres">frontieres:</label><span>&nbsp;&nbsp;</span><input type="text" id="frontieres" name="frontieres"><br><label for="created_at">created_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="created_at" name="created_at"><br><label for="updated_at">updated_at:</label><span>&nbsp;&nbsp;</span><input type="text" id="updated_at" name="updated_at"><br><button type="submit">Envoyer</button>', 
+]
+        myTables = ['uniteemballage', 'produit', 'categorieprod', 'user', 'parametre', 'adresse', 'commande', 'livraison', 'paiement', 'listeproduitscommande', 'client', 'agent', 'achat', 'listeproduitsachat', 'fournisseur', 'message', 'otp', 'publicite', 'infopaiementclient', 'infopaiementkasokoo', 'module', 'droits', 'droitsagent', 'zonecouverture']
+
+
+        table.addEventListener('change',(event): {
+            form.innerHTML = myForms[table.value]
+            document.getElementById('action').value = 'http://localhost/kasokoo/api/' + myTables[table.value]
+        });
+
+
+        data = {
+                  
+               "transaction_id": Date(),
+                "amount":103,
+                "currency":"USD",
+                "customer_surname":'ARZEN',
+                "customer_name":'ambika',
+                "description":'testING',
+                "notify_url" :'http://exaple.co',
+                "return_url" :'http://exaple.co',
+                "channels" :'MOBILE_MONEY',
+                "invoice_data" :[],
+                //pour afficher le paiement par carte de credit
+                "customer_email" :'mail.bidon@gmail.com', //l'email du client
+                "customer_phone_number" :'+2430858298122', //Le numéro de téléphone du client
+                "lock_phone_number" :'false' , //Le numéro de téléphone du client
+                "customer_address" :'PHYSIQUE', //l'adresse du client
+                "customer_city" :'CD', // ville du client
+                "customer_country" :'CD',//Le pays du client, la valeur à envoyer est le code ISO du pays (code à deux chiffre) ex : CI, BF, US, CA, FR
+                "customer_state" :'ok', //L’état dans de la quel se trouve le client. Cette valeur est obligatoire si le client se trouve au États Unis d’Amérique (US) ou au Canada (CA)
+                "customer_zip_code" :'ahoo'
+            }
+
+        
+        form.addEventListener('submit', (event) : {
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+            const formData = new FormData(form);
+
+            
+
+            // Envoyer la requête
+            method = document.getElementById('method').value
+            action = document.getElementById('action').value
+
+            checkbox = document.getElementById('usetoken');
+
+            token = ''
+
+            if(checkbox.checked) {
+                token = 'Bearer ' + document.getElementById('token').value
+            }
+
+            // alert(token)
+
+            document.getElementById('resultat').textContent = '';
+            fetch(action, method !='GET'?{
+                method: method,
+                body: JSON.stringify(data),
+                // body: formData,
+                headers: {
+                    'Authorization': token
+                }
+            } : {method:method, headers: {
+                    'Authorization': token
+                }})
+            .then(response : {response.text()})
+            .then(data : {
+                document.getElementById('resultat').textContent = JSON.stringify(data);
+            })
+            .catch(error : {
+                console.error('Erreur:', error);
+            });
+        });
+
+
+        
+
+        testApi.addEventListener('click', (event) : {
+           
+        });
+
+
+
+    function addTester() {
+
+
+        test = '<div><h1>Formulaire de Transaction</h1><form action="http://localhost/kasokoo/api/public/test/cinet/action.php" method="post" id="formTest"><input type="submit" value="cinet"> <br><input type="hidden" id="transaction_id" name="transaction_id"><label for="amount">Montant:</label><br><input type="number" id="amount" name="amount" value="103" required><br><label for="currency">Devise:</label><br><input type="text" id="currency" name="currency" value="USD" required><br><label for="customer_surname">Nom de Famille:</label><br><input type="text" id="customer_surname" name="customer_surname" value="ARZEN" required><br><label for="customer_name">Prénom:</label><br><input type="text" id="customer_name" name="customer_name" value="ambika" required><br><label for="description">Description:</label><br><input type="text" id="description" name="description" value="testING"><br><label for="notify_url">URL de Notification:</label><br><input type="url" id="notify_url" name="notify_url" value="http://exaple.co" required><br><label for="return_url">URL de Retour:</label><br><input type="url" id="return_url" name="return_url" value="http://exaple.co" required><br><label for="channels">Canaux:</label><br><input type="text" id="channels" name="channels" value="MOBILE_MONEY" required><br><label for="customer_email">Email:</label><br><input type="email" id="customer_email" name="customer_email" value="mail.bidon@gmail.com" required><br><label for="customer_phone_number">Numéro de Téléphone:</label><br><input type="tel" id="customer_phone_number" name="customer_phone_number" value="+2430858298122" required><br><label for="lock_phone_number">Bloquer le Numéro de Téléphone:</label><br><select id="lock_phone_number" name="lock_phone_number"><option value="true">Oui</option><option value="false" selected>Non</option></select><br><label for="customer_address">Adresse:</label><br><input type="text" id="customer_address" name="customer_address" value="PHYSIQUE"><br><label for="customer_city">Ville:</label><br><input type="text" id="customer_city" name="customer_city" value="CD"><br><label for="customer_country">Pays (Code ISO):</label><br><input type="text" id="customer_country" name="customer_country" value="CD" required><br><label for="customer_state">État/Province:</label><br><input type="text" id="customer_state" name="customer_state" value="ok"><br><label for="customer_zip_code">Code Postal:</label><br><input type="text" id="customer_zip_code" name="customer_zip_code" value="ahoo"><br><input type="submit" value="Envoyer"></form></div>'
+        
+
+        const url = 'http://localhost/kasokoo/api/public/test/cinet/action.php';
+
+        const html = document.getElementById('html');
+
+        html.innerHTML = test
+
+        const formTest = document.getElementById('formTest');
+        transactionIdInput=document.getElementById("transaction_id");transactionIdInput.value=new Date().toISOString();
+
+         formTest.addEventListener('submit', (event) : {
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+            const formData = new FormData(formTest);
+
+            
+
+            // Envoyer la requête
+            method = 'POST'
+            action = url
+
+            checkbox = document.getElementById('usetoken');
+
+            token = ''
+
+            if(checkbox.checked) {
+                token = 'Bearer ' + document.getElementById('token').value
+            }
+
+            // alert(token)
+
+            document.getElementById('resultat').textContent = '';
+            fetch(action, method !='GET'?{
+                method: method,
+                // body: JSON.stringify(data),
+                body: formData,
+                mode:'no-cors',
+                headers: {
+                    'Authorization': token
+                }
+            } : {method:method, headers: {
+                    'Authorization': token
+                }})
+            .then(response : {response.text()})
+            .then(data : {
+                document.getElementById('resultat').textContent = JSON.stringify(data);
+            })
+            .catch(error : {
+                console.error('Erreur:', error);
+            });
+        });
+
+    }      
+    </script>-->
+    <button onclick="addTester()">TEST CINET</button>
+    <div id="html"></div>
+<script >
+
+
+    commande = {
+        "idUser": 17,
+        'devise':'CDF',
+        "idClient": 28,
+        "adresse": {
+            "id":null,
+            "fkuser_create":17
+        },
+        "pannier" : [{
+            "produit":1,
+            "quantite":3
+        },
+        {
+            "produit":2,
+            "quantite":6
+        },
+        {
+            "produit":4,
+            "quantite":1
+        }
+        ], 
+        'cpm_trans_id' : 'KSK202503301030407188',
+        'cpm_amount': "100",
+        'cpm_currency': "USD",
+        "used_phone_number":"0858298122",
+        'cel_phone_num':"0975048355",
+        'cpm_error_message' : 'SUCCES'
+    }
+
+
+
+
+        formData = {
+            'amount' : 100,
+            'currency' : 'CDF',
+            'customer_surname' : 'Smith',
+            'customer_name' : 'Alice',
+            'description' : 'paiement de biscuits',
+            
+            'customer_email' : 'alice.smith@example.com',
+            'customer_phone_number' : '+2430975048355',
+            'lock_phone_number' : true,
+            'customer_address' : '123 Main St',
+            'customer_city' : 'Paris',
+            'customer_country' : 'CD',
+            'customer_state' : 'IDF',
+            'customer_zip_code' : '75001',
+            'invoice_data' : {"product" : "laptop", "quantity" : 1},
+        }
+
+
+
+    // fetch('http://localhost/kasokoo/payer', {
+    // fetch('http://localhost/kasokoo/save/commande', {
+    // fetch('http://localhost/kasokoo/payer/notify', {
+    // fetch('https://kasokoo.tutumeni.com/mobile/save/commande', {
+    fetch('https://kasokoo.tutumeni.com/mobile/payer/reclamertransid', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // body: JSON.stringify(formData)
+      body: JSON.stringify(commande)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Erreur :', error);
+      });
+
+
+    
+    // //CHECK TRANSACTION
+
+    // fetch('https://api-checkout.cinetpay.com/v2/payment/check', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //         "transaction_id": "KSK202503102103283291",
+    //         "site_id": "58835605883560",
+    //         "apikey": "130463917365f879e9284415.37748505"
+    //   })
+    // })
+    //   .then(response : {
+    //     if (!response.ok) {
+    //       throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(data : {
+    //     console.log('Adresse envoyée avec succès :', data);
+    //   })
+    //   .catch(error : {
+    //     console.error('Erreur :', error);
+    //   });
+           
+
+
+
+
+
+
+//     //CHECK TRANSACTION
+// function testi() {
+//     fetch('http://localhost/kasokoo/payer/notify', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//             "transaction_id": "KSK202503102103283291",
+//             "site_id": "58835605883560",
+//             "apikey": "130463917365f879e9284415.37748505"
+//       })
+//     })
+//       .then(response : {
+//         if (!response.ok) {
+//           throw new Error(`Erreur HTTP ! statut : ${response.status}`);
+//         }
+//         return response.json();
+//       })
+//       .then(data : {
+//         console.log('Adresse envoyée avec succès :', data);
+//       })
+//       .catch(error : {
+//         console.error('Erreur :', error);
+//       });
+//      }
+           
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Transaction</title>
+</head>
+
+</html>
+</body>
+</html>
+-->

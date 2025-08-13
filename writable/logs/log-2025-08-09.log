@@ -1,0 +1,37 @@
+CRITICAL - 2025-08-09 01:04:11 --> Call to undefined function getTableMetadata()
+in APPPATH\Views\test.php on line 12.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('test', [], true)
+ 4 APPPATH\Controllers\Home.php(23): view('test')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-09 10:25:24 --> syntax error, unexpected token "<<"
+in APPPATH\Views\myPaths.php on line 22.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('myPaths', [], true)
+ 3 APPPATH\Controllers\Home.php(23): view('myPaths')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-09 10:30:06 --> syntax error, unexpected single-quoted string "EOT["
+in APPPATH\Views\myPaths.php on line 28.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('myPaths', [], true)
+ 3 APPPATH\Controllers\Home.php(23): view('myPaths')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-09 10:30:41 --> syntax error, unexpected identifier "fkclient"
+in APPPATH\Views\myPaths.php on line 28.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('myPaths', [], true)
+ 3 APPPATH\Controllers\Home.php(23): view('myPaths')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

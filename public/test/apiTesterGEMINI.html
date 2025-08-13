@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Tester</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        select,
+        textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            transition: background-color 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button.red {
+            background-color: #dc3545;
+        }
+        button.red:hover {
+            background-color: #c82333;
+        }
+        .input-pair {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .input-pair input {
+            flex: 1;
+        }
+        .result-section {
+            margin-top: 30px;
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+        }
+        pre {
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Ensures long lines wrap */
+            word-wrap: break-word; /* Breaks long words if necessary */
+        }
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>API Tester</h1>
+
+        <div class="form-group">
+            <label for="method">HTTP Method:</label>
+            <select id="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="endpoint">API Endpoint:</label>
+            <input type="text" id="endpoint" placeholder="e.g., http://localhost:8080/api/livraisons/affecter">
+        </div>
+
+        <h2>Request Body (for POST/PUT)</h2>
+        <div id="data-fields">
+            </div>
+        <button onclick="addInputField('data-fields', 'data')">Add Data Field</button>
+
+        <h2>Headers</h2>
+        <div id="header-fields">
+            </div>
+        <button onclick="addInputField('header-fields', 'header')">Add Header Field</button>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <button onclick="sendRequest()">Send Request</button>
+        </div>
+
+        <div class="result-section">
+            <h2>Response:</h2>
+            <label for="statusCode">Status Code:</label>
+            <pre id="statusCode"></pre>
+            <label for="responseText">Response Body:</label>
+            <pre id="responseText"></pre>
+        </div>
+    </div>
+
+    <script>
+        function addInputField(containerId, type) {
+            const container = document.getElementById(containerId);
+
+            const inputPairDiv = document.createElement('div');
+            inputPairDiv.className = 'input-pair';
+
+            const keyInput = document.createElement('input');
+            keyInput.type = 'text';
+            keyInput.placeholder = type === 'data' ? 'Key (e.g., id_commande)' : 'Header Name (e.g., Content-Type)';
+            keyInput.className = type + '-key';
+
+            const valueInput = document.createElement('input');
+            valueInput.type = 'text';
+            valueInput.placeholder = type === 'data' ? 'Value (e.g., 123)' : 'Header Value (e.g., application/json)';
+            valueInput.className = type + '-value';
+
+            const removeButton = document.createElement('button');
+            removeButton.className = 'red';
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = function() {
+                container.removeChild(inputPairDiv);
+            };
+
+            inputPairDiv.appendChild(keyInput);
+            inputPairDiv.appendChild(valueInput);
+            inputPairDiv.appendChild(removeButton);
+            container.appendChild(inputPairDiv);
+        }
+
+        async function sendRequest() {
+            const method = document.getElementById('method').value;
+            const endpoint = document.getElementById('endpoint').value.trim();
+            const statusCodeDisplay = document.getElementById('statusCode');
+            const responseTextDisplay = document.getElementById('responseText');
+
+            statusCodeDisplay.textContent = '';
+            responseTextDisplay.textContent = 'Sending request...';
+            responseTextDisplay.className = ''; // Clear previous status class
+
+            if (!endpoint) {
+                responseTextDisplay.textContent = 'Error: API Endpoint cannot be empty.';
+                responseTextDisplay.className = 'error';
+                return;
+            }
+
+            const headers = {};
+            document.querySelectorAll('#header-fields .input-pair').forEach(pair => {
+                const key = pair.querySelector('.header-key').value.trim();
+                const value = pair.querySelector('.header-value').value.trim();
+                if (key && value) {
+                    headers[key] = value;
+                }
+            });
+
+            let requestBody = null;
+            if (method === 'POST' || method === 'PUT') {
+                const data = {};
+                document.querySelectorAll('#data-fields .input-pair').forEach(pair => {
+                    const key = pair.querySelector('.data-key').value.trim();
+                    const value = pair.querySelector('.data-value').value.trim();
+                    if (key) { // Allow empty values if key is present
+                        data[key] = value;
+                    }
+                });
+
+                // Set Content-Type to application/json if sending a body, unless already set by user
+                if (Object.keys(data).length > 0 && !headers['Content-Type'] && !headers['content-type']) {
+                    headers['Content-Type'] = 'application/json';
+                }
+
+                // If Content-Type is application/json, stringify the data
+                if (headers['Content-Type'] === 'application/json' || headers['content-type'] === 'application/json') {
+                     try {
+                        requestBody = JSON.stringify(data);
+                    } catch (e) {
+                        responseTextDisplay.textContent = 'Error parsing JSON data: ' + e.message;
+                        responseTextDisplay.className = 'error';
+                        return;
+                    }
+                } else if (Object.keys(data).length > 0) {
+                    // For other content types (e.g., application/x-www-form-urlencoded), convert to URLSearchParams or FormData
+                    // This example only supports JSON body for now.
+                    // You might need to extend this for other content types.
+                     console.warn("Only application/json body is supported by default. For other content types, manually set Content-Type header and ensure data format is correct.");
+                     requestBody = data; // Send as is, might cause issues if not stringified for non-JSON
+                }
+            }
+
+            const fetchOptions = {
+                method: method,
+                headers: headers
+            };
+
+            if (requestBody !== null) {
+                fetchOptions.body = requestBody;
+            }
+
+            try {
+                const response = await fetch(endpoint, fetchOptions);
+                statusCodeDisplay.textContent = response.status + ' ' + response.statusText;
+
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const jsonResponse = await response.json();
+                    responseTextDisplay.textContent = JSON.stringify(jsonResponse, null, 2);
+                } else {
+                    const textResponse = await response.text();
+                    responseTextDisplay.textContent = textResponse;
+                }
+                responseTextDisplay.className = response.ok ? 'success' : 'error';
+
+            } catch (error) {
+                statusCodeDisplay.textContent = 'N/A';
+                responseTextDisplay.textContent = 'Error: ' + error.message + '\n\nPossible issues: CORS, invalid endpoint, network error.';
+                responseTextDisplay.className = 'error';
+                console.error('Fetch error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

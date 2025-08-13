@@ -1,0 +1,29 @@
+CRITICAL - 2025-08-03 04:03:54 --> syntax error, unexpected variable "$modelOperation"
+in APPPATH\Controllers\MyTransationController.php on line 112.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\MyTransationController.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\MyTransationController')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\MyTransationController')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\MyTransationController', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-03 04:29:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-08-03 19:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-08-03 19:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-08-03 19:59:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-03 21:13:35 --> Attempt to read property "phone" on null
+in APPPATH\Controllers\MyAuthController.php on line 298.
+ 1 APPPATH\Controllers\MyAuthController.php(298): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "phone" on null', 'APPPATH\\Controllers\\MyAuthController.php', 298)
+ 2 APPPATH\Controllers\MyAuthController.php(348): App\Controllers\MyAuthController->createClient(null)
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyAuthController->validateRegistrationOTP()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-03 21:18:09 --> Undefined property: stdClass::$îd
+in APPPATH\Controllers\MyAuthController.php on line 348.
+ 1 APPPATH\Controllers\MyAuthController.php(348): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$îd', 'APPPATH\\Controllers\\MyAuthController.php', 348)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyAuthController->validateRegistrationOTP()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-03 21:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

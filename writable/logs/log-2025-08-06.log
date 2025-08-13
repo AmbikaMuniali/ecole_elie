@@ -1,0 +1,165 @@
+CRITICAL - 2025-08-06 10:00:39 --> syntax error, unexpected single-quoted string "permission", expecting "]"
+in APPPATH\Config\Filters.php on line 30.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Config\\Filters.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('Config\\Filters')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('Config\\Filters')
+ 4 SYSTEMPATH\Config\Factories.php(155): class_exists('Config\\Filters')
+ 5 SYSTEMPATH\Config\Factories.php(125): CodeIgniter\Config\Factories::locateClass([...], 'Filters')
+ 6 SYSTEMPATH\Common.php(206): CodeIgniter\Config\Factories::__callStatic('config', [])
+ 7 SYSTEMPATH\Config\Services.php(285): config('Filters')
+ 8 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::filters(null, false)
+ 9 SYSTEMPATH\Config\BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic('filters', [...])
+10 SYSTEMPATH\Config\Services.php(282): CodeIgniter\Config\BaseService::getSharedInstance('filters', null)
+11 SYSTEMPATH\Config\BaseService.php(252): CodeIgniter\Config\Services::filters()
+12 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\Config\BaseService::__callStatic('filters', [])
+13 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-08-06 10:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:01:29 --> Class "Config\PermissionFilter" not found
+in SYSTEMPATH\Filters\Filters.php on line 166.
+ 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-06 10:01:29 --> Class "Config\PermissionFilter" not found
+in SYSTEMPATH\Filters\Filters.php on line 166.
+ 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:01:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:01:38 --> Class "Config\PermissionFilter" not found
+in SYSTEMPATH\Filters\Filters.php on line 166.
+ 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:01:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:01:38 --> Class "Config\PermissionFilter" not found
+in SYSTEMPATH\Filters\Filters.php on line 166.
+ 1 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 2 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 3 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:02:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:02:19 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 14.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:02:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:02:19 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 14.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:02:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:02:36 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 14.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:02:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:02:36 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 14.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:04:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:04:27 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 14.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:04:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:04:28 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 14.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:05:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:05:33 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 13.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:05:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:05:34 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Helpers\permission_helper.php on line 13.
+ 1 APPPATH\Filters\PermissionFilter.php(15): helper([...])
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:07:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:07:33 --> foreach() argument must be of type array|object, null given
+in APPPATH\Filters\PermissionFilter.php on line 20.
+ 1 APPPATH\Filters\PermissionFilter.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'APPPATH\\Filters\\PermissionFilter.php', 20)
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droitsagent', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-08-06 10:07:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-06 10:07:33 --> foreach() argument must be of type array|object, null given
+in APPPATH\Filters\PermissionFilter.php on line 20.
+ 1 APPPATH\Filters\PermissionFilter.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'APPPATH\\Filters\\PermissionFilter.php', 20)
+ 2 SYSTEMPATH\Filters\Filters.php(173): App\Filters\PermissionFilter->before(Object(CodeIgniter\HTTP\IncomingRequest), null)
+ 3 SYSTEMPATH\CodeIgniter.php(473): CodeIgniter\Filters\Filters->run('droits', 'before')
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-06 18:47:40 --> syntax error, unexpected identifier "Usage"
+in APPPATH\Views\test.php on line 750.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('test', [], true)
+ 3 APPPATH\Controllers\Home.php(23): view('test')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-06 21:45:23 --> Undefined variable $sourceTablePrimaryKey
+in APPPATH\Views\test.php on line 424.
+ 1 APPPATH\Views\test.php(424): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $sourceTablePrimaryKey', 'APPPATH\\Views\\test.php', 424)
+ 2 APPPATH\Views\test.php(444): generateMultipleJoinSql('client', 'commande', [...])
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\test.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('test', [], true)
+ 6 APPPATH\Controllers\Home.php(23): view('test')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-06 21:45:36 --> Undefined variable $sourceTablePrimaryKey
+in APPPATH\Views\test.php on line 424.
+ 1 APPPATH\Views\test.php(424): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $sourceTablePrimaryKey', 'APPPATH\\Views\\test.php', 424)
+ 2 APPPATH\Views\test.php(444): generateMultipleJoinSql('client', 'commande', [...])
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\test.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('test', [], true)
+ 6 APPPATH\Controllers\Home.php(23): view('test')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-08-06 21:47:56 --> Undefined variable $sourceTablePrimaryKey
+in APPPATH\Views\test.php on line 424.
+ 1 APPPATH\Views\test.php(424): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $sourceTablePrimaryKey', 'APPPATH\\Views\\test.php', 424)
+ 2 APPPATH\Views\test.php(444): generateMultipleJoinSql('user', 'adresse', [...])
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\test.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('test', [], true)
+ 6 APPPATH\Controllers\Home.php(23): view('test')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->test()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

@@ -1,0 +1,1359 @@
+INFO - 2025-07-29 09:25:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 09:25:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 09:26:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 09:26:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 09:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:13:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:13:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:13:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:14:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:15:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:16:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:16:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:18:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:19:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:24:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:25:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:25:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:27:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:27:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:27:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 10:42:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-07-29 10:46:18 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('324')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('324')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:18 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('328')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('328')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('331')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('331')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('336')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('336')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('334')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('334')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('315')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('315')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('312')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('312')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('309')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('309')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:19 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('306')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('306')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('350')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('350')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('349')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('349')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('348')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('348')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('347')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('347')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('346')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('346')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('345')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('345')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 10:46:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-07-29 10:46:20 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('344')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('344')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 10:46:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('343')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('343')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('342')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('342')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('341')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('341')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('340')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('340')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('339')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('339')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('338')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('338')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('337')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('337')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('335')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('335')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:21 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('333')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('333')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('332')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('332')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('330')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('330')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('329')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('329')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('327')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('327')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('326')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('326')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('325')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('325')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('323')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('323')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('322')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('322')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:22 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('321')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('321')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('320')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('320')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('319')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('319')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('318')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('318')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('317')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('317')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('316')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('316')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('314')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('314')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('313')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('313')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('311')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('311')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:23 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('310')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('310')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:24 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('308')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('308')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:24 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('307')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('307')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:24 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('305')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('305')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:25 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('342')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('342')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:25 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('341')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('341')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:25 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('340')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('340')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:25 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('339')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('339')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:25 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('338')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('338')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:25 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('337')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('337')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('335')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('335')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('333')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('333')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('332')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('332')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('330')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('330')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('329')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('329')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('327')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('327')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('326')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('326')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('325')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('325')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:26 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('323')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('323')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('322')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('322')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('321')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('321')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('320')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('320')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('319')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('319')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('318')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('318')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('317')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('317')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('316')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('316')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('314')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('314')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('313')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('313')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:27 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('311')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('311')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:28 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('310')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('310')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:28 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('308')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('308')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:28 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('307')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('307')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:28 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('305')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('305')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('388')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('388')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('387')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('387')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('386')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('386')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('385')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('385')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('384')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('384')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('383')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('383')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('382')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('382')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('381')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('381')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('380')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('380')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('379')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('379')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('378')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('378')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('377')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('377')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('376')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('376')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('375')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('375')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('374')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('374')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('373')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('373')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('372')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('372')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('371')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('371')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:30 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('370')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('370')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('369')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('369')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('368')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('368')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('367')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('367')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('366')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('366')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('365')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('365')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('364')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('364')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('363')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('363')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('362')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('362')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('361')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('361')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('360')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('360')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:31 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('359')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('359')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('358')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('358')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('357')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('357')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('356')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('356')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('355')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('355')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('354')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('354')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('353')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('353')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('352')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('352')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2025-07-29 10:46:32 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2753.
+ 1 SYSTEMPATH\Model.php(455): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1065): CodeIgniter\Model->doDelete([], false)
+ 3 APPPATH\Controllers\DroitsAgent.php(113): CodeIgniter\BaseModel->delete([])
+ 4 APPPATH\Controllers\DroitsAgent.php(102): App\Controllers\DroitsAgent->destroy('351')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\DroitsAgent->delete('351')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DroitsAgent))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 12:10:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:16:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:16:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:18:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:19:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:22:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:23:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:29:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-07-29 12:29:32 --> mysqli_sql_exception: Champ 'categorieprod' inconnu dans order clause in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-29 12:29:32 --> Champ 'categorieprod' inconnu dans order clause
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `produit`
+WHERE `status` = :status:
+ORDER BY `categorieprod`', [...], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', [])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 12:33:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-07-29 12:33:12 --> mysqli_sql_exception: Champ 'categorieprod' inconnu dans order clause in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-29 12:33:12 --> Champ 'categorieprod' inconnu dans order clause
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `produit`
+WHERE `status` = :status:
+ORDER BY `categorieprod`', [...], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', [])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 12:34:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-07-29 12:34:07 --> mysqli_sql_exception: Champ 'categorie_prod' inconnu dans order clause in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-29 12:34:07 --> Champ 'categorie_prod' inconnu dans order clause
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `produit`
+WHERE `status` = :status:
+ORDER BY `categorie_prod`', [...], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', [])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 12:34:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-07-29 12:34:09 --> mysqli_sql_exception: Champ 'categorie_prod' inconnu dans order clause in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-29 12:34:09 --> Champ 'categorie_prod' inconnu dans order clause
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `produit`
+WHERE `status` = :status:
+ORDER BY `categorie_prod`', [...], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', [])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 12:34:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-07-29 12:34:11 --> mysqli_sql_exception: Champ 'categorie_prod' inconnu dans order clause in F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\kasokooAPI\app\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+#7 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+#8 F:\ArzenProjets\web\kasokooAPI\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\ArzenProjets\web\kasokooAPI\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2025-07-29 12:34:11 --> Champ 'categorie_prod' inconnu dans order clause
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `produit`
+WHERE `status` = :status:
+ORDER BY `categorie_prod`', [...], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\MyProduitController.php(19): CodeIgniter\Model->__call('get', [])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyProduitController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyProduitController))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2025-07-29 12:34:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:35:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 12:35:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:24:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:40:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:40:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:47:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:47:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:50:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:51:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:52:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:52:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:53:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:53:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:53:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:54:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:55:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:55:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:55:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:56:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:56:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:56:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:57:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 13:57:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 14:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 14:08:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 14:10:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 14:10:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 14:11:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 18:47:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 19:51:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 19:51:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 19:58:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:13:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:13:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:13:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:14:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:14:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:16:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:16:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:16:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:21:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:47:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:49:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 21:50:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 22:02:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 22:22:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 22:22:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 22:27:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2025-07-29 22:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

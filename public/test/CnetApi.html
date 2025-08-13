@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <meta   charset="utf-8">
+<head>
+    <title>Test de requêtes POST</title>
+</head>
+<body>
+    <h1>MY API TESTER <label for="table">FOR TABLE:</label>
+        <select type="text" id="table" name="table">
+            <option value="0">UniteEmballage</option><option value="1">Produit</option><option value="2">CategorieProd</option><option value="3">User</option><option value="4">Parametre</option><option value="5">Adresse</option><option value="6">Commande</option><option value="7">Livraison</option><option value="8">Paiement</option><option value="9">ListeProduitsCommande</option><option value="10">Client</option><option value="11">Agent</option><option value="12">Achat</option><option value="13">ListeProduitsAchat</option><option value="14">Fournisseur</option><option value="15">Message</option><option value="16">Otp</option><option value="17">Publicite</option><option value="18">InfoPaiementClient</option><option value="19">InfoPaiementKasokoo</option><option value="20">Module</option><option value="21">Droits</option><option value="22">DroitsAgent</option><option value="23">ZoneCouverture</option>
+        </select> <span>&nbsp;&nbsp;&nbsp;</span></h1>
+
+
+    <div id="parametres">
+
+        <label for="method">method:</label>
+        <select type="text" id="method" name="method">
+            <option value="POST">POST</option>
+            <option value="GET">GET</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PATCH">PATCH</option>
+        </select> <span>&nbsp;&nbsp;&nbsp;</span>
+
+
+
+        <label for="action">action:</label>
+        <input type="text" id="action" style="width: 400px;" name="action" value="http://localhost/kasokoo/api/auth/register"> <br>
+        <hr>
+        
+    </div>
+
+    <form id="myForm" action="http://localhost/kasokoo/api/login" method="POST">
+
+
+
+
+
+
+
+      <input type="text" name="apikey" value="130463917365f879e9284415.37748505">  
+      <input type="text" name="site_id" value="5883560">  
+      <input type="text" name="transaction_id" value="12344gjdsa">  
+      <input type="text" name="amount" value="120">  
+      <input type="text" name="currency" value="USD">  
+      <input type="text" name="description " value="https://www.example.com">  
+      <input type="text" name="notify_url" value="">  
+      <input type="text" name="return_url" value="">  
+      <input type="text" name="channels" value="">  
+      <input type="text" name="" value="">  
+      <input type="text" name="" value="">  
+      <input type="text" name="" value="">  
+      <input type="text" name="" value="">  
+      <input type="text" name="" value="">  
+      <input type="text" name="" value="">  
+      
+        <input type="submit" value="ENVOYER">
+    </form>
+    <br>
+    <input type="checkbox" name="usetoken" id="usetoken">  <label for="usetoken" >USE HEADER TOKEN</label> <span>&nbsp;&nbsp;&nbsp;</span>
+    <label for="token">Token :</label><input type="token" name="token" id="token" checked>  
+
+    <br>
+    <br>
+    <div style="border: 1px solid black; margin: 10px; padding: 10px; min-height: 100px;">
+        <textarea id="resultat" style="width: 100%; min-height: 150px;"></textarea>
+    </div>
+
+    <script>
+
+
+        const form = document.getElementById('myForm');
+        const table = document.getElementById('table');
+        myForms = []
+        myTables = ['uniteemballage', 'produit', 'categorieprod', 'user', 'parametre', 'adresse', 'commande', 'livraison', 'paiement', 'listeproduitscommande', 'client', 'agent', 'achat', 'listeproduitsachat', 'fournisseur', 'message', 'otp', 'publicite', 'infopaiementclient', 'infopaiementkasokoo', 'module', 'droits', 'droitsagent', 'zonecouverture']
+
+
+        table.addEventListener('change',(event)=> {
+            form.innerHTML = myForms[table.value]
+            document.getElementById('action').value = 'http://localhost/kasokoo/api/' + myTables[table.value]
+        });
+
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+            const formData = new FormData(form);
+
+            
+
+            // Envoyer la requête
+            method = document.getElementById('method').value
+            action = document.getElementById('action').value
+
+            checkbox = document.getElementById('usetoken');
+
+            token = ''
+
+            if(checkbox.checked) {
+                token = 'Bearer ' + document.getElementById('token').value
+            }
+
+            alert(token)
+
+            document.getElementById('resultat').textContent = '';
+            fetch(action, method !='GET'?{
+                method: method,
+                body: formData,
+                headers: {
+                    'Authorization': token
+                }
+            } : {method:method, headers: {
+                    'Authorization': token
+                }})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('resultat').textContent = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        });
+    </script>
+</body>
+</html>

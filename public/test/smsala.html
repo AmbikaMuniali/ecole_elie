@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <meta   charset="utf-8">
+<head>
+    <title>Test de requêtes POST</title>
+</head>
+<body>
+    <h1>MY API TESTER <label for="table">FOR TABLE:</label>
+        <select type="text" id="table" name="table">
+            <option value="0">UniteEmballage</option><option value="1">Produit</option><option value="2">CategorieProd</option><option value="3">User</option><option value="4">Parametre</option><option value="5">Adresse</option><option value="6">Commande</option><option value="7">Livraison</option><option value="8">Paiement</option><option value="9">ListeProduitsCommande</option><option value="10">Client</option><option value="11">Agent</option><option value="12">Achat</option><option value="13">ListeProduitsAchat</option><option value="14">Fournisseur</option><option value="15">Message</option><option value="16">Otp</option><option value="17">Publicite</option><option value="18">InfoPaiementClient</option><option value="19">InfoPaiementKasokoo</option><option value="20">Module</option><option value="21">Droits</option><option value="22">DroitsAgent</option><option value="23">ZoneCouverture</option>
+        </select> <span>&nbsp;&nbsp;&nbsp;</span></h1>
+
+
+    <div id="parametres">
+
+        <label for="method">method:</label>
+        <select type="text" id="method" name="method">
+            <option value="POST">POST</option>
+            <option value="GET">GET</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+            <option value="PATCH">PATCH</option>
+        </select> <span>&nbsp;&nbsp;&nbsp;</span>
+
+
+
+        <label for="action">action:</label>
+        <input type="text" id="action" style="width: 400px;" name="action" value="https://api.smsala.com/api/SendSMS"> <br>
+        <hr>
+        
+    </div>
+
+    <form id="myForm" action="https://api.smsala.com/api/SendSMS" method="POST">
+        <input type="submit" value="ENVOYER">
+    </form>
+    <br>
+    <input type="checkbox" name="usetoken" id="usetoken">  <label for="usetoken" >USE HEADER TOKEN</label> <span>&nbsp;&nbsp;&nbsp;</span>
+    <label for="token">Token :</label><input type="token" name="token" id="token" checked>  
+
+    <br>
+    <br>
+    <div style="border: 1px solid black; margin: 10px; padding: 10px; min-height: 100px;">
+        <textarea id="resultat" style="width: 100%; min-height: 150px;"></textarea>
+    </div>
+
+    <script>
+
+
+        const form = document.getElementById('myForm');
+        const table = document.getElementById('table');
+
+        myForms = []
+       
+        myTables = ['uniteemballage', 'produit', 'categorieprod', 'user', 'parametre', 'adresse', 'commande', 'livraison', 'paiement', 'listeproduitscommande', 'client', 'agent', 'achat', 'listeproduitsachat', 'fournisseur', 'message', 'otp', 'publicite', 'infopaiementclient', 'infopaiementkasokoo', 'module', 'droits', 'droitsagent', 'zonecouverture']
+
+
+        table.addEventListener('change',(event)=> {
+            form.innerHTML = myForms[table.value]
+            document.getElementById('action').value = 'https://api.smsala.com/api/SendSMS'
+        });
+
+        
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Récupérer les données du formulaire
+
+            apiCredits = {
+                "api_id": 'SMSALA_KASOK_881_SMS'
+                "api_password": 'VjJmeieSeVtoje5Q',
+                "sms_type": 'T',
+                "encoding": 'T',
+                "sender_id": 'SMSALA',
+                "phonenumber": 243858298122,
+                "textmessage":'HEY',
+                "ValidityPeriodInSeconds": 60,
+                }            
+
+
+            const formData = JSON.stringify(apiCredits)
+
+
+            console.log(formData)
+
+            
+
+            // Envoyer la requête
+            method = document.getElementById('method').value
+            action = document.getElementById('action').value
+
+            checkbox = document.getElementById('usetoken');
+
+            token = ''
+
+            if(checkbox.checked) {
+                token = 'Bearer ' + document.getElementById('token').value
+            }
+
+            document.getElementById('resultat').textContent = '';
+            fetch(action, method !='GET'?{
+                method: method,
+                body: formData,
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            } : {method:method, headers: {
+                    'Authorization': token
+                }})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('resultat').textContent = JSON.stringify(data);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        });
+    </script>
+
+    https://api.smsala.com/api/SendSMS?api_id=SMSALA_KASOK_881_SMS&api_password=VjJmeieSeVtoje5Q&sms_type=T&encoding=T&sender_id=SMSALA&phonenumber=243858298122&textmessage=test&uid=xyz&callback_url=https://xyz.com/
+</body>
+</html>

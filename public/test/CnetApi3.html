@@ -1,0 +1,641 @@
+<html lang="fr"><head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Effectuer un paiement - CINETPAY</title>
+
+<meta name="theme-color" content="#000000">
+<meta name="csrf-token" content="">
+<link rel="icon" type="image/png" sizes="16x16" href="https://checkout.cinetpay.com/assets/favicon/new-favicon.png">
+<link rel="stylesheet" href="https://checkout.cinetpay.com/fonts/cinetpay.css">
+<link rel="apple-touch-icon" sizes="57x57" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/new-favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/new-favicon.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/new-favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/new-favicon.png">
+<link rel="manifest" href="https://checkout.cinetpay.com/assets/favicon/cinetpay/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://checkout.cinetpay.com/assets/favicon/cinetpay/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="https://checkout.cinetpay.com/assets/css/app.css">
+<script src="//d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js"></script>
+<script>
+try {
+Bugsnag.start({
+apiKey: 'b0cfd5eec69dcbaff814fc733a728562',
+logger: null,
+appVersion: '1.0.2',
+onError: function (event) {
+event.addMetadata('transaction', {
+token: "97c4da7e4621dca85a736b4039b186062a42c113d0e6200c669e3867539241fe0f2299809540272e7e6a228c2f4f15274df354d5e36da0",
+cpm_site_id: "5883560",
+cpm_trans_id: "1524794302",
+})
+}
+})
+} catch (e) {
+}
+</script>
+<script>
+try {
+(function (h, o, t, j, a, r) {
+h.hj = h.hj || function () {
+(h.hj.q = h.hj.q || []).push(arguments)
+};
+h._hjSettings = {hjid: 2479908, hjsv: 6};
+a = o.getElementsByTagName('head')[0];
+r = o.createElement('script');
+r.async = 1;
+r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+a.appendChild(r);
+})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+} catch (e) {
+}
+</script><script async="" src="https://static.hotjar.com/c/hotjar-2479908.js?sv=6"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-E37QYXE316"></script>
+<script>
+try {
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+gtag('config', 'G-E37QYXE316');
+} catch (e) {
+}
+</script>
+<style>
+.option-content1::after {
+left: 42%;
+}
+
+.option-content2::after {
+left: %;
+}
+
+.option-content3::after {
+left: %;
+}
+
+.option-content4::after {
+left: %;
+}
+</style>
+<style type="text/css">
+#page {
+display: none;
+}
+
+#loading {
+display: block;
+position: absolute;
+z-index: 100;
+background-position: center;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%)
+}
+
+@keyframes  ldio-5owbnf6l9j7 {
+0% {
+transform: translate(12px, 80px) scale(0);
+}
+25% {
+transform: translate(12px, 80px) scale(0);
+}
+50% {
+transform: translate(12px, 80px) scale(1);
+}
+75% {
+transform: translate(80px, 80px) scale(1);
+}
+100% {
+transform: translate(148px, 80px) scale(1);
+}
+}
+
+@keyframes  ldio-5owbnf6l9j7-r {
+0% {
+transform: translate(148px, 80px) scale(1):
+}
+100% {
+transform: translate(148px, 80px) scale(0);
+}
+}
+
+@keyframes  ldio-5owbnf6l9j7-c {
+0% {
+background: var(--loader-color1)
+}
+25% {
+background: var(--loader-color2)
+}
+50% {
+background: var(--loader-color1)
+}
+75% {
+background: var(--loader-color2)
+}
+100% {
+background: var(--loader-color1)
+}
+}
+
+.ldio-5owbnf6l9j7 div {
+position: absolute;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+transform: translate(80px, 80px) scale(1);
+background: var(--loader-color1);
+animation: ldio-5owbnf6l9j7 1.2048192771084336s infinite cubic-bezier(0, 0.5, 0.5, 1);
+}
+
+.ldio-5owbnf6l9j7 div:nth-child(1) {
+background: var(--loader-color2);
+transform: translate(148px, 80px) scale(1);
+animation: ldio-5owbnf6l9j7-r 0.3012048192771084s infinite cubic-bezier(0, 0.5, 0.5, 1), ldio-5owbnf6l9j7-c 1.2048192771084336s infinite step-start;
+}
+
+.ldio-5owbnf6l9j7 div:nth-child(2) {
+animation-delay: -0.3012048192771084s;
+background: var(--loader-color1);
+}
+
+.ldio-5owbnf6l9j7 div:nth-child(3) {
+animation-delay: -0.6024096385542168s;
+background: var(--loader-color2);
+}
+
+.ldio-5owbnf6l9j7 div:nth-child(4) {
+animation-delay: -0.9036144578313252s;
+background: var(--loader-color1);
+}
+
+.ldio-5owbnf6l9j7 div:nth-child(5) {
+animation-delay: -1.2048192771084336s;
+background: var(--loader-color2);
+}
+
+.loadingio-spinner-ellipsis-99po1h19hjs {
+width: 200px;
+height: 200px;
+display: inline-block;
+overflow: hidden;
+background: none;
+}
+
+.ldio-5owbnf6l9j7 {
+width: 100%;
+height: 100%;
+position: relative;
+transform: translateZ(0) scale(1);
+backface-visibility: hidden;
+transform-origin: 0 0; /* see note above */
+}
+
+.ldio-5owbnf6l9j7 div {
+box-sizing: content-box;
+}
+
+
+.toggle-content {
+display: none;
+height: 0;
+opacity: 0;
+overflow: hidden;
+transition: height 350ms ease-in-out, opacity 750ms ease-in-out;
+}
+
+.toggle-content.is-visible {
+display: block;
+height: auto;
+opacity: 1;
+}
+</style>
+<script async="" src="https://script.hotjar.com/modules.0436d96a0ec6cfd03f7c.js" charset="utf-8"></script></head>
+<body id="body">
+<div id="loading" style="opacity: -0.1; display: none;">
+<div class="loadingio-spinner-ellipsis-99po1h19hjs">
+<div class="ldio-5owbnf6l9j7">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+</div>
+</div>
+
+<div id="page" class="container" style="opacity: 1; display: block;">
+<div class="row justify-content-center pt-0 pt-lg-5">
+<div class="col-md-8 col-lg-6 p-lg-2 p-0">
+<div class="desk border shadow-none p-3 bg-dark">
+<div class="row">
+<div class="col-md-9 col-8">
+<div class="">
+<div class="media align-items-center">
+<div class="media-head">
+
+</div>
+<div class="media-body">
+<p class="marchand-text p-0 m-0">Marchand</p>
+<p class="marchand-name p-0 m-0">KASOKOO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 col-4">
+<div class="marchand-info">
+<p class="marchand-text p-0 m-0 text-end">Total à payer</p>
+<h4 class="due-amount p-0 m-0">10 USD</h4>
+
+</div>
+</div>
+</div>
+</div>
+<div class="desk bg-white border mt-3">
+<div class="desk-body">
+<form id="payment_form" name="begin_form" method="POST" action="https://checkout.cinetpay.com/payment/verify">
+<div class="desk-content">
+<div class="d-flex m-3 align-items-center">
+<p class="text-start m-0 paymethod">Méthode de paiement</p>
+<div class="btn-group ml-auto">
+<button type="button" class="btn btn-clear btn-sm dropdown-toggle m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<strong>FR</strong>
+</button>
+<div class="dropdown-menu desk-d-sm">
+<a href="?lang=en" class="text-decoration-none ml-2 desk-language-title">
+<strong>EN</strong>
+</a>
+</div>
+</div>
+</div>
+<input type="hidden" name="_token" value="">            
+<div class="choose-payment-type">
+<ul class="nav nav-pills w-100 nav-justified px-3" id="myTab" role="tablist">
+<li class="nav-item">
+<a class="nav-link bg-light active" id="mobile-money-tab" data-toggle="tab" href="#mobile-money" role="tab" aria-controls="mobile-money" aria-selected="true" onclick="setAction('https://checkout.cinetpay.com/payment/verify', 'MOBILE_MONEY')">
+<div class="text-start ml-2 pb-2">
+<p class="descrip">Mobile money</p>
+<div class="d-flex">
+<p id="methodscd" class="payment-method-box operator-box text-start mb-0 pl-3"><img src="https://checkout.cinetpay.com/assets/images/payment_methods/orange.png" class="rounded logo-reverse-margin" width="25" alt="ORANGE">
+    <img src="https://checkout.cinetpay.com/assets/images/payment_methods/airtel.png" class="rounded logo-reverse-margin" width="25" alt="AIRTEL">
+
+    <img src="https://checkout.cinetpay.com/assets/images/payment_methods/mpesa.png" class="rounded logo-reverse-margin" width="25" alt="MPESA"></p>
+</div>
+</div>
+</a>
+</li>
+
+
+</ul>
+
+<div class="tab-content" id="myTabContent">
+<br>
+<hr>
+<div class="tab-pane text-left fade active show" id="mobile-money" role="tabpanel" aria-labelledby="mobile-money-tab">
+<div class="option-content1">
+<div class="p-1">
+<div class="desk-form">
+<div class="phone-input form-group">
+<label class="input-title input-phone" for="phone_number">
+Numéro de téléphone
+</label>
+<div class="iti iti--allow-dropdown iti--separate-dial-code"><div class="iti__flag-container"><div class="iti__selected-flag" role="combobox" aria-controls="iti-0__country-listbox" aria-owns="iti-0__country-listbox" aria-expanded="false" tabindex="0" title="Congo RDC: +243" aria-activedescendant="iti-0__item-cd"><div class="iti__flag iti__cd"></div><div class="iti__selected-dial-code">+243</div><div class="iti__arrow"></div></div><ul class="iti__country-list iti__hide" id="iti-0__country-listbox" role="listbox" aria-label="List of countries"><li class="iti__country iti__standard iti__active" tabindex="-1" id="iti-0__item-cd" role="option" data-dial-code="243" data-country-code="cd" aria-selected="true"><div class="iti__flag-box"><div class="iti__flag iti__cd"></div>
+
+</div><span class="iti__country-name">Congo RDC</span><span class="iti__dial-code">+243</span></li></ul></div>
+<input type="tel" id="phone_number" class="form-control input-tel" value="" autofocus="" required="" autocomplete="off" data-intl-tel-input-id="0" placeholder="991 234 567" style="padding-left: 91px;">
+<input type="hidden" name="phone_number"></div>
+<img id="payment-method-icon" width="2rem" alt="payment method logo" src="/assets/images/payment_methods/default.png">
+<div>
+</div>
+</div>
+<div>
+<div class="col-12 px-0"><div><p id="methodscd" class="d-none payment-method-box operator-box">
+<img src="https://checkout.cinetpay.com/assets/images/payment_methods/orange.png" class="rounded mx-1 payment-method-logo" alt="ORANGE">
+<img src="https://checkout.cinetpay.com/assets/images/payment_methods/airtel.png" class="rounded mx-1 payment-method-logo" alt="AIRTEL">
+<img src="https://checkout.cinetpay.com/assets/images/payment_methods/mpesa.png" class="rounded mx-1 payment-method-logo" alt="MPESA"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+<input type="hidden" name="action">
+<div class="desk-action p-3" id="desk-action">
+<button type="submit" class="btn btn-next btn-block" id="del">
+Payer 10 USD
+</button>
+</div>
+
+</form>
+</div>
+<div class="desk-copyright px-3 pb-2 d-flex">
+<p class="copyright m-0">
+En cliquant, vous acceptez nos<br>
+<a href="https://cinetpay.com/legal/cgv" target="_blank" class="text-dark"><strong>Conditions d'utilisation</strong></a>
+</p>
+<div class="ml-auto">
+<div class="d-flex">
+<div class="flex-grow-1 mr-2">
+<p class="m-0 copyright text-right">
+Paiement sécurisé par <br>
+<strong>CinetPay</strong>
+</p>
+</div>
+<div class="flex-shrink-0">
+<img src="https://checkout.cinetpay.com/brand/png/icon-black@4x.png" alt="Logo CinetPay" width="45">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('readystatechange', function (event) {
+if (event.target.readyState === 'complete') {
+ready();
+}
+});
+
+function ready() {
+setTimeout(function () {
+fadeIn(document.getElementById('page'))
+}, 217)
+fadeOut(document.getElementById('loading'));
+}
+
+// ** FADE OUT FUNCTION **
+function fadeOut(el) {
+el.style.opacity = 1;
+(function fade() {
+if ((el.style.opacity -= .1) < 0) {
+el.style.display = "none";
+} else {
+requestAnimationFrame(fade);
+}
+})();
+}
+
+// ** FADE IN FUNCTION **
+function fadeIn(el, display) {
+el.style.opacity = 0;
+el.style.display = display || "block";
+(function fade() {
+var val = parseFloat(el.style.opacity);
+if (!((val += .1) > 1)) {
+el.style.opacity = val;
+requestAnimationFrame(fade);
+}
+})();
+}
+
+function empty(item) {
+return (item === undefined || item === null || item === false || item === '');
+}
+</script>
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+let payment = {"id":28255430,"apikey":"130463917365f879e9284415.37748505","cpm_site_id":5883560,"cpm_trans_id":"1524794302","cpm_currency":"USD","cpm_designation":"testING","cpm_amount":"10","signature":null,"cust_ip_address":null,"cust_user_agent":null,"cust_browser_cookies":null,"cel_phone_num":null,"phone_prefixe":null,"code_otp":null,"payment_method":null,"token":"97c4da7e4621dca85a736b4039b186062a42c113d0e6200c669e3867539241fe0f2299809540272e7e6a228c2f4f15274df354d5e36da0","metadata":null,"channels":"MOBILE_MONEY","lang":"fr","gateway_progress":"BEGIN_PAYMENT","notify_url":"http:\/\/exaple.co","return_url":"http:\/\/exaple.co","cancel_url":null,"customer_id":null,"customer_name":"ambika","customer_surname":"ARZEN","customer_email":"mail.bidon@gmail.com","invoice_data":"[]","api_response":null,"created_at":"2025-02-22T11:57:35.000000Z","updated_at":"2025-02-22T11:57:55.000000Z","cpm_version":"V4","customer_phone_number":"+2430975048355","customer_address":"PHYSIQUE","customer_city":"CD","customer_country":"CD","customer_zip_code":"ahoo","customer_state":"ok","customer_details":null,"alternative_currency":null,"cpm_trans_date":null,"seamless_id":null,"is_visa_secured":false,"is_locked_phone_number":false,"visa_auth_transaction_id":null,"alternative_amount_in_customer_country":"0","funds_destination":null,"buyer_country":"CD","can_pay_with_visa_api":false};
+console.log(payment)
+const socketServer = "";
+
+const socket = io(socketServer, {
+query: {
+paymentId: payment.token
+},
+});
+
+let socketId = null;
+try {
+socket.on('connect', function () {
+console.log(socket.id)
+socketId = socket.id;
+console.log('Connected to socket server')
+});
+
+socket.on("disconnect", () => {
+console.log("Disconnected");
+this.socket_disconnect = true;
+});
+
+socket.on('channel', async (data) => {
+let myHeaders = {
+"Content-Type": "application/json"
+};
+let url = "https://checkout.cinetpay.com/payment/status/refresh";
+let raw = JSON.stringify({
+"site_id": "5883560",
+"transaction_id": "1524794302"
+});
+
+console.log(raw)
+
+let requestOptions = {
+body: raw,
+headers: myHeaders,
+method: "POST",
+redirect: "follow"
+};
+try {
+const response = await fetch(url, requestOptions)
+console.log('hello')
+const result = await response.json()
+console.log('hello 1')
+console.log(result)
+
+if (result.refresh) {
+location.reload();
+}
+
+} catch (e) {
+console.log('Error' + e)
+}
+
+});
+} catch (e) {
+console.log(e)
+}
+})</script>
+<script src="https://checkout.cinetpay.com/assets/js/app.js"></script>
+<script>
+document.addEventListener('readystatechange', function (event) {
+if (event.target.readyState === 'complete') {
+disableButtonOnSubmit();
+}
+});
+function disableButtonOnSubmit() {
+var form = document.getElementById('payment_form');
+var submitButton = document.getElementById('del');
+form.addEventListener('submit', function () {
+submitButton.disabled = true;
+setTimeout(function () {
+submitButton.disabled = false;
+}, 15000)
+})
+}
+</script>
+<script>
+
+function setAction(action, typeV) {
+if (empty(typeV)) {
+typeV = 'default';
+}
+document.begin_form.action = action;
+if (!empty(document.getElementById("phone_number"))) {
+document.getElementById("phone_number").required = (typeV.toUpperCase() === 'MOBILE_MONEY');
+}
+
+
+}
+
+function initializeIntelInput() {
+try {
+if (empty(window.intlTelInput) && intlTelInput) {
+window.intlTelInput = intlTelInput;
+}
+
+var phoneNumberInput = document.querySelector("#phone_number");
+
+var iti = window.intlTelInput(phoneNumberInput, {
+hiddenInput: "phone_number",
+onlyCountries: ["cd"],
+placeholderNumberType: "MOBILE",
+initialCountry: 'cd',
+localizedCountries: {"cd": "Congo RDC"},
+separateDialCode: true,
+utilsScript: "/assets/plugins/intl-tel-input/js/utils.js",
+customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+if (selectedCountryData.iso2 === 'ci') {
+return '01 23 45 67 89';
+} else if(selectedCountryData.iso2 === 'bj'){
+return '01 95 23 45 67';
+} else {
+return selectedCountryPlaceholder;
+}
+},
+});
+
+var countryJsData = iti.getSelectedCountryData();
+var countryJs = 'cd';
+if (!empty(countryJsData) && !empty(countryJsData.iso2)) {
+countryJs = countryJsData.iso2;
+getMobileMoneyPaymentMethodLogo(iti);
+}
+
+var methodCountry = document.getElementById("methods" + countryJs);
+showCurrentLogos(methodCountry);
+
+setAction('https://checkout.cinetpay.com/payment/verify', 'MOBILE_MONEY');
+                                            
+phoneNumberInput.addEventListener('countrychange', function (e) {
+const methodCountry = document.getElementById("methods" + iti.getSelectedCountryData().iso2)
+showCurrentLogos(methodCountry);
+getMobileMoneyPaymentMethodLogo(iti);
+});
+
+
+phoneNumberInput.addEventListener('paste', function (e) {
+getMobileMoneyPaymentMethodLogo(iti);
+});
+phoneNumberInput.addEventListener('keyup', function (e) {
+getMobileMoneyPaymentMethodLogo(iti);
+});
+
+if (!empty(phoneNumberInput)) {
+setInputFilter(phoneNumberInput, function (value) {
+return /^\d*\.?\d*$/.test(value.replace(/\s/g, ''));
+});
+}
+
+
+var countryData = iti.getSelectedCountryData()
+var countryIso = countryData.iso2;
+var phoneNumber = phoneNumberInput.value.replace("+" + iti.dialCode, "").trim();
+displayPaymentMethodLogo(countryIso, phoneNumber);
+return true;
+} catch (e) {
+}
+}
+
+function getMobileMoneyPaymentMethodLogo(itiEvent) {
+var countryData = itiEvent.getSelectedCountryData()
+var countryIso = countryData.iso2;
+var phoneNumber = itiEvent.getNumber().replace("+" + countryData.dialCode, "").trim();
+return displayPaymentMethodLogo(countryIso, phoneNumber);
+}
+
+if (document.readyState !== 'loading') {
+initializeIntelInput();
+} else {
+document.addEventListener("DOMContentLoaded", initializeIntelInput);
+}
+
+</script>
+
+<script>
+if (!String.prototype.startsWith) {
+Object.defineProperty(String.prototype, 'startsWith', {
+value: function (search, rawPos) {
+var pos = rawPos > 0 ? rawPos | 0 : 0;
+return this.substring(pos, pos + search.length) === search;
+}
+});
+}
+
+var paymentMethods = {"bf":{"regex":[],"prefixes":[{"values":["55","64","65","66","67","74","75","76","77"],"name":"orange"},{"values":["51","53","60","61","62","63","70","71","72","73","58"],"name":"moov"}],"max_digits":8,"currencies":["XOF"]},"bj":{"regex":[],"prefixes":[{"values":["0151","0152","0153","0154","0161","0162","0166","0167","0169","0190","0191","0196","0197"],"name":"mtn"},{"values":["0160","0163","0164","0165","0194","0195","0198","0199","0168","0194","0195","0198","0199","0155","0158"],"name":"moov"}],"max_digits":10,"currencies":["XOF"]},"cd":{"regex":[],"prefixes":[{"values":["80","84","85","89"],"currencies":["CDF","USD"],"name":"orange"},{"currencies":["CDF","USD"],"values":["97","99"],"name":"airtel"},{"values":["81","82","83","081","082","080","083"],"currencies":["CDF","USD"],"name":"mpesa"}],"max_digits":10,"currencies":["CDF","USD"]},"ci":{"regex":[{"values":"^[0,4,5,6,7,8,9]{1}[7,8,9]\\d{0,8}","name":"orange"},{"values":"^[0,4,5,6,7,8,9]{1}[4,5,6]\\d{0,8}","name":"mtn"},{"values":"^[0,4,5,6,7,8,9]{1}[0,1,2,3]{1}\\d{0,8}","name":"moov"}],"prefixes":[],"max_digits":10,"currencies":["XOF"]},"cm":{"regex":[],"prefixes":[{"values":["690","691","692","693","694","695","696","697","698","699","686","687","688","655","656","657","658","659"],"name":"orange"},{"values":["680","681","682","683","684","685","689","650","651","652","653","654","678"],"name":"mtn"}],"max_digits":10,"currencies":["XAF"]},"ml":{"regex":[],"prefixes":[{"values":["65","66","67","68","69","95","96","97","98","99"],"name":"moov"}],"max_digits":10,"currencies":["XOF"]},"ne":{"regex":[],"prefixes":[{"values":["86","87","88","89","96","97","98","99"],"name":"airtel"}],"max_digits":8,"currencies":["XOF"]},"sn":{"regex":[],"prefixes":[{"values":["77","78"],"name":"orange"},{"values":["65","66","76"],"name":"freemoney"},{"values":["70"],"name":"expresso"}],"max_digits":10,"currencies":["XOF"]},"tg":{"regex":[],"prefixes":[{"values":["79","96","97","98","99"],"name":"moov"},{"values":["70","90","91","92","93"],"name":"tmoney"}],"max_digits":10,"currencies":["XOF"]},"gn":{"regex":[],"prefixes":[{"values":["610","611","62"],"name":"orange"},{"values":["66"],"name":"mtn"}],"max_digits":9,"currencies":["GNF"]}};
+
+function displayPaymentMethodLogo(country, phoneNumber) {
+var countriesPaymentMethods = paymentMethods[country.toLowerCase()];
+var logosPath = '/assets/images/payment_methods/';
+var logo = 'default';
+if (countriesPaymentMethods !== undefined) {
+var countriesPaymentMethodsRegexEntries = countriesPaymentMethods['regex'];
+var countriesPaymentMethodsValuesEntries = countriesPaymentMethods['prefixes'];
+if (typeof countriesPaymentMethodsRegexEntries !== undefined && countriesPaymentMethodsRegexEntries.length > 0) {
+for (var regexItem of countriesPaymentMethodsRegexEntries) {
+if (new RegExp(regexItem.values).test(phoneNumber) && phoneNumber.length <= countriesPaymentMethods['max_digits']) {
+logo = regexItem.name;
+document.getElementById("payment-method-icon").src = logosPath + logo + '.png';
+return;
+}
+}
+}
+if (typeof countriesPaymentMethodsValuesEntries !== undefined && countriesPaymentMethodsValuesEntries.length > 0) {
+for (var prefixItem of countriesPaymentMethodsValuesEntries) {
+var prefixes = prefixItem['values'];
+for (var prefix of prefixes) {
+if (phoneNumber.startsWith(prefix) && phoneNumber.length <= countriesPaymentMethods['max_digits']) {
+logo = prefixItem['name'];
+document.getElementById("payment-method-icon").src = logosPath + logo + '.png';
+return;
+}
+}
+}
+}
+}
+document.getElementById("payment-method-icon").src = logosPath + 'default.png';
+}
+</script>
+
+
+<iframe id="_hjSafeContext_7790192" title="_hjSafeContext" tabindex="-1" aria-hidden="true" src="about:blank" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe><script class="iti-load-utils" async="" src="/assets/plugins/intl-tel-input/js/utils.js"></script></body></html>

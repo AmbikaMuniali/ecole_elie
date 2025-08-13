@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Jeu d'apprentissage des notes</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+   background-color: #f0f0f0;
+   margin: 0;
+  }
+  .container {
+   background-color: #fff;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   text-align: center;
+  }
+  h1 {
+   color: #333;
+  }
+  .note-display {
+   margin: 20px 0;
+   font-size: 2em;
+   font-weight: bold;
+   color: #007bff;
+  }
+    /* Corrected styles for note display spans */
+    #currentNote {
+        font-size: 3em; /* Make current note prominent */
+        font-weight: bold;
+        color: #007bff;
+    }
+    #nextNote {
+        font-size: 2em; /* Make next note visible but less prominent than current */
+        font-weight: bold;
+        color: #007bff; /* Consistent color for both, or could be slightly different */
+    }
+
+  .controls button {
+   padding: 10px 20px;
+   font-size: 1em;
+   margin: 5px;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+  }
+  #startButton {
+   background-color: #28a745;
+   color: white;
+  }
+  #startButton:hover {
+   background-color: #218838;
+  }
+  #stopButton {
+   background-color: #dc3545;
+   color: white;
+  }
+  #stopButton:hover {
+   background-color: #c82333;
+  }
+  .speed-control, .note-range-control, .timbre-control, .interval-control, .fixed-note-control, .random-direction-control {
+   margin-top: 20px;
+   display: inline-block;
+   margin-bottom: 10px;
+  }
+  .note-range-control, .fixed-note-control, .random-direction-control {
+   display: block; /* Make these controls take full width */
+  }
+  .speed-control label, .note-range-control label, .timbre-control label, .interval-control label, .fixed-note-control label, .random-direction-control label {
+   margin-right: 10px;
+   font-weight: bold;
+  }
+  .speed-control input[type="range"] {
+   width: 200px;
+   vertical-align: middle;
+  }
+  .note-range-control select, .timbre-control select, .interval-control select, .fixed-note-control select {
+   padding: 8px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+   margin: 0 5px;
+  }
+    /* New CSS for the indicator */
+    #fixedNoteIndicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background-color: #ccc; /* Default grey */
+      border-radius: 50%;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+ </style>
+</head>
+<body>
+ <div class="container">
+  <h1>Apprentissage des notes</h1>
+  <p>Note actuelle: <span id="currentNote"></span></p>
+  <p>Prochaine note: <span id="nextNote"></span></p>
+  <div class="controls">
+   <button id="startButton">Démarrer le jeu</button>
+   <button id="stopButton" disabled>Arrêter le jeu</button>
+  </div>
+  <div class="speed-control">
+   <label for="speedRange">Vitesse:</label>
+   <input type="range" id="speedRange" min="200" max="2000" value="1000" step="100">
+   <span id="speedValue">1.0</span> secondes
+  </div>
+  <div class="note-range-control">
+   <label for="lowestNote">Note la plus basse:</label>
+   <select id="lowestNote"></select><br><br>
+   <label for="highestNote">Note la plus haute:</label>
+   <select id="highestNote"></select>
+  </div>
+  <div class="interval-control">
+   <label for="intervalType">Pas:</label>
+   <select id="intervalType">
+    <option value="1" selected>Secondes (Pas)</option>
+    <option value="2">Tierces (Sauts)</option>
+    <option value="3">Quartes (Sauts)</option>
+    <option value="4">Quintes (Sauts)</option>
+   </select>
+  </div>
+  <div class="random-direction-control">
+    <label for="randomDirectionToggle">Direction Aléatoire:</label>
+    <input type="checkbox" id="randomDirectionToggle"> Activer
+  </div>
+  <div class="fixed-note-control">
+   <label for="fixedNoteToggle">Note Fixe:</label>
+   <input type="checkbox" id="fixedNoteToggle"> Activer
+   <span id="fixedNoteIndicator"></span>   <select id="fixedNoteSelect" disabled></select>
+  </div>
+  <div class="timbre-control">
+   <label for="oscillatorType">Timbre:</label>
+   <select id="oscillatorType">
+    <option value="triangle" selected>Triangle (Doux)</option>
+    <option value="sine">Sine (Flûte)</option>
+    <option value="square">Square (Clarinette/Bois)</option>
+    <option value="sawtooth">Sawtooth (Cordes/Cuivres)</option>
+   </select>
+  </div>
+ </div>
+
+ <script>
+  // Contexte audio
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  // Éléments du DOM
+  const startButton = document.getElementById('startButton');
+  const stopButton = document.getElementById('stopButton');
+  const currentNoteSpan = document.getElementById('currentNote');
+  const nextNoteSpan = document.getElementById('nextNote');
+  const speedRange = document.getElementById('speedRange');
+  const speedValueSpan = document.getElementById('speedValue');
+  const lowestNoteSelect = document.getElementById('lowestNote');
+  const highestNoteSelect = document.getElementById('highestNote');
+  const oscillatorTypeSelect = document.getElementById('oscillatorType');
+  const intervalTypeSelect = document.getElementById('intervalType');
+  const fixedNoteToggle = document.getElementById('fixedNoteToggle');
+  const fixedNoteSelect = document.getElementById('fixedNoteSelect');
+  const fixedNoteIndicator = document.getElementById('fixedNoteIndicator');
+  const randomDirectionToggle = document.getElementById('randomDirectionToggle');
+
+  // Définition de la gamme majeure (Do Majeur) avec des fréquences
+  const majorScale = [
+   { name: "D,", frequency: 130.81 },
+   { name: "R,", frequency: 146.83 },
+   { name: "M,", frequency: 164.81 },
+   { name: "F,", frequency: 174.61 },
+   { name: "S,", frequency: 196.00 },
+   { name: "L,", frequency: 220.00 },
+   { name: "T,", frequency: 246.94 },
+   { name: "D", frequency: 261.63 },
+   { name: "R", frequency: 293.66 },
+   { name: "M", frequency: 329.63 },
+   { name: "F", frequency: 349.23 },
+   { name: "S", frequency: 392.00 },
+   { name: "L", frequency: 440.00 },
+   { name: "T", frequency: 493.88 },
+   { name: "D'", frequency: 523.25 },
+   { name: "R'", frequency: 587.33 },
+   { name: "M'", frequency: 659.25 },
+   { name: "F'", frequency: 698.46 },
+   { name: "S'", frequency: 783.99 },
+   { name: "L'", frequency: 880.00 },
+   { name: "T'", frequency: 987.77 },
+   { name: "D''", frequency: 1046.50 }
+  ];
+
+  // Variables du jeu
+  let gameInterval;
+  let currentNoteIndex; // The index of the note currently playing/just played
+  let nextNoteIndex;  // The index of the note that will play next
+  let movingNoteSequenceIndex; // Tracks the index in the ascending/descending sequence
+  let noteDuration = 1000; // Default note duration in milliseconds
+  let lowestNoteAllowedIndex = 7; // Default to C4
+  let highestNoteAllowedIndex = 14; // Default to C5 (index 15)
+
+  // Envelope parameters for piano-like sound (ADSR-like)
+  const attackTime = 0.01;
+  const decayTime = 0.2;
+  const sustainLevel = 0.5;
+  const releaseTime = 0.8;
+
+  let currentOscillatorType = 'triangle'; // Default timbre
+  let intervalStep = 1; // Default to seconds (step of 1 in the majorScale array)
+
+  // Fixed Note variables
+  let useFixedNote = false;
+  let fixedNoteIndex = 7; // Default to C4 (index 7)
+  let isPlayingFixedNoteInCycle = false; // Flag to alternate between fixed and moving note
+
+  // Variable for directional movement (1 for ascending, -1 for descending)
+  let direction = 1; // Default to ascending
+  let useRandomDirection = false; // Variable for random direction
+
+  // --- Fonctions d'initialisation ---
+
+  // Fonction pour remplir les sélecteurs de notes
+  function populateNoteSelectors() {
+   majorScale.forEach((note, index) => {
+    const optionLow = document.createElement('option');
+    optionLow.value = index;
+    optionLow.textContent = note.name;
+    lowestNoteSelect.appendChild(optionLow);
+
+    const optionHigh = document.createElement('option');
+    optionHigh.value = index;
+    optionHigh.textContent = note.name;
+    highestNoteSelect.appendChild(optionHigh);
+
+    // Populate fixed note selector as well
+    const optionFixed = document.createElement('option');
+    optionFixed.value = index;
+    optionFixed.textContent = note.name;
+    fixedNoteSelect.appendChild(optionFixed);
+   });
+
+   // Set default selections
+   lowestNoteSelect.value = lowestNoteAllowedIndex;
+   highestNoteSelect.value = highestNoteAllowedIndex;
+   fixedNoteSelect.value = fixedNoteIndex; // Set default fixed note
+
+      // Initialize speed display to match the default value
+      // The default speedRange value is 1000. For an inverted scale 200-2000, 1000 is the middle,
+      // so the inverted value is also 1000.
+      speedValueSpan.textContent = (noteDuration / 1000).toFixed(1);
+  }
+
+  // --- Fonctions audio ---
+
+  // Fonction pour jouer une note
+  function playNote(frequency, duration) {
+   const oscillator = audioCtx.createOscillator();
+   const gainNode = audioCtx.createGain();
+
+   oscillator.connect(gainNode);
+   gainNode.connect(audioCtx.destination);
+
+   oscillator.type = currentOscillatorType;
+   oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+
+   const now = audioCtx.currentTime;
+   const noteDurationSeconds = duration / 1000;
+
+   // ADSR Envelope
+   gainNode.gain.setValueAtTime(0, now);
+   gainNode.gain.linearRampToValueAtTime(1, now + attackTime);
+   gainNode.gain.exponentialRampToValueAtTime(sustainLevel, now + attackTime + decayTime);
+   gainNode.gain.exponentialRampToValueAtTime(0.01, now + noteDurationSeconds + releaseTime);
+
+   oscillator.start(now);
+   oscillator.stop(now + noteDurationSeconds + releaseTime + 0.1);
+  }
+
+  // --- Fonctions du jeu ---
+
+  // Function to calculate the next note in the *moving* sequence
+  function calculateNextMovingNote() {
+    let effectiveDirection = direction; // Use current direction by default
+
+     if (useRandomDirection) {
+     // If random direction is active, choose a new random direction for the next step
+     // This means the overall 'direction' variable will change randomly at each step
+     // rather than just reversing at boundaries.
+     effectiveDirection = Math.random() < 0.5 ? 1 : -1;
+     direction = effectiveDirection; // Update global direction
+     }
+
+     let potentialNextIndex = movingNoteSequenceIndex + (effectiveDirection * intervalStep);
+
+     // Check if the potential next note goes beyond the allowed range
+     if (effectiveDirection === 1) { // Moving upwards
+    if (potentialNextIndex > highestNoteAllowedIndex) {
+     movingNoteSequenceIndex = highestNoteAllowedIndex; // Set to highest note
+     if (!useRandomDirection) direction = -1; // Only reverse direction if not in random mode
+    } else {
+     movingNoteSequenceIndex = potentialNextIndex;
+    }
+     } else { // effectiveDirection === -1, Moving downwards
+    if (potentialNextIndex < lowestNoteAllowedIndex) {
+     movingNoteSequenceIndex = lowestNoteAllowedIndex; // Set to lowest note
+     if (!useRandomDirection) direction = 1; // Only reverse direction if not in random mode
+    } else {
+     movingNoteSequenceIndex = potentialNextIndex;
+    }
+     }
+  }
+
+  // Function to advance the game one step
+  function advanceGame() {
+   if (useFixedNote) {
+    if (isPlayingFixedNoteInCycle) {
+     // Fixed note was just played. Now, play the moving note.
+     currentNoteIndex = movingNoteSequenceIndex; // The moving note is now current
+     calculateNextMovingNote(); // Calculate the *next* moving note for the subsequent cycle
+     nextNoteIndex = fixedNoteIndex; // The fixed note will be played after this moving note
+     fixedNoteIndicator.style.backgroundColor = '#ccc'; // Fixed note is not playing now
+     isPlayingFixedNoteInCycle = false;
+    } else {
+     // Moving note was just played. Now, play the fixed note.
+     currentNoteIndex = fixedNoteIndex; // Fixed note is now current
+     nextNoteIndex = movingNoteSequenceIndex; // The next note will be the one in the moving sequence
+     fixedNoteIndicator.style.backgroundColor = 'red'; // Fixed note is playing now
+     isPlayingFixedNoteInCycle = true;
+    }
+   } else {
+    // No fixed note: simply advance through the moving sequence
+    currentNoteIndex = movingNoteSequenceIndex; // The calculated moving note becomes current
+    calculateNextMovingNote(); // Calculate the next moving note
+    nextNoteIndex = movingNoteSequenceIndex; // nextNote is simply the next in the moving sequence
+    fixedNoteIndicator.style.backgroundColor = '#ccc'; // Ensure indicator is grey
+   }
+
+   // Always display the notes and play the current one
+   displayNotes();
+   playNote(majorScale[currentNoteIndex].frequency, noteDuration);
+  }
+
+  // Main game function
+  function startGame() {
+   startButton.disabled = true;
+   stopButton.disabled = false;
+   startButton.textContent = "Jeu en cours...";
+
+   updateNoteRange();
+
+   if (gameInterval) {
+    clearInterval(gameInterval);
+   }
+
+   // Reset game state for a fresh start
+   // Direction is set to 1 (ascending) by default if not random,
+   // otherwise, calculateNextMovingNote will pick randomly for the first step.
+   direction = 1;
+   
+   movingNoteSequenceIndex = lowestNoteAllowedIndex; // Initialize the moving sequence from the lowest allowed note
+
+   if (useFixedNote) {
+    // Set initial state to play fixed note first, then lowest moving note.
+    currentNoteIndex = fixedNoteIndex;
+    // For the first 'next' note (which is the first moving note), we use lowestNoteAllowedIndex.
+    // calculateNextMovingNote() will be called later to determine the *next* next moving note.
+    nextNoteIndex = lowestNoteAllowedIndex; 
+    isPlayingFixedNoteInCycle = true; // Fixed note is about to play
+    fixedNoteIndicator.style.backgroundColor = 'red';
+   } else {
+    // Start with the lowest note in the moving sequence
+    currentNoteIndex = lowestNoteAllowedIndex;
+    calculateNextMovingNote(); // Calculate the very first "next" note based on current
+    nextNoteIndex = movingNoteSequenceIndex; // The next note is simply the next in the sequence
+    fixedNoteIndicator.style.backgroundColor = '#ccc';
+   }
+
+   displayNotes(); // Display initial current and next notes
+   playNote(majorScale[currentNoteIndex].frequency, noteDuration); // Play the initial current note
+
+   gameInterval = setInterval(advanceGame, noteDuration);
+  }
+
+  // Function to stop the game
+  function stopGame() {
+   clearInterval(gameInterval);
+   startButton.disabled = false;
+   stopButton.disabled = true;
+   startButton.textContent = "Démarrer le jeu";
+   currentNoteSpan.textContent = '';
+   nextNoteSpan.textContent = '';
+   isPlayingFixedNoteInCycle = false; // Reset fixed note flag
+   fixedNoteIndicator.style.backgroundColor = '#ccc'; // Ensure indicator is grey when stopped
+  }
+
+  // Function to display notes
+  function displayNotes() {
+   currentNoteSpan.textContent = majorScale[currentNoteIndex].name;
+   nextNoteSpan.textContent = majorScale[nextNoteIndex].name;
+  }
+
+  // Function to update note limits and validate
+  function updateNoteRange() {
+   let newLowestIndex = parseInt(lowestNoteSelect.value);
+   let newHighestIndex = parseInt(highestNoteSelect.value);
+
+   if (newLowestIndex > newHighestIndex) {
+    [newLowestIndex, newHighestIndex] = [newHighestIndex, newLowestIndex];
+    lowestNoteSelect.value = newLowestIndex;
+    highestNoteSelect.value = newHighestIndex;
+   }
+
+   lowestNoteAllowedIndex = newLowestIndex;
+   highestNoteAllowedIndex = newHighestIndex;
+
+   // Ensure fixedNoteIndex is within the new range if fixed note is active
+   if (useFixedNote && (fixedNoteIndex < lowestNoteAllowedIndex || fixedNoteIndex > highestNoteAllowedIndex)) {
+    // If the selected fixed note is outside the new range, default it to the lowest allowed
+    fixedNoteIndex = lowestNoteAllowedIndex;
+    fixedNoteSelect.value = lowestNoteAllowedIndex;
+   }
+  }
+
+  // --- Event Listeners ---
+
+  startButton.addEventListener('click', () => {
+   if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+   }
+   startGame();
+  });
+
+  stopButton.addEventListener('click', () => {
+   stopGame();
+  });
+
+  speedRange.addEventListener('input', (event) => {
+   const minValue = parseInt(speedRange.min);
+   const maxValue = parseInt(speedRange.max);
+   const currentValue = parseInt(event.target.value);
+
+   // Invert the speed: higher range value means shorter duration
+   noteDuration = minValue + maxValue - currentValue;
+
+   speedValueSpan.textContent = (noteDuration / 1000).toFixed(1); // Display in seconds
+   if (startButton.disabled) { startGame(); }
+ });
+
+  lowestNoteSelect.addEventListener('change', () => {
+   updateNoteRange();
+   if (startButton.disabled) { startGame(); }
+  });
+
+  highestNoteSelect.addEventListener('change', () => {
+   updateNoteRange();
+   if (startButton.disabled) { startGame(); }
+  });
+
+  intervalTypeSelect.addEventListener('change', (event) => {
+   intervalStep = parseInt(event.target.value);
+   if (startButton.disabled) { startGame(); }
+  });
+
+  randomDirectionToggle.addEventListener('change', (event) => {
+    useRandomDirection = event.target.checked;
+    if (startButton.disabled) { startGame(); } // Restart game if active to apply new direction mode
+  });
+
+  fixedNoteToggle.addEventListener('change', (event) => {
+   useFixedNote = event.target.checked;
+   fixedNoteSelect.disabled = !useFixedNote; // Enable/disable fixed note selector
+   // The indicator color will be set by startGame or advanceGame
+   if (startButton.disabled) { startGame(); } // Restart game if active
+  });
+
+  fixedNoteSelect.addEventListener('change', (event) => {
+   fixedNoteIndex = parseInt(event.target.value);
+   if (startButton.disabled) { startGame(); } // Restart game if active
+  });
+
+  oscillatorTypeSelect.addEventListener('change', (event) => {
+   currentOscillatorType = event.target.value;
+   if (startButton.disabled) { startGame(); }
+  });
+
+  populateNoteSelectors();
+ </script>
+</body>
+</html>
