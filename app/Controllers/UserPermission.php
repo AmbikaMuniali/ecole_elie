@@ -1,27 +1,27 @@
 <?php
 namespace App\Controllers;
-use App\Models\ModuleModel;
+use App\Models\UserPermissionModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
-class Module extends BaseController
+class UserPermission extends BaseController
 {
     /**
-     * Get all Modules
+     * Get all UserPermissions
      * @return Response
      */
     public function index()
     {
-        $model = new ModuleModel();
+        $model = new UserPermissionModel();
         return $this->getResponse(
             [
-                'message' => 'Modules retrieved successfully',
+                'message' => 'UserPermissions retrieved successfully',
                 'result' => $model->selectAll()
             ]
         );
     }
     /**
-     * Create a new Module
+     * Create a new UserPermission
      */
     public function store()
     {
@@ -39,35 +39,35 @@ class Module extends BaseController
                 );
         }
  
-        $model = new ModuleModel();
-        $module = $model->insert($input);
+        $model = new UserPermissionModel();
+        $userpermission = $model->insert($input);
         
-      //  $module = // INSERTED ID
+      //  $userpermission = // INSERTED ID
         return $this->getResponse(
             [
-                'message' => 'Module added successfully',
-                'result' => $module
+                'message' => 'UserPermission added successfully',
+                'result' => $userpermission
             ]
         );
     }
     /**
-     * Get a single module by ID
+     * Get a single userpermission by ID
      */
     public function show($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = $model->findModuleById($id);
+            $model = new UserPermissionModel();
+            $userpermission = $model->findUserPermissionById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module retrieved successfully',
-                    'result' => $module
+                    'message' => 'UserPermission retrieved successfully',
+                    'result' => $userpermission
                 ]
             );
         } catch (Exception $e) {
             return $this->getResponse(
                 [
-                    'message' => 'Could not find module for specified ID'
+                    'message' => 'Could not find userpermission for specified ID'
                 ],
                 ResponseInterface::HTTP_NOT_FOUND
             );
@@ -76,16 +76,16 @@ class Module extends BaseController
         public function update($id)
     {
         try {
-            $model = new ModuleModel();
+            $model = new UserPermissionModel();
             $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $module = $model->findById($id);
+            $userpermission = $model->findById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module updated successfully',
-                    'result' => $module
+                    'message' => 'UserPermission updated successfully',
+                    'result' => $userpermission
                 ]
             );
         } catch (Exception $exception) {
@@ -110,13 +110,13 @@ class Module extends BaseController
     public function destroy($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = (array) $model->findById($id);
-            $model->delete($module);
+            $model = new UserPermissionModel();
+            $userpermission = (array) $model->findById($id);
+            $model->delete($userpermission);
             return $this
                 ->getResponse(
                     [
-                        'message' => 'Module deleted successfully',
+                        'message' => 'UserPermission deleted successfully',
                     ]
                 );
         } catch (Exception $exception) {

@@ -1,27 +1,27 @@
 <?php
 namespace App\Controllers;
-use App\Models\ModuleModel;
+use App\Models\DepenseModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
-class Module extends BaseController
+class Depense extends BaseController
 {
     /**
-     * Get all Modules
+     * Get all Depenses
      * @return Response
      */
     public function index()
     {
-        $model = new ModuleModel();
+        $model = new DepenseModel();
         return $this->getResponse(
             [
-                'message' => 'Modules retrieved successfully',
+                'message' => 'Depenses retrieved successfully',
                 'result' => $model->selectAll()
             ]
         );
     }
     /**
-     * Create a new Module
+     * Create a new Depense
      */
     public function store()
     {
@@ -39,35 +39,35 @@ class Module extends BaseController
                 );
         }
  
-        $model = new ModuleModel();
-        $module = $model->insert($input);
+        $model = new DepenseModel();
+        $depense = $model->insert($input);
         
-      //  $module = // INSERTED ID
+      //  $depense = // INSERTED ID
         return $this->getResponse(
             [
-                'message' => 'Module added successfully',
-                'result' => $module
+                'message' => 'Depense added successfully',
+                'result' => $depense
             ]
         );
     }
     /**
-     * Get a single module by ID
+     * Get a single depense by ID
      */
     public function show($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = $model->findModuleById($id);
+            $model = new DepenseModel();
+            $depense = $model->findDepenseById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module retrieved successfully',
-                    'result' => $module
+                    'message' => 'Depense retrieved successfully',
+                    'result' => $depense
                 ]
             );
         } catch (Exception $e) {
             return $this->getResponse(
                 [
-                    'message' => 'Could not find module for specified ID'
+                    'message' => 'Could not find depense for specified ID'
                 ],
                 ResponseInterface::HTTP_NOT_FOUND
             );
@@ -76,16 +76,16 @@ class Module extends BaseController
         public function update($id)
     {
         try {
-            $model = new ModuleModel();
+            $model = new DepenseModel();
             $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $module = $model->findById($id);
+            $depense = $model->findById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module updated successfully',
-                    'result' => $module
+                    'message' => 'Depense updated successfully',
+                    'result' => $depense
                 ]
             );
         } catch (Exception $exception) {
@@ -110,13 +110,13 @@ class Module extends BaseController
     public function destroy($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = (array) $model->findById($id);
-            $model->delete($module);
+            $model = new DepenseModel();
+            $depense = (array) $model->findById($id);
+            $model->delete($depense);
             return $this
                 ->getResponse(
                     [
-                        'message' => 'Module deleted successfully',
+                        'message' => 'Depense deleted successfully',
                     ]
                 );
         } catch (Exception $exception) {

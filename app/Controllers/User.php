@@ -16,7 +16,7 @@ class User extends BaseController
         return $this->getResponse(
             [
                 'message' => 'Users retrieved successfully',
-                'users' => $model->selectAll()
+                'result' => $model->selectAll()
             ]
         );
     }
@@ -46,7 +46,7 @@ class User extends BaseController
         return $this->getResponse(
             [
                 'message' => 'User added successfully',
-                'user' => $user
+                'result' => $user
             ]
         );
     }
@@ -61,7 +61,7 @@ class User extends BaseController
             return $this->getResponse(
                 [
                     'message' => 'User retrieved successfully',
-                    'user' => $user
+                    'result' => $user
                 ]
             );
         } catch (Exception $e) {
@@ -77,15 +77,15 @@ class User extends BaseController
     {
         try {
             $model = new UserModel();
-            $model->findUserById($id);
+            $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $user = $model->findUserById($id);
+            $user = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'User updated successfully',
-                    'user' => $user
+                    'result' => $user
                 ]
             );
         } catch (Exception $exception) {
@@ -97,7 +97,9 @@ class User extends BaseController
             );
         }
     }
-public function delete($id) {
+
+
+     public function delete($id) {
 
        return $this -> destroy($id);
     }
@@ -109,7 +111,7 @@ public function delete($id) {
     {
         try {
             $model = new UserModel();
-            $user = $model->findUserById($id);
+            $user = (array) $model->findById($id);
             $model->delete($user);
             return $this
                 ->getResponse(

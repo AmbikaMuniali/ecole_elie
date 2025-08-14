@@ -22,7 +22,7 @@ class App extends BaseConfig
      * explicitly and never rely on auto-guessing, especially in production
      * environments.
      */
-    public string $baseURL = 'http://localhost/projet/kasokooAPI/';
+    public string $baseURL = '';
     // public string $baseURL = 'https://kasokoo.tutumeni.com/mobile/';
 
     /**

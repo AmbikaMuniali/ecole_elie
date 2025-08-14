@@ -7,13 +7,13 @@ class UserModel extends MyParentModel
 {
   protected $table = "user";
   protected $allowedFields = [
-       "id", "username", "email", "phone", "password", "access_token", "status", "fkclient", "fkagent", "pref_lang", "created_at", "updated_at"
+       "id", "username", "password", "email", "nom_complet", "est_actif", "date_creation"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);
   }
 
-  public function findUserById($id)
+  public function findById($id)
   {
       $user = $this
           ->where(["id" => $id])

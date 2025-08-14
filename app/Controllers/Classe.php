@@ -1,27 +1,27 @@
 <?php
 namespace App\Controllers;
-use App\Models\ModuleModel;
+use App\Models\ClasseModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
-class Module extends BaseController
+class Classe extends BaseController
 {
     /**
-     * Get all Modules
+     * Get all Classes
      * @return Response
      */
     public function index()
     {
-        $model = new ModuleModel();
+        $model = new ClasseModel();
         return $this->getResponse(
             [
-                'message' => 'Modules retrieved successfully',
+                'message' => 'Classes retrieved successfully',
                 'result' => $model->selectAll()
             ]
         );
     }
     /**
-     * Create a new Module
+     * Create a new Classe
      */
     public function store()
     {
@@ -39,35 +39,35 @@ class Module extends BaseController
                 );
         }
  
-        $model = new ModuleModel();
-        $module = $model->insert($input);
+        $model = new ClasseModel();
+        $classe = $model->insert($input);
         
-      //  $module = // INSERTED ID
+      //  $classe = // INSERTED ID
         return $this->getResponse(
             [
-                'message' => 'Module added successfully',
-                'result' => $module
+                'message' => 'Classe added successfully',
+                'result' => $classe
             ]
         );
     }
     /**
-     * Get a single module by ID
+     * Get a single classe by ID
      */
     public function show($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = $model->findModuleById($id);
+            $model = new ClasseModel();
+            $classe = $model->findClasseById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module retrieved successfully',
-                    'result' => $module
+                    'message' => 'Classe retrieved successfully',
+                    'result' => $classe
                 ]
             );
         } catch (Exception $e) {
             return $this->getResponse(
                 [
-                    'message' => 'Could not find module for specified ID'
+                    'message' => 'Could not find classe for specified ID'
                 ],
                 ResponseInterface::HTTP_NOT_FOUND
             );
@@ -76,16 +76,16 @@ class Module extends BaseController
         public function update($id)
     {
         try {
-            $model = new ModuleModel();
+            $model = new ClasseModel();
             $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $module = $model->findById($id);
+            $classe = $model->findById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module updated successfully',
-                    'result' => $module
+                    'message' => 'Classe updated successfully',
+                    'result' => $classe
                 ]
             );
         } catch (Exception $exception) {
@@ -110,13 +110,13 @@ class Module extends BaseController
     public function destroy($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = (array) $model->findById($id);
-            $model->delete($module);
+            $model = new ClasseModel();
+            $classe = (array) $model->findById($id);
+            $model->delete($classe);
             return $this
                 ->getResponse(
                     [
-                        'message' => 'Module deleted successfully',
+                        'message' => 'Classe deleted successfully',
                     ]
                 );
         } catch (Exception $exception) {

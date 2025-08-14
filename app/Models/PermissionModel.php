@@ -3,11 +3,11 @@ namespace App\Models;
 use App\Models\MyParentModel;
 use Exception;
 
-class ModuleModel extends MyParentModel
+class PermissionModel extends MyParentModel
 {
-  protected $table = "module";
+  protected $table = "permission";
   protected $allowedFields = [
-       "id", "nom", "description"
+       "id", "fk_module", "nom", "code"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);
@@ -15,10 +15,10 @@ class ModuleModel extends MyParentModel
 
   public function findById($id)
   {
-      $module = $this
+      $permission = $this
           ->where(["id" => $id])
           ->get () -> getFirstRow();
-      // if (!$module) throw new Exception("Could not find module for specified ID");
-      return $module;
+      // if (!$permission) throw new Exception("Could not find permission for specified ID");
+      return $permission;
   }
 }

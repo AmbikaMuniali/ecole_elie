@@ -1,27 +1,27 @@
 <?php
 namespace App\Controllers;
-use App\Models\ModuleModel;
+use App\Models\EleveModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
-class Module extends BaseController
+class Eleve extends BaseController
 {
     /**
-     * Get all Modules
+     * Get all Eleves
      * @return Response
      */
     public function index()
     {
-        $model = new ModuleModel();
+        $model = new EleveModel();
         return $this->getResponse(
             [
-                'message' => 'Modules retrieved successfully',
+                'message' => 'Eleves retrieved successfully',
                 'result' => $model->selectAll()
             ]
         );
     }
     /**
-     * Create a new Module
+     * Create a new Eleve
      */
     public function store()
     {
@@ -39,35 +39,35 @@ class Module extends BaseController
                 );
         }
  
-        $model = new ModuleModel();
-        $module = $model->insert($input);
+        $model = new EleveModel();
+        $eleve = $model->insert($input);
         
-      //  $module = // INSERTED ID
+      //  $eleve = // INSERTED ID
         return $this->getResponse(
             [
-                'message' => 'Module added successfully',
-                'result' => $module
+                'message' => 'Eleve added successfully',
+                'result' => $eleve
             ]
         );
     }
     /**
-     * Get a single module by ID
+     * Get a single eleve by ID
      */
     public function show($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = $model->findModuleById($id);
+            $model = new EleveModel();
+            $eleve = $model->findEleveById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module retrieved successfully',
-                    'result' => $module
+                    'message' => 'Eleve retrieved successfully',
+                    'result' => $eleve
                 ]
             );
         } catch (Exception $e) {
             return $this->getResponse(
                 [
-                    'message' => 'Could not find module for specified ID'
+                    'message' => 'Could not find eleve for specified ID'
                 ],
                 ResponseInterface::HTTP_NOT_FOUND
             );
@@ -76,16 +76,16 @@ class Module extends BaseController
         public function update($id)
     {
         try {
-            $model = new ModuleModel();
+            $model = new EleveModel();
             $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $module = $model->findById($id);
+            $eleve = $model->findById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module updated successfully',
-                    'result' => $module
+                    'message' => 'Eleve updated successfully',
+                    'result' => $eleve
                 ]
             );
         } catch (Exception $exception) {
@@ -110,13 +110,13 @@ class Module extends BaseController
     public function destroy($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = (array) $model->findById($id);
-            $model->delete($module);
+            $model = new EleveModel();
+            $eleve = (array) $model->findById($id);
+            $model->delete($eleve);
             return $this
                 ->getResponse(
                     [
-                        'message' => 'Module deleted successfully',
+                        'message' => 'Eleve deleted successfully',
                     ]
                 );
         } catch (Exception $exception) {

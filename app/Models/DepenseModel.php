@@ -3,11 +3,11 @@ namespace App\Models;
 use App\Models\MyParentModel;
 use Exception;
 
-class ModuleModel extends MyParentModel
+class DepenseModel extends MyParentModel
 {
-  protected $table = "module";
+  protected $table = "depense";
   protected $allowedFields = [
-       "id", "nom", "description"
+       "id", "date_depense", "montant", "devise", "motif", "fk_user"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);
@@ -15,10 +15,10 @@ class ModuleModel extends MyParentModel
 
   public function findById($id)
   {
-      $module = $this
+      $depense = $this
           ->where(["id" => $id])
           ->get () -> getFirstRow();
-      // if (!$module) throw new Exception("Could not find module for specified ID");
-      return $module;
+      // if (!$depense) throw new Exception("Could not find depense for specified ID");
+      return $depense;
   }
 }

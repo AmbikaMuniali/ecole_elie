@@ -1,27 +1,27 @@
 <?php
 namespace App\Controllers;
-use App\Models\ModuleModel;
+use App\Models\AnneeScolaireModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
-class Module extends BaseController
+class AnneeScolaire extends BaseController
 {
     /**
-     * Get all Modules
+     * Get all AnneeScolaires
      * @return Response
      */
     public function index()
     {
-        $model = new ModuleModel();
+        $model = new AnneeScolaireModel();
         return $this->getResponse(
             [
-                'message' => 'Modules retrieved successfully',
+                'message' => 'AnneeScolaires retrieved successfully',
                 'result' => $model->selectAll()
             ]
         );
     }
     /**
-     * Create a new Module
+     * Create a new AnneeScolaire
      */
     public function store()
     {
@@ -39,35 +39,35 @@ class Module extends BaseController
                 );
         }
  
-        $model = new ModuleModel();
-        $module = $model->insert($input);
+        $model = new AnneeScolaireModel();
+        $anneescolaire = $model->insert($input);
         
-      //  $module = // INSERTED ID
+      //  $anneescolaire = // INSERTED ID
         return $this->getResponse(
             [
-                'message' => 'Module added successfully',
-                'result' => $module
+                'message' => 'AnneeScolaire added successfully',
+                'result' => $anneescolaire
             ]
         );
     }
     /**
-     * Get a single module by ID
+     * Get a single anneescolaire by ID
      */
     public function show($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = $model->findModuleById($id);
+            $model = new AnneeScolaireModel();
+            $anneescolaire = $model->findAnneeScolaireById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module retrieved successfully',
-                    'result' => $module
+                    'message' => 'AnneeScolaire retrieved successfully',
+                    'result' => $anneescolaire
                 ]
             );
         } catch (Exception $e) {
             return $this->getResponse(
                 [
-                    'message' => 'Could not find module for specified ID'
+                    'message' => 'Could not find anneescolaire for specified ID'
                 ],
                 ResponseInterface::HTTP_NOT_FOUND
             );
@@ -76,16 +76,16 @@ class Module extends BaseController
         public function update($id)
     {
         try {
-            $model = new ModuleModel();
+            $model = new AnneeScolaireModel();
             $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $module = $model->findById($id);
+            $anneescolaire = $model->findById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module updated successfully',
-                    'result' => $module
+                    'message' => 'AnneeScolaire updated successfully',
+                    'result' => $anneescolaire
                 ]
             );
         } catch (Exception $exception) {
@@ -110,13 +110,13 @@ class Module extends BaseController
     public function destroy($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = (array) $model->findById($id);
-            $model->delete($module);
+            $model = new AnneeScolaireModel();
+            $anneescolaire = (array) $model->findById($id);
+            $model->delete($anneescolaire);
             return $this
                 ->getResponse(
                     [
-                        'message' => 'Module deleted successfully',
+                        'message' => 'AnneeScolaire deleted successfully',
                     ]
                 );
         } catch (Exception $exception) {

@@ -1,27 +1,27 @@
 <?php
 namespace App\Controllers;
-use App\Models\ModuleModel;
+use App\Models\EleveClasseAnneeModel;
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
-class Module extends BaseController
+class EleveClasseAnnee extends BaseController
 {
     /**
-     * Get all Modules
+     * Get all EleveClasseAnnees
      * @return Response
      */
     public function index()
     {
-        $model = new ModuleModel();
+        $model = new EleveClasseAnneeModel();
         return $this->getResponse(
             [
-                'message' => 'Modules retrieved successfully',
+                'message' => 'EleveClasseAnnees retrieved successfully',
                 'result' => $model->selectAll()
             ]
         );
     }
     /**
-     * Create a new Module
+     * Create a new EleveClasseAnnee
      */
     public function store()
     {
@@ -39,35 +39,35 @@ class Module extends BaseController
                 );
         }
  
-        $model = new ModuleModel();
-        $module = $model->insert($input);
+        $model = new EleveClasseAnneeModel();
+        $eleveclasseannee = $model->insert($input);
         
-      //  $module = // INSERTED ID
+      //  $eleveclasseannee = // INSERTED ID
         return $this->getResponse(
             [
-                'message' => 'Module added successfully',
-                'result' => $module
+                'message' => 'EleveClasseAnnee added successfully',
+                'result' => $eleveclasseannee
             ]
         );
     }
     /**
-     * Get a single module by ID
+     * Get a single eleveclasseannee by ID
      */
     public function show($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = $model->findModuleById($id);
+            $model = new EleveClasseAnneeModel();
+            $eleveclasseannee = $model->findEleveClasseAnneeById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module retrieved successfully',
-                    'result' => $module
+                    'message' => 'EleveClasseAnnee retrieved successfully',
+                    'result' => $eleveclasseannee
                 ]
             );
         } catch (Exception $e) {
             return $this->getResponse(
                 [
-                    'message' => 'Could not find module for specified ID'
+                    'message' => 'Could not find eleveclasseannee for specified ID'
                 ],
                 ResponseInterface::HTTP_NOT_FOUND
             );
@@ -76,16 +76,16 @@ class Module extends BaseController
         public function update($id)
     {
         try {
-            $model = new ModuleModel();
+            $model = new EleveClasseAnneeModel();
             $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $module = $model->findById($id);
+            $eleveclasseannee = $model->findById($id);
             return $this->getResponse(
                 [
-                    'message' => 'Module updated successfully',
-                    'result' => $module
+                    'message' => 'EleveClasseAnnee updated successfully',
+                    'result' => $eleveclasseannee
                 ]
             );
         } catch (Exception $exception) {
@@ -110,13 +110,13 @@ class Module extends BaseController
     public function destroy($id)
     {
         try {
-            $model = new ModuleModel();
-            $module = (array) $model->findById($id);
-            $model->delete($module);
+            $model = new EleveClasseAnneeModel();
+            $eleveclasseannee = (array) $model->findById($id);
+            $model->delete($eleveclasseannee);
             return $this
                 ->getResponse(
                     [
-                        'message' => 'Module deleted successfully',
+                        'message' => 'EleveClasseAnnee deleted successfully',
                     ]
                 );
         } catch (Exception $exception) {
