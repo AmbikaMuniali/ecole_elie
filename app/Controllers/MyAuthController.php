@@ -65,9 +65,9 @@ class   MyAuthController extends BaseController {
 
             if ($user) { 
                 session() -> set('user', $user[0]);
-                return $this -> getResponse(['message' => 'user found', 'user' => $user[0]]);
+                return $this -> getResponse(['message' => 'user found', 'result' => $user[0]]);
             }
-            return $this -> getResponse(['message' => 'NO USER found', 'user' =>  $user]);
+            return $this -> getResponse(['message' => 'NO USER found', 'result' =>  $user]);
 
         }
 
