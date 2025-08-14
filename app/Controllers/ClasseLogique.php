@@ -57,7 +57,7 @@ class ClasseLogique extends BaseController
     {
         try {
             $model = new ClasseLogiqueModel();
-            $classelogique = $model->findClasseLogiqueById($id);
+            $classelogique = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'ClasseLogique retrieved successfully',

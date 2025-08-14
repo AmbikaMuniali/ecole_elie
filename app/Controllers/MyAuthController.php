@@ -155,7 +155,7 @@ class   MyAuthController extends BaseController {
             $userFound = $userModel -> search(['where' => ['phone' => $phone,]]); 
             if(!empty($userFound)) {
 
-                $user = $userModel -> findUserById($userFound[0]['id']);
+                $user = $userModel -> findById($userFound[0]['id']);
                 $otp = model('OtpModel');
                 
                 // CREER OTP pour user 
@@ -187,7 +187,7 @@ class   MyAuthController extends BaseController {
         //CREER UN ACCESS TOKEN POUR l'UTILSATEUR
         helper('jwt');
         $jwt = getSignedJWTForUser($id_user);
-        $user = $userModel -> findUserById($id_user);
+        $user = $userModel -> findById($id_user);
         $user -> access_token = $jwt;
 
         $userArray = (array) $user;
@@ -295,7 +295,7 @@ class   MyAuthController extends BaseController {
         $client = new ClientModel();
         $userModel = new UserModel();
 
-        $phone = $userModel -> findUserById($id_user) -> phone;
+        $phone = $userModel -> findById($id_user) -> phone;
         $data['primary_phone'] = $phone;
 
         return $client -> insert($data);
@@ -335,7 +335,7 @@ class   MyAuthController extends BaseController {
 
 
             $id_user = $otp ['fkuser'];
-            $user = $userModel -> findUserById($id_user);
+            $user = $userModel -> findById($id_user);
 
 
 
@@ -355,7 +355,7 @@ class   MyAuthController extends BaseController {
                 $userModel -> replace($userArray);
 
 
-                $user = $userModel -> findUserById($id_user);
+                $user = $userModel -> findById($id_user);
             }
 
             return $this -> getResponse(['message' => 'Acount created', 'user' => $user, ]);
@@ -366,7 +366,7 @@ class   MyAuthController extends BaseController {
         // user de tester demo 
 
         if ($otp_sent_to == PHONE_USER_DEMO && $otp_value == "123456") {
-            return $this -> getResponse(['message' => 'Acount created', 'user' => $userModel -> findUserById(ID_USER_DEMO), ]);
+            return $this -> getResponse(['message' => 'Acount created', 'user' => $userModel -> findById(ID_USER_DEMO), ]);
         }
 
         // $OtpModel
@@ -396,10 +396,10 @@ class   MyAuthController extends BaseController {
             $messageModel = model('MessageModel');
             $informationpaiementModel = model('InformationPaiementModel');
 
-            $user = $userModel -> findUserById($id_user);
+            $user = $userModel -> findById($id_user);
 
-            $client = $clientModel -> findClientById($user -> fkclient);
-            $parametre = $parametreModel -> findParametreById(1);
+            $client = $clientModel -> findById($user -> fkclient);
+            $parametre = $parametreModel -> findById(1);
             $adresses = $adresseModel -> search([
                 "where" => ["fkuser_create" => $user -> id]
             ]);
@@ -483,9 +483,9 @@ class   MyAuthController extends BaseController {
 
 
 
-            $user = $userModel -> findUserById($id_user);
+            $user = $userModel -> findById($id_user);
 
-            $parametre = $parametreModel -> findParametreById(1);
+            $parametre = $parametreModel -> findById(1);
             
 
 
@@ -509,7 +509,7 @@ class   MyAuthController extends BaseController {
             $modules = $moduleModel -> selectAll();
 
             
-            $agent = $agentModel -> findAgentById($user -> fkagent);
+            $agent = $agentModel -> findById($user -> fkagent);
 
 
             $erreur = $agent;

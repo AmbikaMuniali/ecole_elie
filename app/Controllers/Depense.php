@@ -57,7 +57,7 @@ class Depense extends BaseController
     {
         try {
             $model = new DepenseModel();
-            $depense = $model->findDepenseById($id);
+            $depense = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'Depense retrieved successfully',

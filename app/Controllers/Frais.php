@@ -57,7 +57,7 @@ class Frais extends BaseController
     {
         try {
             $model = new FraisModel();
-            $frais = $model->findFraisById($id);
+            $frais = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'Frais retrieved successfully',

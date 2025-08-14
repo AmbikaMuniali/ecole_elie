@@ -57,7 +57,7 @@ class Adresse extends BaseController
     {
         try {
             $model = new AdresseModel();
-            $adresse = $model->findAdresseById($id);
+            $adresse = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'Adresse retrieved successfully',
@@ -77,11 +77,11 @@ class Adresse extends BaseController
     {
         try {
             $model = new AdresseModel();
-            $model->findAdresseById($id);
+            $model->findById($id);
           $input = $this->getRequestInput($this->request);
           
             $model->update($id, $input);
-            $adresse = $model->findAdresseById($id);
+            $adresse = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'Adresse updated successfully',
@@ -109,7 +109,7 @@ public function delete($id) {
     {
         try {
             $model = new AdresseModel();
-            $adresse = $model->findAdresseById($id);
+            $adresse = $model->findById($id);
             $model->delete($adresse);
             return $this
                 ->getResponse(

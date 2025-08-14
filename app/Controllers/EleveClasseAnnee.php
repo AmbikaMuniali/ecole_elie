@@ -57,7 +57,7 @@ class EleveClasseAnnee extends BaseController
     {
         try {
             $model = new EleveClasseAnneeModel();
-            $eleveclasseannee = $model->findEleveClasseAnneeById($id);
+            $eleveclasseannee = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'EleveClasseAnnee retrieved successfully',

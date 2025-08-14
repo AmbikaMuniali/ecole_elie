@@ -24,7 +24,7 @@ function validateJWTFromRequest(string $encodedToken)
         $decodedToken = JWT::decode($encodedToken, $key);
         $userModel = new UserModel();
         $tokenExist = !empty($userModel->search(['where' => ['access_token'=> $encodedToken]]));
-        $user = $userModel -> findUserById($decodedToken -> id_user);
+        $user = $userModel -> findById($decodedToken -> id_user);
         return $user;
         
     } catch (Exception $e) {

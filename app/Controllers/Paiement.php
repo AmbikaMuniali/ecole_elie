@@ -57,7 +57,7 @@ class Paiement extends BaseController
     {
         try {
             $model = new PaiementModel();
-            $paiement = $model->findPaiementById($id);
+            $paiement = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'Paiement retrieved successfully',

@@ -7,7 +7,7 @@ class UserModel extends MyParentModel
 {
   protected $table = "user";
   protected $allowedFields = [
-       "id", "username", "password", "email", "nom_complet", "est_actif", "date_creation"
+       "id", "username", "password", "phone", "access_token", "email", "nom_complet", "est_actif", "date_creation"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);

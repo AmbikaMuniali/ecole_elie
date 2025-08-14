@@ -57,7 +57,7 @@ class FraisClasseAnnee extends BaseController
     {
         try {
             $model = new FraisClasseAnneeModel();
-            $fraisclasseannee = $model->findFraisClasseAnneeById($id);
+            $fraisclasseannee = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'FraisClasseAnnee retrieved successfully',

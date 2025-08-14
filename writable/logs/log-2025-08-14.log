@@ -1,1 +1,58 @@
 INFO - 2025-08-14 02:47:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-08-14 04:33:38 --> Call to undefined method App\Models\UserModel::findById
+in SYSTEMPATH\Model.php on line 841.
+ 1 APPPATH\Controllers\MyAuthController.php(190): CodeIgniter\Model->__call('findById', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyAuthController->register()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-08-14 04:35:55 --> mysqli_sql_exception: Champ 'phone' inconnu dans where clause in F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\ArzenProjets\web\ecole_elie\app\Models\MyParentModel.php(80): CodeIgniter\Model->__call('get', Array)
+#6 F:\ArzenProjets\web\ecole_elie\app\Controllers\MyAuthController.php(155): App\Models\MyParentModel->search(Array)
+#7 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyAuthController->register()
+#8 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+#9 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\ecole_elie\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2025-08-14 04:35:55 --> Champ 'phone' inconnu dans where clause
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1602): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `user`
+WHERE `phone` = :phone:', [...], false)
+ 2 SYSTEMPATH\Model.php(839): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Models\MyParentModel.php(80): CodeIgniter\Model->__call('get', [])
+ 4 APPPATH\Controllers\MyAuthController.php(155): App\Models\MyParentModel->search([...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyAuthController->register()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2025-08-14 04:48:06 --> mysqli_sql_exception: Champ 'access_token' inconnu dans field list in F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('REPLACE INTO `u...', 0)
+#1 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('REPLACE INTO `u...')
+#2 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('REPLACE INTO `u...')
+#3 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2383): CodeIgniter\Database\BaseConnection->query('REPLACE INTO `u...', Array, false)
+#4 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\Model.php(493): CodeIgniter\Database\BaseBuilder->replace(Array)
+#5 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\BaseModel.php(1140): CodeIgniter\Model->doReplace(Array, false)
+#6 F:\ArzenProjets\web\ecole_elie\app\Controllers\MyAuthController.php(194): CodeIgniter\BaseModel->replace(Array)
+#7 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\MyAuthController->register()
+#8 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+#9 F:\ArzenProjets\web\ecole_elie\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\ArzenProjets\web\ecole_elie\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2025-08-14 04:48:06 --> Champ 'access_token' inconnu dans field list
+in SYSTEMPATH\Database\BaseConnection.php on line 645.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2383): CodeIgniter\Database\BaseConnection->query('REPLACE INTO `user` (`id`, `username`, `password`, `email`, `nom_complet`, `est_actif`, `date_creation`, `phone`, `token`, `access_token`) VALUES (:id:, :username:, :password:, :email:, :nom_complet:, :est_actif:, :date_creation:, :phone:, :token:, :access_token:)', [...], false)
+ 2 SYSTEMPATH\Model.php(493): CodeIgniter\Database\BaseBuilder->replace([...])
+ 3 SYSTEMPATH\BaseModel.php(1140): CodeIgniter\Model->doReplace([...], false)
+ 4 APPPATH\Controllers\MyAuthController.php(194): CodeIgniter\BaseModel->replace([...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\MyAuthController->register()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MyAuthController))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

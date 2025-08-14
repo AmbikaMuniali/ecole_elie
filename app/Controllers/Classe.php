@@ -57,7 +57,7 @@ class Classe extends BaseController
     {
         try {
             $model = new ClasseModel();
-            $classe = $model->findClasseById($id);
+            $classe = $model->findById($id);
             return $this->getResponse(
                 [
                     'message' => 'Classe retrieved successfully',

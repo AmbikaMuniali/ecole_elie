@@ -23,9 +23,9 @@ class MyMessageNotificationFilter implements FilterInterface
         $msg = json_decode($response->getBody());
         if (isset($msg->message)) {
             $id = $msg->message;
-            $data = (array)model('MessageModel')->findMessageById($id);
+            $data = (array)model('MessageModel')->findById($id);
             $data ['type_notif'] = 'NewMessage';
-            $user = model('UserModel') -> findUserById($data['fkuser']);
+            $user = model('UserModel') -> findById($data['fkuser']);
             $data['user_id'] = $user -> id;
 
 

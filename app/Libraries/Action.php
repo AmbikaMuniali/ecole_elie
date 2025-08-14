@@ -105,7 +105,7 @@ class Action {
 
                 ];//
                 
-                // $result = $model -> findTransactionCinetpayById($result);
+                // $result = $model -> findById($result);
             
             } else {
                 error_log("CinetPay Payment Error: " . json_encode($result));

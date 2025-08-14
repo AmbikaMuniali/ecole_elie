@@ -32,7 +32,7 @@ use App\Models\DroitsModel;
         $droitsModel = model('DroitsModel');
         foreach ($agentRights as $droitsAgent) {
             // code
-            $droit = $droitsModel -> findDroitsById($droitsAgent['fkdroit']);
+            $droit = $droitsModel -> findById($droitsAgent['fkdroit']);
             if($droit) $codes [] = $droit -> code;
         }
         
@@ -48,7 +48,7 @@ use App\Models\DroitsModel;
 
     function getUserRights(int $userId) : array {
         $model = model('UserModel');
-        $user = $model -> findUserById($userId);
+        $user = $model -> findById($userId);
 
         return array_merge(['produit.view', 'categorie_prod.view', 'parametre.view' ]);
     }
