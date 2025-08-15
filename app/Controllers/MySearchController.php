@@ -51,7 +51,7 @@ class MySearchController  extends BaseController
 
             $table = $input['table'];
 
-            $model  = ucfirst($table) . 'Model';
+            $model  = $this -> getModelName($table);
 
            $model =  model($model);
             
@@ -64,5 +64,18 @@ class MySearchController  extends BaseController
             ]
         );
     }
+
+    function getModelName($tableName) {
+    // Split the table name by the underscore character
+    $parts = explode('_', $tableName);
+    
+    // Capitalize the first letter of each part
+    $camelCaseParts = array_map('ucfirst', $parts);
+    
+    // Join the parts and append 'Model'
+    $modelName = implode('', $camelCaseParts) . 'Model';
+    
+    return $modelName;
+}
     
 }
