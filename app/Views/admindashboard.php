@@ -97,6 +97,12 @@
             background-color: #f8f9fa;
             z-index: 1;
         }
+        .tuition-table .cell-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 38px;
+        }
     </style>
 </head>
 <body>
@@ -266,14 +272,69 @@
                             <tbody>
                                 <tr v-for="feeType in feeTypes" :key="feeType.id">
                                     <td class="fw-bold">{{ feeType.nom }}</td>
-                                    <td v-for="classe in classes" :key="classe.id" class="text-end">
-                                        {{ getTuitionAmount(feeType.id, classe.id) }}
+                                    <td v-for="classe in classes" :key="classe.id">
+                                        <div class="cell-content">
+                                            <span>{{ getTuitionAmount(feeType.id, classe.id) }}</span>
+                                            <button v-if="getTuitionRecord(feeType.id, classe.id)" class="btn btn-link btn-sm p-0" @click="openEditModal(feeType.id, classe.id)" v-if="hasPermission('frais_annee_classe.edit')">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button v-else class="btn btn-link btn-sm p-0" @click="openEditModal(feeType.id, classe.id)" v-if="hasPermission('frais_annee_classe.create')">
+                                                <i class="bi bi-plus-square"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                      <div v-else class="alert alert-info">Veuillez sélectionner une année scolaire pour afficher les frais.</div>
+                </div>
+            </div>
+
+            <!-- Edit Modal -->
+            <div class="modal fade" id="tuitionEditModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{ modalTitle }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body" v-if="editingTuition">
+                            <div class="mb-3">
+                                <label class="form-label">Année Scolaire:</label>
+                                <p class="form-control-plaintext fw-bold">{{ editingYearName }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Classe:</label>
+                                <p class="form-control-plaintext fw-bold">{{ editingClassName }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Type de Frais:</label>
+                                <p class="form-control-plaintext fw-bold">{{ editingFeeTypeName }}</p>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="tuitionAmount" class="form-label">Montant</label>
+                                <input type="number" class="form-control" id="tuitionAmount" v-model.number="editingTuition.montant" placeholder="0.00">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tuitionCurrency" class="form-label">Devise</label>
+                                <select class="form-select" id="tuitionCurrency" v-model="editingTuition.devise">
+                                    <option>USD</option>
+                                    <option>FC</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-danger me-auto" @click="deleteTuition" v-if="editingTuition && editingTuition.id && hasPermission('frais_annee_classe.delete')">
+                                <i class="bi bi-trash"></i> Supprimer
+                            </button>
+                            <button type="button" class="btn btn-primary" @click="saveTuition" :disabled="!editingTuition || editingTuition.montant <= 0">
+                                <i class="bi bi-check-circle"></i> Enregistrer
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -848,10 +909,17 @@
                 const classes = ref([]);
                 const feeTypes = ref([]);
                 const tuitionData = ref([]);
+                const editingTuition = ref(null);
+                let modalInstance = null;
+
+                const hasPermission = (permissionCode) => {
+                    if (authState.userId == 1) return true;
+                    return (authState.userPermissions || []).includes(permissionCode);
+                };
 
                 const formatCurrency = (amount, currency) => {
                     if (amount === null || amount === undefined) return 'N/A';
-                     currency = currency == 'FC'? 'CDF' : currency;
+                    currency = currency == 'FC' ? 'CDF' : currency;
                     return new Intl.NumberFormat('fr-CD', { style: 'currency', currency: currency || 'USD' }).format(amount);
                 };
                 
@@ -866,7 +934,7 @@
                         classes.value = (classesData || []).sort((a,b) => a.niveau_numerique - b.niveau_numerique);
                         feeTypes.value = feeTypesData || [];
                         if (years.value.length > 0) {
-                            selectedYear.value = years.value[years.value.length - 1].id; // Select the last (likely current) year by default
+                            selectedYear.value = years.value[years.value.length - 1].id;
                             await fetchTuitionData();
                         }
                     } catch (e) {
@@ -881,10 +949,7 @@
                     loading.value = true;
                     error.value = null;
                     try {
-                        const payload = {
-                            table: 'frais_annee_classe',
-                            where: { fk_annee: selectedYear.value }
-                        };
+                        const payload = { table: 'frais_annee_classe', where: { fk_annee: selectedYear.value } };
                         const result = await apiCall('search', 'POST', payload);
                         tuitionData.value = result || [];
                     } catch (e) {
@@ -893,18 +958,86 @@
                         loading.value = false;
                     }
                 };
+                
+                const getTuitionRecord = (feeTypeId, classeId) => {
+                     return tuitionData.value.find(d => d.fk_type_frais == feeTypeId && d.fk_classe == classeId);
+                };
 
                 const getTuitionAmount = (feeTypeId, classeId) => {
-                    const record = tuitionData.value.find(d => 
-                        d.fk_type_frais == feeTypeId && 
-                        d.fk_classe == classeId
-                    );
+                    const record = getTuitionRecord(feeTypeId, classeId);
                     return record ? formatCurrency(record.montant, record.devise) : '--';
                 };
 
-                onMounted(fetchInitialData);
+                const openEditModal = (feeTypeId, classeId) => {
+                    const existingRecord = getTuitionRecord(feeTypeId, classeId);
+                    if (existingRecord) {
+                        editingTuition.value = { ...existingRecord }; // Edit existing
+                    } else {
+                        editingTuition.value = { // Create new
+                            id: null,
+                            fk_type_frais: feeTypeId,
+                            fk_classe: classeId,
+                            fk_annee: selectedYear.value,
+                            montant: null,
+                            devise: 'USD'
+                        };
+                    }
+                    modalInstance.show();
+                };
 
-                return { loading, error, selectedYear, years, classes, feeTypes, fetchTuitionData, getTuitionAmount };
+                const saveTuition = async () => {
+                    const tuition = editingTuition.value;
+                    if (!tuition || !tuition.montant || tuition.montant <= 0) {
+                        window.addNotification('Le montant doit être un nombre positif.', 'danger');
+                        return;
+                    }
+                    
+                    try {
+                        if (tuition.id) { // Update
+                             if (!hasPermission('frais_annee_classe.edit')) throw new Error('Droits insuffisants pour modifier.');
+                            await apiCall(`fraisanneeclasse/${tuition.id}`, 'PUT', { montant: tuition.montant, devise: tuition.devise });
+                        } else { // Create
+                             if (!hasPermission('frais_annee_classe.create')) throw new Error('Droits insuffisants pour créer.');
+                            const payload = { ...tuition };
+                            delete payload.id;
+                            await apiCall('fraisanneeclasse', 'POST', payload);
+                        }
+                        window.addNotification('Frais enregistré avec succès!', 'success');
+                        modalInstance.hide();
+                        await fetchTuitionData(); // Refresh data
+                    } catch (e) {
+                        window.addNotification(`Erreur: ${e.message}`, 'danger');
+                    }
+                };
+
+                const deleteTuition = async () => {
+                    const tuitionId = editingTuition.value?.id;
+                    if (!tuitionId || !hasPermission('frais_annee_classe.delete')) return;
+                    
+                    if (confirm('Êtes-vous sûr de vouloir supprimer ces frais ?')) {
+                        try {
+                            await apiCall(`fraisanneeclasse/${tuitionId}`, 'DELETE');
+                            window.addNotification('Frais supprimé.', 'success');
+                            modalInstance.hide();
+                            await fetchTuitionData(); // Refresh data
+                        } catch (e) {
+                             window.addNotification(`Erreur: ${e.message}`, 'danger');
+                        }
+                    }
+                };
+
+                const modalTitle = computed(() => (editingTuition.value?.id ? 'Modifier' : 'Ajouter') + ' Frais Scolaire');
+                const editingYearName = computed(() => years.value.find(y => y.id == selectedYear.value)?.nom || '');
+                const editingClassName = computed(() => classes.value.find(c => c.id == editingTuition.value?.fk_classe)?.nom || '');
+                const editingFeeTypeName = computed(() => feeTypes.value.find(f => f.id == editingTuition.value?.fk_type_frais)?.nom || '');
+
+                onMounted(() => {
+                    const modalEl = document.getElementById('tuitionEditModal');
+                    if(modalEl) modalInstance = new bootstrap.Modal(modalEl);
+                    fetchInitialData();
+                });
+
+                return { loading, error, selectedYear, years, classes, feeTypes, fetchTuitionData, getTuitionAmount, getTuitionRecord, openEditModal, editingTuition, saveTuition, deleteTuition, modalTitle, editingYearName, editingClassName, editingFeeTypeName, hasPermission };
             }
         };
 
