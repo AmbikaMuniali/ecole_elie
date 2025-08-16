@@ -91,6 +91,12 @@
              border: none;
              box-shadow: 0 0 15px rgba(0,0,0,.05);
         }
+        .tuition-table th:first-child, .tuition-table td:first-child {
+            position: sticky;
+            left: 0;
+            background-color: #f8f9fa;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -107,6 +113,9 @@
                 </li>
                  <li v-if="hasPermission('reports.generate')" class="nav-item">
                      <router-link to="/reports" class="nav-link"><i class="bi bi-file-earmark-bar-graph-fill me-2"></i>Générer Rapports</router-link>
+                </li>
+                 <li v-if="hasPermission('frais.view')" class="nav-item">
+                     <router-link to="/scolar-year-tuition" class="nav-link"><i class="bi bi-wallet2 me-2"></i>Frais Scolaires</router-link>
                 </li>
             </ul>
             <hr>
@@ -227,6 +236,49 @@
         </div>
     </script>
 
+    <script type="text/x-template" id="scolar-year-tuition-template">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Frais par Année Scolaire</h4>
+                </div>
+                <div class="card-body">
+                    <div v-if="error" class="alert alert-danger">{{ error }}</div>
+                    <div class="mb-3">
+                        <label for="anneeScolaire" class="form-label">Sélectionner une année scolaire :</label>
+                        <select id="anneeScolaire" v-model="selectedYear" @change="fetchTuitionData" class="form-select" :disabled="loading">
+                            <option v-for="year in years" :key="year.id" :value="year.id">{{ year.nom }}</option>
+                        </select>
+                    </div>
+
+                    <div v-if="loading" class="text-center p-5">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Chargement...</span></div>
+                    </div>
+
+                    <div v-else-if="!loading && selectedYear" class="table-responsive">
+                        <table class="table table-bordered table-hover tuition-table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Type de Frais</th>
+                                    <th v-for="classe in classes" :key="classe.id">{{ classe.nom }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="feeType in feeTypes" :key="feeType.id">
+                                    <td class="fw-bold">{{ feeType.nom }}</td>
+                                    <td v-for="classe in classes" :key="classe.id" class="text-end">
+                                        {{ getTuitionAmount(feeType.id, classe.id) }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div v-else class="alert alert-info">Veuillez sélectionner une année scolaire pour afficher les frais.</div>
+                </div>
+            </div>
+        </div>
+    </script>
+    
     <script type="text/x-template" id="table-component-template">
         <div class="container-fluid">
             <div class="card">
@@ -786,6 +838,76 @@
             }
         };
 
+        const ScolarYearTuition = {
+            template: '#scolar-year-tuition-template',
+            setup() {
+                const loading = ref(true);
+                const error = ref(null);
+                const selectedYear = ref(null);
+                const years = ref([]);
+                const classes = ref([]);
+                const feeTypes = ref([]);
+                const tuitionData = ref([]);
+
+                const formatCurrency = (amount, currency) => {
+                    if (amount === null || amount === undefined) return 'N/A';
+                     currency = currency == 'FC'? 'CDF' : currency;
+                    return new Intl.NumberFormat('fr-CD', { style: 'currency', currency: currency || 'USD' }).format(amount);
+                };
+                
+                const fetchInitialData = async () => {
+                    try {
+                        const [yearsData, classesData, feeTypesData] = await Promise.all([
+                            apiCall('anneescolaire'),
+                            apiCall('classe'),
+                            apiCall('typefrais')
+                        ]);
+                        years.value = yearsData || [];
+                        classes.value = (classesData || []).sort((a,b) => a.niveau_numerique - b.niveau_numerique);
+                        feeTypes.value = feeTypesData || [];
+                        if (years.value.length > 0) {
+                            selectedYear.value = years.value[years.value.length - 1].id; // Select the last (likely current) year by default
+                            await fetchTuitionData();
+                        }
+                    } catch (e) {
+                        error.value = `Erreur de chargement des données initiales: ${e.message}`;
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                const fetchTuitionData = async () => {
+                    if (!selectedYear.value) return;
+                    loading.value = true;
+                    error.value = null;
+                    try {
+                        const payload = {
+                            table: 'frais_annee_classe',
+                            where: { fk_annee: selectedYear.value }
+                        };
+                        const result = await apiCall('search', 'POST', payload);
+                        tuitionData.value = result || [];
+                    } catch (e) {
+                        error.value = `Erreur lors de la récupération des frais: ${e.message}`;
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                const getTuitionAmount = (feeTypeId, classeId) => {
+                    const record = tuitionData.value.find(d => 
+                        d.fk_type_frais == feeTypeId && 
+                        d.fk_classe == classeId
+                    );
+                    return record ? formatCurrency(record.montant, record.devise) : '--';
+                };
+
+                onMounted(fetchInitialData);
+
+                return { loading, error, selectedYear, years, classes, feeTypes, fetchTuitionData, getTuitionAmount };
+            }
+        };
+
         const router = createRouter({ 
             history: createWebHashHistory(), 
             routes: [ 
@@ -794,6 +916,7 @@
                 { path: '/users', redirect: '/table/user' },
                 { path: '/daily-payments', component: DailyPayments },
                 { path: '/reports', component: Reports },
+                { path: '/scolar-year-tuition', component: ScolarYearTuition },
                 { path: '/login', component: Login }
             ] 
         });
