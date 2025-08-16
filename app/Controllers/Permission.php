@@ -57,7 +57,7 @@ class Permission extends BaseController
     {
         try {
             $model = new PermissionModel();
-            $permission = $model->findById($id);
+            $permission = $model->findPermissionById($id);
             return $this->getResponse(
                 [
                     'message' => 'Permission retrieved successfully',

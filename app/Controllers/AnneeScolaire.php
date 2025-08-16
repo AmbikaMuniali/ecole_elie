@@ -57,7 +57,7 @@ class AnneeScolaire extends BaseController
     {
         try {
             $model = new AnneeScolaireModel();
-            $anneescolaire = $model->findById($id);
+            $anneescolaire = $model->findAnneeScolaireById($id);
             return $this->getResponse(
                 [
                     'message' => 'AnneeScolaire retrieved successfully',

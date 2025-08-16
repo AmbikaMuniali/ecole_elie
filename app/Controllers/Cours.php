@@ -57,7 +57,7 @@ class Cours extends BaseController
     {
         try {
             $model = new CoursModel();
-            $cours = $model->findById($id);
+            $cours = $model->findCoursById($id);
             return $this->getResponse(
                 [
                     'message' => 'Cours retrieved successfully',

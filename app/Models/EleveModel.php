@@ -7,7 +7,7 @@ class EleveModel extends MyParentModel
 {
   protected $table = "eleve";
   protected $allowedFields = [
-       "id", "nom", "postnom", "prenom", "date_naissance", "genre", "adresse", "telephone_parent", "date_inscription", "est_actif"
+       "id", "nom", "postnom", "prenom", "date_naissance", "genre", "adresse", "telephone_parent", "date_inscription"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);

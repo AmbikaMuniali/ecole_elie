@@ -57,7 +57,7 @@ class User extends BaseController
     {
         try {
             $model = new UserModel();
-            $user = $model->findById($id);
+            $user = $model->findUserById($id);
             return $this->getResponse(
                 [
                     'message' => 'User retrieved successfully',

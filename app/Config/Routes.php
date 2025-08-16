@@ -60,13 +60,9 @@ $routes->get('search', 'MySearchController::index');
 
 
 
-  // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE CLASSELOGIQUE
-  $routes->resource('classelogique', [
-    'controller' => 'ClasseLogique', 
-    'placeholder' => '(:num)', 
-    'websafe' => 1,
-    'except' => 'new,edit'
-  ]);
+
+
+
 
   // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE CLASSE
   $routes->resource('classe', [
@@ -148,17 +144,25 @@ $routes->get('search', 'MySearchController::index');
     'except' => 'new,edit'
   ]);
 
-  // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE FRAIS
-  $routes->resource('frais', [
-    'controller' => 'Frais', 
+  // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE TYPEFRAIS
+  $routes->resource('typefrais', [
+    'controller' => 'TypeFrais', 
     'placeholder' => '(:num)', 
     'websafe' => 1,
     'except' => 'new,edit'
   ]);
 
-  // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE FRAISCLASSEANNEE
-  $routes->resource('fraisclasseannee', [
-    'controller' => 'FraisClasseAnnee', 
+  // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE TRANCHEFRAIS
+  $routes->resource('tranchefrais', [
+    'controller' => 'TrancheFrais', 
+    'placeholder' => '(:num)', 
+    'websafe' => 1,
+    'except' => 'new,edit'
+  ]);
+
+  // ADDING ROUTES TO RESSOURCE CONTROLLER FOR TABLE FRAISANNEECLASSE
+  $routes->resource('fraisanneeclasse', [
+    'controller' => 'FraisAnneeClasse', 
     'placeholder' => '(:num)', 
     'websafe' => 1,
     'except' => 'new,edit'
@@ -171,7 +175,6 @@ $routes->get('search', 'MySearchController::index');
     'websafe' => 1,
     'except' => 'new,edit'
   ]);
-
 
 
 

@@ -57,7 +57,7 @@ class Module extends BaseController
     {
         try {
             $model = new ModuleModel();
-            $module = $model->findById($id);
+            $module = $model->findModuleById($id);
             return $this->getResponse(
                 [
                     'message' => 'Module retrieved successfully',

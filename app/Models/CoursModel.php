@@ -7,7 +7,7 @@ class CoursModel extends MyParentModel
 {
   protected $table = "cours";
   protected $allowedFields = [
-       "id", "nom", "description", "fk_classe_logique"
+       "id", "nom", "description"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);

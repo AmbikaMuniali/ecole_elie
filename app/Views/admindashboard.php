@@ -344,7 +344,7 @@
     </script>
     
     <script>
-        const API_BASE_URL = '<?php echo base_url(); // Replace with your actual API base URL ?>'; 
+        const API_BASE_URL = '<?php echo base_url(); // replaceAll with your actual API base URL ?>'; 
         const { createApp, ref, reactive, computed, onMounted, watch, nextTick } = Vue;
         const { createRouter, createWebHashHistory } = VueRouter;
 
@@ -405,21 +405,21 @@
         };
 
         // Metadata based on ecole_elie.sql schema
-        const tableMetadata = new Map([
-    ['user', { tablename: 'user', displayname: 'Utilisateurs', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'username', type: 'text', label: 'Nom d\'utilisateur'}, {name: 'email', type: 'text', label: 'Email'}, {name: 'nom_complet', type: 'text', label: 'Nom Complet'}, {name: 'password', type: 'text', label: 'Mot de passe', editable: false}, {name: 'est_actif', type: 'tinyint', label: 'Actif'}, {name: 'date_creation', type: 'text', label: 'Créé le', editable: false} ] }],
-    ['eleve', { tablename: 'eleve', displayname: 'Élèves', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'postnom', type: 'text', label: 'Postnom'}, {name: 'prenom', type: 'text', label: 'Prénom'}, {name: 'date_naissance', type: 'date', label: 'Date Naissance'}, {name: 'genre', type: 'enum', label: 'Genre', isEnum: true, enumValues: ['M','F']}, {name: 'adresse', type: 'text', label: 'Adresse'}, {name: 'telephone_parent', type: 'text', label: 'Tél. Parent'}, {name: 'date_inscription', type: 'date', label: 'Inscrit le'}, {name: 'est_actif', type: 'tinyint', label: 'Actif'} ] }],
-    ['paiement', { tablename: 'paiement', displayname: 'Paiements', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'date_paiement', type: 'date', label: 'Date Paiement'}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'fk_eleve', type: 'int', label: 'Élève', foreignKey: {relatedTable: 'eleve', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}}, {name: 'fk_frais', type: 'int', label: 'Frais', foreignKey: {relatedTable: 'frais', displayField: 'nom', valueField: 'id'}} ] }],
-    ['classe', { tablename: 'classe', displayname: 'Classes', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'} ] }],
-    ['annee_scolaire', { tablename: 'annee_scolaire', displayname: 'Années Scolaires', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom (ex: 2023-2024)'} ] }],
-    ['frais', { tablename: 'frais', displayname: 'Types de Frais', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom du frais'} ] }],
-    ['depense', { tablename: 'depense', displayname: 'Dépenses', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'date_depense', type: 'date', label: 'Date Dépense'}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'motif', type: 'text', label: 'Motif'}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}} ] }],
-    ['classe_logique', { tablename: 'classe_logique', displayname: 'Classes Logiques', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'niveau_numerique', type: 'int', label: 'Niveau Numérique'}, {name: 'ecole', type: 'enum', label: 'École', isEnum: true, enumValues: ['PRIMAIRE','SECONDAIRE']} ] }],
-    ['cours', { tablename: 'cours', displayname: 'Cours', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'description', type: 'text', label: 'Description'}, {name: 'fk_classe_logique', type: 'int', label: 'Classe Logique', foreignKey: {relatedTable: 'classe_logique', displayField: 'nom', valueField: 'id'}} ] }],
-    ['eleve_classe_annee', { tablename: 'eleve_classe_annee', displayname: 'Inscriptions', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_eleve', type: 'int', label: 'Élève', foreignKey: {relatedTable: 'eleve', displayField: 'nom', valueField: 'id'}}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}} ] }],
-    ['frais_classe_annee', { tablename: 'frais_classe_annee', displayname: 'Frais par Classe/Année', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_frais', type: 'int', label: 'Type de Frais', foreignKey: {relatedTable: 'frais', displayField: 'nom', valueField: 'id'}}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}} ] }],
-    ['module', { tablename: 'module', displayname: 'Modules', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'description', type: 'text', label: 'Description'} ] }],
-    ['permission', { tablename: 'permission', displayname: 'Permissions', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_module', type: 'int', label: 'Module', foreignKey: {relatedTable: 'module', displayField: 'nom', valueField: 'id'}}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'code', type: 'text', label: 'Code'} ] }],
-    ['user_permission', { tablename: 'user_permission', displayname: 'Permissions Utilisateur', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}}, {name: 'fk_permission', type: 'int', label: 'Permission', foreignKey: {relatedTable: 'permission', displayField: 'nom', valueField: 'id'}} ] }],
+      const tableMetadata = new Map([
+          ['user', { tablename: 'user', displayname: 'Utilisateurs', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'username', type: 'text', label: 'Nom d\'utilisateur'}, {name: 'password', type: 'text', label: 'Mot de passe', editable: false}, {name: 'phone', type: 'text', label: 'Téléphone'}, {name: 'access_token', type: 'text', label: 'Token d\'accès', editable: false}, {name: 'email', type: 'text', label: 'Email'}, {name: 'nom_complet', type: 'text', label: 'Nom Complet'}, {name: 'est_actif', type: 'enum', label: 'Actif', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'date_creation', type: 'text', label: 'Créé le', editable: false} ] }],
+          ['eleve', { tablename: 'eleve', displayname: 'Élèves', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'postnom', type: 'text', label: 'Postnom'}, {name: 'prenom', type: 'text', label: 'Prénom'}, {name: 'date_naissance', type: 'date', label: 'Date Naissance'}, {name: 'genre', type: 'enum', label: 'Genre', isEnum: true, enumValues: ['M','F']}, {name: 'adresse', type: 'text', label: 'Adresse'}, {name: 'telephone_parent', type: 'text', label: 'Tél. Parent'}, {name: 'date_inscription', type: 'date', label: 'Inscrit le'}, {name: 'est_actif', type: 'enum', label: 'Actif', isEnum: true, enumValues: ['ACTIF','INACTIF']} ] }],
+          ['paiement', { tablename: 'paiement', displayname: 'Paiements', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'fk_frais', type: 'int', label: 'Frais', foreignKey: {relatedTable: 'frais_annee_classe', displayField: 'id', valueField: 'id'}}, {name: 'fk_eleve', type: 'int', label: 'Élève', foreignKey: {relatedTable: 'eleve', displayField: 'nom', valueField: 'id'}}, {name: 'date_paiement', type: 'date', label: 'Date Paiement'}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}} ] }],
+          ['classe', { tablename: 'classe', displayname: 'Classes', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'niveau_numerique', type: 'int', label: 'Niveau Numérique'} ] }],
+          ['annee_scolaire', { tablename: 'annee_scolaire', displayname: 'Années Scolaires', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom (ex: 2023-2024)'} ] }],
+          ['cours', { tablename: 'cours', displayname: 'Cours', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'description', type: 'text', label: 'Description'} ] }],
+          ['depense', { tablename: 'depense', displayname: 'Dépenses', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'date_depense', type: 'date', label: 'Date Dépense'}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'motif', type: 'text', label: 'Motif'}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}} ] }],
+          ['eleve_classe_annee', { tablename: 'eleve_classe_annee', displayname: 'Inscriptions', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_eleve', type: 'int', label: 'Élève', foreignKey: {relatedTable: 'eleve', displayField: 'nom', valueField: 'id'}}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}} ] }],
+          ['frais_annee_classe', { tablename: 'frais_annee_classe', displayname: 'Frais par Classe/Année', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_type_frais', type: 'int', label: 'Type de Frais', foreignKey: {relatedTable: 'type_frais', displayField: 'nom', valueField: 'id'}}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}} ] }],
+          ['module', { tablename: 'module', displayname: 'Modules', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'description', type: 'text', label: 'Description'} ] }],
+          ['permission', { tablename: 'permission', displayname: 'Permissions', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_module', type: 'int', label: 'Module', foreignKey: {relatedTable: 'module', displayField: 'nom', valueField: 'id'}}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'code', type: 'text', label: 'Code'} ] }],
+          ['tranche_frais', { tablename: 'tranche_frais', displayname: 'Tranches de Frais', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'pourcentage', type: 'decimal', label: 'Pourcentage'}, {name: 'fk_frais', type: 'int', label: 'Frais', foreignKey: {relatedTable: 'frais_annee_classe', displayField: 'id', valueField: 'id'}}, {name: 'date_limite', type: 'date', label: 'Date Limite'} ] }],
+          ['type_frais', { tablename: 'type_frais', displayname: 'Types de Frais', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'} ] }],
+          ['user_permission', { tablename: 'user_permission', displayname: 'Permissions Utilisateur', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}}, {name: 'fk_permission', type: 'int', label: 'Permission', foreignKey: {relatedTable: 'permission', displayField: 'nom', valueField: 'id'}} ] }],
 ]);
 
 
@@ -485,15 +485,15 @@
                         // Assuming the login response contains user and token under the "result" key
                         const result = data.result;
 
-                        if (response.ok && result && result.id && result.token) {
-                            localStorage.setItem('access_token', result.token);
+                        if (response.ok && result && result.id && result.access_token) {
+                            localStorage.setItem('access_token', result.access_token);
                             localStorage.setItem('user_id', result.id);
                             
                             // Fetch permissions after successful login
                             await fetchPermissions(result.id);
 
                             Object.assign(authState, { 
-                                accessToken: result.token, 
+                                accessToken: result.access_token, 
                                 userId: result.id, 
                                 isLoggedIn: true 
                             });
@@ -513,7 +513,7 @@
         const App = {
             setup() {
                 const tables = ref(Array.from(tableMetadata.keys()).sort());
-                const formatTableName = (name) => (tableMetadata.get(name) || { displayname: name.replace(/_/g, ' ') }).displayname;
+                const formatTableName = (name) => (tableMetadata.get(name) || { displayname: name.replaceAll(/_/g, ' ') }).displayname;
                 
                 const hasPermission = (permissionCode) => {
                     // For simplicity, admin (user id 1) has all rights.
@@ -559,7 +559,7 @@
                     return (authState.userPermissions || []).includes(permissionCode);
                 };
 
-                const currentTableMeta = computed(() => tableMetadata.get(props.tableName) || { tablename: props.tableName, displayname: props.tableName.replace(/_/g, ' '), fields: [] });
+                const currentTableMeta = computed(() => tableMetadata.get(props.tableName) || { tablename: props.tableName, displayname: props.tableName.replaceAll(/_/g, ' '), fields: [] });
                 const displayedFields = computed(() => managedFields.value.filter(f => f.visible));
 
                 const setupColumns = () => {
@@ -587,7 +587,7 @@
                 const fetchData = async () => {
                     if (!hasPermission(props.tableName + '.view')) { error.value = 'Droits insuffisants pour voir cette table.'; loading.value = false; data.value = []; return; }
                     try {
-                        const result = await apiCall(props.tableName.replace("_",""));
+                        const result = await apiCall(props.tableName.replaceAll("_",""));
                         data.value = result || [];
                         setupColumns();
                     } catch (e) {
@@ -601,7 +601,7 @@
                     const tablesToFetch = new Set(currentTableMeta.value.fields.filter(f => f.foreignKey).map(f => f.foreignKey.relatedTable));
                     for (const table of tablesToFetch) {
                         try {
-                            const result = await apiCall(table.replace("_",""));
+                            const result = await apiCall(table.replaceAll("_",""));
                             relatedData[table] = result || [];
                         } catch (e) { console.error(`Erreur données associées pour ${table}:`, e); }
                     }
@@ -626,7 +626,7 @@
                         Object.keys(payload).forEach(key => (payload[key] == null || payload[key] === '') && delete payload[key]);
                         if (Object.keys(payload).length === 0) return window.addNotification('Veuillez remplir au moins un champ.', 'danger');
                         
-                        const added = await apiCall(props.tableName.replace("_",""), 'POST', payload);
+                        const added = await apiCall(props.tableName.replaceAll("_",""), 'POST', payload);
                         if (added) {
                             data.value.push(added);
                             newRecord.value = {};
@@ -639,7 +639,7 @@
                     if (!hasPermission(props.tableName + '.delete')) return window.addNotification('Droits insuffisants.', 'danger');
                     if (!confirm('Voulez-vous vraiment supprimer cet enregistrement ?')) return;
                     try {
-                        await apiCall(`${props.tableName.replace("_","")}/${id}`, 'DELETE');
+                        await apiCall(`${props.tableName.replaceAll("_","")}/${id}`, 'DELETE');
                         data.value = data.value.filter(item => item.id !== id);
                         window.addNotification('Supprimé.', 'success');
                     } catch (e) { /* handled by apiCall */ }
@@ -663,7 +663,7 @@
                     currentItemRef[fieldName] = newValue; // Optimistic update
                     
                     try {
-                        await apiCall(`${props.tableName.replace("_","")}/${item.id}`, 'PUT', { [fieldName]: newValue });
+                        await apiCall(`${props.tableName.replaceAll("_","")}/${item.id}`, 'PUT', { [fieldName]: newValue });
                         window.addNotification('Mis à jour.', 'success');
                     } catch (e) {
                         Object.assign(currentItemRef, oldItemState); // Revert on failure

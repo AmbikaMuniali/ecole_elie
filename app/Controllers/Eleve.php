@@ -57,7 +57,7 @@ class Eleve extends BaseController
     {
         try {
             $model = new EleveModel();
-            $eleve = $model->findById($id);
+            $eleve = $model->findEleveById($id);
             return $this->getResponse(
                 [
                     'message' => 'Eleve retrieved successfully',

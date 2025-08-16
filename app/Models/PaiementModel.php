@@ -7,7 +7,7 @@ class PaiementModel extends MyParentModel
 {
   protected $table = "paiement";
   protected $allowedFields = [
-       "id", "date_paiement", "montant", "devise", "fk_eleve", "fk_annee", "fk_classe", "fk_user", "fk_frais"
+       "id", "montant", "devise", "fk_frais", "fk_eleve", "date_paiement", "fk_user"
   ];
   public function __construct() {
     parent::__construct($this -> table, $this -> allowedFields);
