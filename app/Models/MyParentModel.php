@@ -9,83 +9,67 @@ class MyParentModel extends Model
 {
     protected $table;
     protected $allowedFields;
-
     protected $updatedField = "updated_at";
 
     public function __construct($table, $allowedFields) {
-        $this -> table = $table;
-        $this -> allowedFields = $allowedFields;
+        parent::__construct(); // Initialize the parent Model first
+        $this->table = $table;
+        $this->allowedFields = $allowedFields;
     }
 
     public function search($data)
     {
-        //SEARCH DATA WHERE ALLOWED FIELDS IN LIKE ARE LIKE, 
-        // OR ALLOWED FIELDS IN min are less than
-        // OR ALLOWED FIELDS IN MAX are great than
-        // OR ALLOWED FIELDS IN before are BEFORE THE GIVEN VALUE
-        // LIMIT AND PAGE OFFSET are given ORDER
-
-        $where = isset($data['where']) ? $data['where']: '';
-        $like = isset($data['like']) ? $data['like'] : '';
-        $min = isset($data['min']) ? $data['min']:'';
-        $max = isset($data['max']) ? $data['max'] :'';
-        $limit = isset($data['limit']) ? $data['limit']: '';
-        $offset = isset($data['offset']) ? $data['offset']: 1;
-        $group_by = isset($data['group_by']) ? $data['group_by']: '';
-        $order_by = isset($data['order_by']) ? $data['order_by']: '';
+        $where = $data['where'] ?? [];
+        $like = $data['like'] ?? [];
+        $min = $data['min'] ?? [];
+        $max = $data['max'] ?? [];
+        $limit = $data['limit'] ?? null;
+        $offset = $data['offset'] ?? 0;
+        $group_by = $data['group_by'] ?? '';
+        $order_by = $data['order_by'] ?? '';
         
-    
-    
-        $requete = $this;
+        $builder = $this->db->table($this->table);
         
-        if(!empty($where) ){
-            $requete = $requete->where($where);
+        if(!empty($where)) {
+            $builder->where($where);
         }
 
-
-        
-
-        if(!empty($like) ){
-            $requete = $requete->like($like);
+        if(!empty($like)) {
+            $builder->like($like);
         }
 
-        if(!empty($min) ) {
-            $min1 = [];
+        if(!empty($min)) {
             foreach ($min as $key => $value) {
-                $min1[$key.' >= '] = $value;
+                $builder->where("$key >=", $value);
             }
-            $requete = $requete->where($min1);
         }
 
-        if(!empty($max) ){
-            $max1 = [];
+        if(!empty($max)) {
             foreach ($max as $key => $value) {
-                $max1[$key.' <= '] = $value;
+                $builder->where("$key <=", $value);
             }
-            $requete = $requete->where($max1);
         }
 
-        if(is_numeric($limit) && is_numeric($offset)) {
-            $requete = $requete->limit($limit, $offset);   
-        }
-
-        if(!empty($group_by) ){
-            $requete = $requete->groupBy($group_by);
+        if(!empty($group_by)) {
+            $builder->groupBy($group_by);
         }
 
         if(!empty($order_by)) {
-            $requete = $requete->orderBy($order_by);
+            $builder->orderBy($order_by);
         }
 
-        return  $requete -> get() -> getResultArray();
+        if($limit !== null && is_numeric($limit)) {
+            $builder->limit($limit, is_numeric($offset) ? $offset : 0);
+            // return $builder -> getCompiledSelect();
+        }
 
-
-        
+        return $builder->get()->getResultArray();
     }
 
     public function selectAll() {
-        return $this -> select() -> get() -> getResultArray();
+        return $this->db->table($this->table)
+                      ->select()
+                      ->get()
+                      ->getResultArray();
     }
-
-   
 }

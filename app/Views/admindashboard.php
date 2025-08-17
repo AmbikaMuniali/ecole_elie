@@ -103,6 +103,13 @@
             align-items: center;
             min-height: 38px;
         }
+        .pupil-search-results {
+            height: 150px;
+            width: 100%;
+            overflow-y: scroll;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+        }
     </style>
 </head>
 <body>
@@ -115,7 +122,7 @@
                      <router-link to="/users" class="nav-link"><i class="bi bi-people-fill me-2"></i>Gérer les Utilisateurs</router-link>
                 </li>
                  <li v-if="hasPermission('payment.view_daily')" class="nav-item">
-                     <router-link to="/daily-payments" class="nav-link"><i class="bi bi-calendar-day me-2"></i>Paiements du Jour</router-link>
+                     <router-link to="/daily-payments" class="nav-link"><i class="bi bi-cash-coin me-2"></i>Paiements</router-link>
                 </li>
                  <li v-if="hasPermission('reports.generate')" class="nav-item">
                      <router-link to="/reports" class="nav-link"><i class="bi bi-file-earmark-bar-graph-fill me-2"></i>Générer Rapports</router-link>
@@ -172,51 +179,136 @@
     </script>
     
     <script type="text/x-template" id="daily-payments-template">
-         <div class="container-fluid">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">Paiements du Jour ({{ new Date().toLocaleDateString() }})</h4>
-                    <button class="btn btn-primary btn-sm" @click="fetchPayments" :disabled="loading" title="Actualiser">
-                        <i class="bi bi-arrow-clockwise" :class="{'loading-spinner': loading}"></i> Actualiser
-                    </button>
+        <div class="container-fluid">
+            <div class="row g-4">
+                <!-- Payment Zone -->
+                <div class="col-lg-5">
+                    <div class="card w-100">
+                        <div class="card-header"><h4 class="mb-0">Effectuer un Paiement</h4></div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="paymentYear" class="form-label">Année Scolaire</label>
+                                <select id="paymentYear" v-model="selectedYear" class="form-select" :disabled="!years.length">
+                                    <option v-for="year in years" :key="year.id" :value="year.id">{{ year.nom }}</option>
+                                </select>
+                            </div>
+                            <hr>
+                            <h6><i class="bi bi-search me-2"></i>Rechercher un élève</h6>
+                            <div class="row g-2 mb-2">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Nom" v-model="pupilSearch.nom" @keyup.enter="searchPupils">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Postnom" v-model="pupilSearch.postnom" @keyup.enter="searchPupils">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Prénom" v-model="pupilSearch.prenom" @keyup.enter="searchPupils">
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 mb-3">
+                                <button class="btn btn-primary w-100" @click="searchPupils" :disabled="searchLoading">
+                                    <i class="bi bi-search" :class="{'loading-spinner': searchLoading}"></i> Chercher
+                                </button>
+                                <router-link to="/table/eleve" class="btn btn-outline-secondary w-100">
+                                    <i class="bi bi-plus-circle"></i> Nouveau
+                                </router-link>
+                            </div>
+
+                            <div v-if="searchResults.length > 0" class="pupil-search-results mb-3">
+                                <ul class="list-group">
+                                    <li v-for="pupil in searchResults" :key="pupil.id" class="list-group-item list-group-item-action" @click="selectPupil(pupil)">
+                                        {{ pupil.nom }} {{ pupil.postnom }} {{ pupil.prenom }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div v-if="selectedPupil.id">
+                                <hr>
+                                <div class="alert alert-success">
+                                    <h5 class="alert-heading">{{ selectedPupil.nom }} {{ selectedPupil.postnom }}</h5>
+                                    <p class="mb-1">Classe: <strong v-if="pupilClass.nom">{{ pupilClass.nom }}</strong><em v-else>Non inscrit cette année</em></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Type de Frais</label>
+                                    <select class="form-select" v-model="newPayment.fk_frais" :disabled="!pupilClass.id || !availableTuitions.length">
+                                        <option v-if="!pupilClass.id" disabled value="">Veuillez inscrire l'élève</option>
+                                        <option v-else v-for="tuition in availableTuitions" :key="tuition.id" :value="tuition.id">
+                                            {{ getRelatedName(tuition.fk_type_frais, 'type_frais') }} ({{ formatCurrency(tuition.montant, tuition.devise) }})
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="row g-2 mb-3">
+                                    <div class="col-sm-7">
+                                        <label class="form-label">Montant</label>
+                                        <input type="number" class="form-control" v-model.number="newPayment.montant">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label class="form-label">Devise</label>
+                                        <select class="form-select" v-model="newPayment.devise">
+                                            <option>USD</option>
+                                            <option>FC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success w-100" @click="makePayment" :disabled="!newPayment.fk_frais || newPayment.montant <= 0 || paymentLoading">
+                                    <i class="bi bi-check-circle" :class="{'loading-spinner': paymentLoading}"></i> Payer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div v-if="error" class="alert alert-danger">{{ error }}</div>
-                    <div v-if="loading" class="text-center p-5"><div class="spinner-border" role="status"></div></div>
-                    <div v-else-if="payments.length === 0" class="alert alert-info">Aucun paiement enregistré aujourd'hui.</div>
-                    <div v-else class="table-responsive">
-                        <table class="table table-striped table-hover">
-                             <thead class="table-dark">
-                                <tr>
-                                    <th>Élève</th>
-                                    <th>Classe</th>
-                                    <th>Frais Payé</th>
-                                    <th class="text-end">Montant</th>
-                                    <th>Perçu par</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="payment in payments" :key="payment.id">
-                                    <td>{{ getRelatedName(payment.fk_eleve, 'eleve') }}</td>
-                                    <td>{{ getRelatedName(payment.fk_classe, 'classe') }}</td>
-                                    <td>{{ getRelatedName(payment.fk_frais, 'frais') }}</td>
-                                    <td class="text-end">{{ formatCurrency(payment.montant, payment.devise) }}</td>
-                                    <td>{{ getRelatedName(payment.fk_user, 'user') }}</td>
-                                </tr>
-                            </tbody>
-                             <tfoot>
-                                <tr>
-                                    <th colspan="3" class="text-end">Total USD:</th>
-                                    <td class="text-end fw-bold">{{ formatCurrency(totalUSD, 'USD') }}</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th colspan="3" class="text-end">Total FC:</th>
-                                    <td class="text-end fw-bold">{{ formatCurrency(totalFC, 'FC') }}</td>
-                                    <td></td>
-                                </tr>
-                            </tfoot>
-                        </table>
+
+                <!-- Daily Summary Zone -->
+                <div class="col-lg-7">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Journal des Paiements</h4>
+                             <div class="d-flex align-items-center gap-2">
+                                <input type="date" v-model="paymentDate" class="form-control form-control-sm" style="width: auto;">
+                                <button class="btn btn-primary btn-sm" @click="fetchPayments" :disabled="loading" title="Actualiser">
+                                    <i class="bi bi-arrow-clockwise" :class="{'loading-spinner': loading}"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div v-if="error" class="alert alert-danger">{{ error }}</div>
+                            <div v-if="loading" class="text-center p-5"><div class="spinner-border" role="status"></div></div>
+                            <div v-else-if="payments.length === 0" class="alert alert-info">Aucun paiement pour le {{ new Date(paymentDate).toLocaleDateString() }}.</div>
+                            <div v-else class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                     <thead class="table-dark">
+                                        <tr>
+                                            <th>Élève</th>
+                                            <th>Classe</th>
+                                            <th>Frais Payé</th>
+                                            <th class="text-end">Montant</th>
+                                            <th>Perçu par</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="payment in payments" :key="payment.id">
+                                            <td>{{ getRelatedName(payment.fk_eleve, 'eleve') }}</td>
+                                            <td>{{ getRelatedName(payment.fk_classe, 'classe') }}</td>
+                                            <td>{{ getFeeTypeNameFromPayment(payment) }}</td>
+                                            <td class="text-end">{{ formatCurrency(payment.montant, payment.devise) }}</td>
+                                            <td>{{ getRelatedName(payment.fk_user, 'user') }}</td>
+                                        </tr>
+                                    </tbody>
+                                     <tfoot>
+                                        <tr>
+                                            <th colspan="3" class="text-end">Total USD:</th>
+                                            <td class="text-end fw-bold">{{ formatCurrency(totalUSD, 'USD') }}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3" class="text-end">Total FC:</th>
+                                            <td class="text-end fw-bold">{{ formatCurrency(totalFC, 'FC') }}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -743,6 +835,7 @@
                         if (added) {
                             data.value.push(added);
                             newRecord.value = {};
+                            refreshData()
                             window.addNotification('Enregistré!', 'success');
                         }
                     } catch (e) { /* handled by apiCall */ }
@@ -841,17 +934,56 @@
                 const loading = ref(true);
                 const error = ref(null);
                 const payments = ref([]);
-                const relatedData = reactive({ eleve: [], classe: [], frais: [], user: [] });
+                const relatedData = reactive({ eleve: [], classe: [], frais_annee_classe: [], user: [], type_frais: [] });
+                const paymentDate = ref(new Date().toISOString().slice(0, 10));
+
+                const years = ref([]);
+                const selectedYear = ref(null);
+                const pupilSearch = reactive({ nom: '',postnom: '', prenom: '' });
+                const searchResults = ref([]);
+                const searchLoading = ref(false);
+                const selectedPupil = ref({});
+                const pupilClass = ref({});
+                const availableTuitions = ref([]);
+                const newPayment = reactive({
+                    fk_eleve: null,
+                    fk_frais: null,
+                    fk_classe: null,
+                    montant: null,
+                    devise: 'USD'
+                });
+                const paymentLoading = ref(false);
+
+                const fetchInitialData = async () => {
+                    try {
+                        const [yearsData, classesData, feeTypesData, usersData] = await Promise.all([
+                            apiCall('anneescolaire'),
+                            apiCall('classe'),
+                            apiCall('typefrais'),
+                            apiCall('user'),
+                        ]);
+                        years.value = yearsData || [];
+                        relatedData.classe = classesData || [];
+                        relatedData.type_frais = feeTypesData || [];
+                        relatedData.user = usersData || [];
+                        if (years.value.length > 0) {
+                            selectedYear.value = years.value[years.value.length - 1].id;
+                        }
+                    } catch (e) {
+                        error.value = `Erreur de chargement des données: ${e.message}`;
+                    }
+                };
 
                 const fetchPayments = async () => {
                     loading.value = true;
                     error.value = null;
                     try {
-                        const today = new Date().toISOString().slice(0, 10);
-                        // Assuming an API endpoint like /paiement?date_paiement=YYYY-MM-DD
-                        const result = await apiCall(`paiement?date_paiement=${today}`);
+                        const result = await apiCall(`search`, 'POST', {
+                            table: 'paiement',
+                            where: { date_paiement: paymentDate.value }
+                        });
                         payments.value = result || [];
-                        await fetchRelatedData();
+                        await fetchRelatedPaymentData();
                     } catch (e) {
                         error.value = `Erreur: ${e.message}`;
                     } finally {
@@ -859,25 +991,133 @@
                     }
                 };
 
-                const fetchRelatedData = async () => {
-                    const tablesToFetch = ['eleve', 'classe', 'frais', 'user'];
-                    for (const table of tablesToFetch) {
-                        try {
-                            const result = await apiCall(table);
-                            relatedData[table] = result || [];
-                        } catch (e) { console.error(`Erreur données associées pour ${table}:`, e); }
+                const fetchRelatedPaymentData = async () => {
+                    const pupilIds = [...new Set(payments.value.map(p => p.fk_eleve))];
+                    const feeIds = [...new Set(payments.value.map(p => p.fk_frais))];
+
+                    if (pupilIds.length > 0) {
+                        const pupilsData = await apiCall('search', 'POST', { table: 'eleve', where_in: { id: pupilIds } });
+                        relatedData.eleve = pupilsData || [];
+                    }
+                    if (feeIds.length > 0) {
+                        const feesData = await apiCall('search', 'POST', { table: 'frais_annee_classe', where_in: { id: feeIds } });
+                        relatedData.frais_annee_classe = feesData || [];
+                    }
+                };
+
+                const searchPupils = async () => {
+
+
+                    
+                    if (!pupilSearch.nom && !pupilSearch.postnom && !pupilSearch.prenom) return;
+                    searchLoading.value = true;
+                    try {
+                        var payload = {
+                            table: "eleve",
+                            like: {},
+                            limit: 20
+                        };
+
+
+                        if(pupilSearch.nom) payload.like.nom = pupilSearch.nom;
+                        if(pupilSearch.postnom) payload.like.postnom = pupilSearch.postnom;
+                        if(pupilSearch.prenom) payload.like.prenom = pupilSearch.prenom;
+
+                        console.log('search pupil');
+
+                        console.log(payload);
+
+                        const result = await apiCall('search', 'POST', payload);
+
+                        searchResults.value = result || [];
+                    } catch (e) {
+                        window.addNotification("Erreur recherche d'élève", 'danger');
+                    } finally {
+                        searchLoading.value = false;
+                    }
+                };
+
+                const selectPupil = async (pupil) => {
+                    selectedPupil.value = pupil;
+                    searchResults.value = [];
+                    pupilClass.value = {};
+                    availableTuitions.value = [];
+                    newPayment.fk_frais = null;
+                    newPayment.montant = null;
+
+                    if (!selectedYear.value) {
+                        window.addNotification("Veuillez d'abord sélectionner une année scolaire", "danger");
+                        return;
+                    }
+                    
+                    try {
+                        // Find pupil's class for the selected year
+                        const inscriptionData = await apiCall('search', 'POST', {
+                            table: 'eleve_classe_annee',
+                            where: { fk_eleve: pupil.id, fk_annee: selectedYear.value },
+                            limit: 1
+                        });
+
+                        if (inscriptionData && inscriptionData.length > 0) {
+                            const inscription = inscriptionData[0];
+                            newPayment.fk_classe = inscription.fk_classe;
+                            pupilClass.value = relatedData.classe.find(c => c.id === inscription.fk_classe) || {};
+
+                            // Fetch available tuitions for that class and year
+                            const tuitionsData = await apiCall('search', 'POST', {
+                                table: 'frais_annee_classe',
+                                where: { fk_classe: inscription.fk_classe, fk_annee: selectedYear.value }
+                            });
+                            availableTuitions.value = tuitionsData || [];
+                        } else {
+                            window.addNotification("Cet élève n'est pas inscrit dans une classe pour l'année sélectionnée.", "warning");
+                        }
+                    } catch(e) {
+                        window.addNotification("Erreur lors de la récupération des détails de l'élève.", "danger");
+                    }
+                };
+
+                const makePayment = async () => {
+                    paymentLoading.value = true;
+                    try {
+                        const payload = {
+                            ...newPayment,
+                            fk_eleve: selectedPupil.value.id,
+                            date_paiement: new Date().toISOString().slice(0, 10),
+                            fk_user: authState.userId
+                        };
+                        await apiCall('paiement', 'POST', payload);
+                        window.addNotification('Paiement enregistré!', 'success');
+                        
+                        // Reset form
+                        selectedPupil.value = {};
+                        pupilClass.value = {};
+                        availableTuitions.value = [];
+                        Object.assign(newPayment, { fk_eleve: null, fk_frais: null, fk_classe: null, montant: null, devise: 'USD' });
+
+                        await fetchPayments(); // Refresh list
+                    } catch(e) {
+                         window.addNotification(`Erreur: ${e.message}`, 'danger');
+                    } finally {
+                        paymentLoading.value = false;
                     }
                 };
 
                 const getRelatedName = (id, table) => {
-                    const item = (relatedData[table] || []).find(d => d.id === id);
+                    const item = (relatedData[table] || []).find(d => d.id == id);
                     if (!item) return `ID: ${id}`;
                     if (table === 'eleve') return `${item.nom || ''} ${item.postnom || ''} ${item.prenom || ''}`.trim();
                     if (table === 'user') return item.nom_complet || item.username;
                     return item.nom || `ID: ${id}`;
                 };
+
+                const getFeeTypeNameFromPayment = (payment) => {
+                    const fee = (relatedData.frais_annee_classe || []).find(f => f.id === payment.fk_frais);
+                    return fee ? getRelatedName(fee.fk_type_frais, 'type_frais') : 'N/A';
+                };
                 
                 const formatCurrency = (amount, currency) => {
+                    if (amount === null || amount === undefined) return '';
                     currency = currency == 'FC'? 'CDF' : currency;
                     return new Intl.NumberFormat('fr-CD', { style: 'currency', currency: currency || 'USD' }).format(amount || 0);
                 };
@@ -885,9 +1125,14 @@
                 const totalUSD = computed(() => payments.value.filter(p => p.devise === 'USD').reduce((sum, p) => sum + parseFloat(p.montant), 0));
                 const totalFC = computed(() => payments.value.filter(p => p.devise === 'FC').reduce((sum, p) => sum + parseFloat(p.montant), 0));
 
-                onMounted(fetchPayments);
+                onMounted(() => {
+                    fetchInitialData();
+                    fetchPayments();
+                });
 
-                return { loading, error, payments, fetchPayments, getRelatedName, formatCurrency, totalUSD, totalFC };
+                watch(paymentDate, fetchPayments);
+
+                return { loading, error, payments, fetchPayments, getRelatedName, formatCurrency, totalUSD, totalFC, paymentDate, years, selectedYear, pupilSearch, searchResults, searchPupils, searchLoading, selectPupil, selectedPupil, pupilClass, availableTuitions, newPayment, makePayment, paymentLoading, getFeeTypeNameFromPayment };
             }
         };
 

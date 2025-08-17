@@ -54,21 +54,30 @@ class MySearchController  extends BaseController
             $model  = $this -> getModelName($table);
 
            $model =  model($model);
-            
-      }
-        return $this->getResponse(
+           return $this->getResponse(
             [
                 'message' => 'Data retrieved successfully',
                 'data' => $data,
                 'result' =>$model -> search($data)
             ]
         );
+            
+      }
+
+      return $this->getResponse(
+            [
+                'message' => 'Data retrieved successfully',
+                'data' => $data,
+                'result' => []
+            ], ResponseInterface::HTTP_BAD_REQUEST
+        );
+        
     }
 
     function getModelName($tableName) {
     // Split the table name by the underscore character
     $parts = explode('_', $tableName);
-    
+       
     // Capitalize the first letter of each part
     $camelCaseParts = array_map('ucfirst', $parts);
     
