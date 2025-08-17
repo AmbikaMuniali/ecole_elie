@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kasokoo Admin Dashboard</title>
+    <title>School Management Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
@@ -17,6 +16,7 @@
             display: flex; 
             flex-direction: row;
             min-height: 100vh; 
+            background-color: #f0f2f5;
         }
         
         #navbar-top {
@@ -25,29 +25,36 @@
             left: 0;
             width: 250px;
             height: 100vh;
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             padding: 20px;
             border-right: 1px solid #dee2e6;
-            box-shadow: 2px 0 4px rgba(0,0,0,.05);
+            box-shadow: 2px 0 5px rgba(0,0,0,.1);
             overflow-y: auto;
             z-index: 1050;
         }
         #navbar-top .nav { flex-direction: column; }
-        #navbar-top .nav-link { color: #495057; }
-        #navbar-top .nav-link.router-link-active {
+        #navbar-top .nav-link { 
+            color: #495057; 
+            margin-bottom: 5px;
+            border-radius: .25rem;
+        }
+        #navbar-top .nav-link.router-link-active, #navbar-top .nav-link:hover {
             font-weight: bold;
             color: #0d6efd;
-            background-color: #e2e6ea;
+            background-color: #e9ecef;
         }
 
         #main-content { 
             flex-grow: 1; 
             padding: 20px; 
-            margin-left: 250px;
-            height: 100vh;
-            overflow-y: auto; 
+            margin-left: 0;
+            transition: margin-left .3s;
         }
         
+        body.navbar-visible #main-content {
+            margin-left: 250px;
+        }
+
         .table-responsive { 
             max-height: calc(100vh - 220px); 
             overflow-x: auto; 
@@ -80,30 +87,452 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .card {
+             border: none;
+             box-shadow: 0 0 15px rgba(0,0,0,.05);
+        }
+        .tuition-table th:first-child, .tuition-table td:first-child {
+            position: sticky;
+            left: 0;
+            background-color: #f8f9fa;
+            z-index: 1;
+        }
+        .tuition-table .cell-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 38px;
+        }
+        .pupil-search-results {
+            height: 150px;
+            width: 100%;
+            overflow-y: scroll;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+        }
+        .permissions-container {
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+        .permission-group {
+            margin-bottom: 1.5rem;
+        }
+        .permission-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .permission-item {
+            display: inline-flex;
+            align-items: center;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-receipt, #printable-receipt * {
+                visibility: visible;
+            }
+            #printable-receipt {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div id="app">
-        <nav id="navbar-top">
-            <h5>Tables de la BDD</h5>
+        <nav id="navbar-top" v-if="isLoggedIn">
+            <h5 class="text-primary">Tableaux de Bord</h5>
+            <ul class="nav">
+                 <li v-if="hasPermission('user.view')" class="nav-item">
+                     <router-link to="/user-management" class="nav-link"><i class="bi bi-people-fill me-2"></i>Utilisateurs & Droits</router-link>
+                </li>
+                 <li v-if="hasPermission('payment.view_daily')" class="nav-item">
+                     <router-link to="/daily-payments" class="nav-link"><i class="bi bi-cash-coin me-2"></i>Paiements</router-link>
+                </li>
+                 <li v-if="hasPermission('reports.generate')" class="nav-item">
+                     <router-link to="/reports" class="nav-link"><i class="bi bi-file-earmark-bar-graph-fill me-2"></i>Générer Rapports</router-link>
+                </li>
+                 <li v-if="hasPermission('frais.view')" class="nav-item">
+                     <router-link to="/scolar-year-tuition" class="nav-link"><i class="bi bi-wallet2 me-2"></i>Frais Scolaires</router-link>
+                </li>
+            </ul>
+            <hr>
+            <h5>Données de Base</h5>
             <ul class="nav">
                 <li v-for="table in tables" :key="table" class="nav-item">
-                     <router-link :to="'/table/' + table" class="nav-link">
+                     <router-link v-if="hasPermission(table + '.view')" :to="'/table/' + table" class="nav-link">
                         {{ formatTableName(table) }}
                     </router-link>
                 </li>
             </ul>
+            <hr>
+            <button class="btn btn-outline-danger w-100" @click="logout">
+                <i class="bi bi-box-arrow-right"></i> Déconnexion
+            </button>
         </nav>
 
         <main id="main-content">
             <router-view :key="$route.fullPath"></router-view>
         </main>
         
-        <div class="toast-container notification-toast">
-            </div>
+        <div class="toast-container notification-toast"></div>
     </div>
 
+    <script type="text/x-template" id="login-component-template">
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Connexion Admin</h2>
+                    <form @submit.prevent="handleLogin">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nom d'utilisateur ou Email</label>
+                            <input type="text" class="form-control" id="username" v-model="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" v-model="password" required>
+                        </div>
+                        <div v-if="loginError" class="alert alert-danger mt-3">{{ loginError }}</div>
+                        <button type="submit" class="btn btn-primary w-100 mt-3" :disabled="loading">
+                            <span v-if="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Connexion
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="user-management-template">
+        <div class="container-fluid">
+            <div class="row g-4">
+                <!-- User Creation Column -->
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header"><h4 class="mb-0">Créer un Nouvel Utilisateur</h4></div>
+                        <div class="card-body">
+                            <form @submit.prevent="createUser">
+                                <div class="mb-3">
+                                    <label for="newUsername" class="form-label">Nom d'utilisateur</label>
+                                    <input type="text" class="form-control" id="newUsername" v-model="newUser.username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="form-label">Mot de passe</label>
+                                    <input type="password" class="form-control" id="newPassword" v-model="newUser.password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100" :disabled="creationLoading">
+                                    <span v-if="creationLoading" class="spinner-border spinner-border-sm me-2"></span>
+                                    Créer l'utilisateur
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permission Management Column -->
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header"><h4 class="mb-0">Gérer les Permissions</h4></div>
+                        <div class="card-body">
+                            <div v-if="loading" class="text-center"><div class="spinner-border"></div></div>
+                            <div v-else>
+                                <div class="mb-3">
+                                    <label for="userSelect" class="form-label">Sélectionner un utilisateur</label>
+                                    <select id="userSelect" v-model="selectedUserId" class="form-select">
+                                        <option :value="null">-- Veuillez choisir --</option>
+                                        <option v-for="user in users" :key="user.id" :value="user.id">{{ user.nom_complet || user.username }}</option>
+                                    </select>
+                                </div>
+
+                                <div v-if="selectedUserId">
+                                    <hr>
+                                    <div class="permissions-container">
+                                        <div v-for="module in groupedPermissions" :key="module.id" class="permission-group">
+                                            <h5>{{ module.nom }}</h5>
+                                            <div class="permission-list">
+                                                <div v-for="permission in module.permissions" :key="permission.id" class="form-check form-check-inline permission-item">
+                                                    <input class="form-check-input" type="checkbox" :id="'perm-' + permission.id" :value="permission.id" v-model="selectedPermissions">
+                                                    <label class="form-check-label" :for="'perm-' + permission.id">{{ permission.nom }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <button class="btn btn-success" @click="savePermissions" :disabled="saveLoading">
+                                        <span v-if="saveLoading" class="spinner-border spinner-border-sm me-2"></span>
+                                        Enregistrer les Permissions
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    
+    <script type="text/x-template" id="daily-payments-template">
+        <div class="container-fluid">
+            <div class="row g-4">
+                <!-- Payment Zone -->
+                <div class="col-lg-5">
+                    <div class="card h-100">
+                        <div class="card-header"><h4 class="mb-0">Effectuer un Paiement</h4></div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="paymentYear" class="form-label">Année Scolaire</label>
+                                <select id="paymentYear" v-model="selectedYear" class="form-select" :disabled="!years.length">
+                                    <option v-for="year in years" :key="year.id" :value="year.id">{{ year.nom }}</option>
+                                </select>
+                            </div>
+                            <hr>
+                            <h6><i class="bi bi-search me-2"></i>Rechercher un élève</h6>
+                            <div class="row g-2 mb-2">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Nom" v-model="pupilSearch.nom" @keyup.enter="searchPupils">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Prénom" v-model="pupilSearch.prenom" @keyup.enter="searchPupils">
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 mb-3">
+                                <button class="btn btn-primary w-100" @click="searchPupils" :disabled="searchLoading">
+                                    <i class="bi bi-search" :class="{'loading-spinner': searchLoading}"></i> Chercher
+                                </button>
+                                <router-link to="/table/eleve" class="btn btn-outline-secondary w-100">
+                                    <i class="bi bi-plus-circle"></i> Nouveau
+                                </router-link>
+                            </div>
+
+                            <div v-if="searchResults.length > 0" class="pupil-search-results mb-3">
+                                <ul class="list-group">
+                                    <li v-for="pupil in searchResults" :key="pupil.id" class="list-group-item list-group-item-action" @click="selectPupil(pupil)">
+                                        {{ pupil.nom }} {{ pupil.postnom }} {{ pupil.prenom }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div v-if="selectedPupil.id">
+                                <hr>
+                                <div class="alert alert-success">
+                                    <h5 class="alert-heading">{{ selectedPupil.nom }} {{ selectedPupil.postnom }}</h5>
+                                    <p class="mb-1">Classe: <strong v-if="pupilClass.nom">{{ pupilClass.nom }}</strong><em v-else>Non inscrit cette année</em></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Type de Frais</label>
+                                    <select class="form-select" v-model="newPayment.fk_frais" :disabled="!pupilClass.id || !availableTuitions.length">
+                                        <option v-if="!pupilClass.id" disabled value="">Veuillez inscrire l'élève</option>
+                                        <option v-else v-for="tuition in availableTuitions" :key="tuition.id" :value="tuition.id">
+                                            {{ getRelatedName(tuition.fk_type_frais, 'type_frais') }} ({{ formatCurrency(tuition.montant, tuition.devise) }})
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="row g-2 mb-3">
+                                    <div class="col-sm-7">
+                                        <label class="form-label">Montant</label>
+                                        <input type="number" class="form-control" v-model.number="newPayment.montant">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label class="form-label">Devise</label>
+                                        <select class="form-select" v-model="newPayment.devise">
+                                            <option>USD</option>
+                                            <option>FC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success w-100" @click="makePayment" :disabled="!newPayment.fk_frais || newPayment.montant <= 0 || paymentLoading">
+                                    <i class="bi bi-check-circle" :class="{'loading-spinner': paymentLoading}"></i> Payer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Summary Zone -->
+                <div class="col-lg-7">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">Journal des Paiements</h4>
+                             <div class="d-flex align-items-center gap-2">
+                                <input type="date" v-model="paymentDate" class="form-control form-control-sm" style="width: auto;">
+                                <button class="btn btn-primary btn-sm" @click="fetchPayments" :disabled="loading" title="Actualiser">
+                                    <i class="bi bi-arrow-clockwise" :class="{'loading-spinner': loading}"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div v-if="error" class="alert alert-danger">{{ error }}</div>
+                            <div v-if="loading" class="text-center p-5"><div class="spinner-border" role="status"></div></div>
+                            <div v-else-if="payments.length === 0" class="alert alert-info">Aucun paiement pour le {{ new Date(paymentDate).toLocaleDateString() }}.</div>
+                            <div v-else class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                     <thead class="table-dark">
+                                        <tr>
+                                            <th>Élève</th>
+                                            <th>Classe</th>
+                                            <th>Frais Payé</th>
+                                            <th class="text-end">Montant</th>
+                                            <th>Perçu par</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="payment in payments" :key="payment.id">
+                                            <td>{{ getRelatedName(payment.fk_eleve, 'eleve') }}</td>
+                                            <td>{{ getRelatedName(payment.fk_classe, 'classe') }}</td>
+                                            <td>{{ getFeeTypeNameFromPayment(payment) }}</td>
+                                            <td class="text-end">{{ formatCurrency(payment.montant, payment.devise) }}</td>
+                                            <td>{{ getRelatedName(payment.fk_user, 'user') }}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-outline-secondary" @click="printReceipt(payment)" title="Imprimer le reçu">
+                                                    <i class="bi bi-printer"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                     <tfoot>
+                                        <tr>
+                                            <th colspan="4" class="text-end">Total USD:</th>
+                                            <td class="text-end fw-bold">{{ formatCurrency(totalUSD, 'USD') }}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4" class="text-end">Total FC:</th>
+                                            <td class="text-end fw-bold">{{ formatCurrency(totalFC, 'FC') }}</td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="reports-template">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header"><h4 class="mb-0">Génération de Rapports</h4></div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>Cette section est en cours de développement.
+                    </div>
+                    <p>Ici, vous pourrez bientôt générer divers rapports, tels que :</p>
+                    <ul>
+                        <li>Liste des élèves par classe</li>
+                        <li>Situation des paiements par élève</li>
+                        <li>Rapport financier par période</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="scolar-year-tuition-template">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Frais par Année Scolaire</h4>
+                </div>
+                <div class="card-body">
+                    <div v-if="error" class="alert alert-danger">{{ error }}</div>
+                    <div class="mb-3">
+                        <label for="anneeScolaire" class="form-label">Sélectionner une année scolaire :</label>
+                        <select id="anneeScolaire" v-model="selectedYear" @change="fetchTuitionData" class="form-select" :disabled="loading">
+                            <option v-for="year in years" :key="year.id" :value="year.id">{{ year.nom }}</option>
+                        </select>
+                    </div>
+
+                    <div v-if="loading" class="text-center p-5">
+                        <div class="spinner-border" role="status"><span class="visually-hidden">Chargement...</span></div>
+                    </div>
+
+                    <div v-else-if="!loading && selectedYear" class="table-responsive">
+                        <table class="table table-bordered table-hover tuition-table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Type de Frais</th>
+                                    <th v-for="classe in classes" :key="classe.id">{{ classe.nom }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="feeType in feeTypes" :key="feeType.id">
+                                    <td class="fw-bold">{{ feeType.nom }}</td>
+                                    <td v-for="classe in classes" :key="classe.id">
+                                        <div class="cell-content">
+                                            <span>{{ getTuitionAmount(feeType.id, classe.id) }}</span>
+                                            <button v-if="getTuitionRecord(feeType.id, classe.id)" class="btn btn-link btn-sm p-0" @click="openEditModal(feeType.id, classe.id)" v-if="hasPermission('frais_annee_classe.edit')">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button v-else class="btn btn-link btn-sm p-0" @click="openEditModal(feeType.id, classe.id)" v-if="hasPermission('frais_annee_classe.create')">
+                                                <i class="bi bi-plus-square"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div v-else class="alert alert-info">Veuillez sélectionner une année scolaire pour afficher les frais.</div>
+                </div>
+            </div>
+
+            <!-- Edit Modal -->
+            <div class="modal fade" id="tuitionEditModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{ modalTitle }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body" v-if="editingTuition">
+                            <div class="mb-3">
+                                <label class="form-label">Année Scolaire:</label>
+                                <p class="form-control-plaintext fw-bold">{{ editingYearName }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Classe:</label>
+                                <p class="form-control-plaintext fw-bold">{{ editingClassName }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Type de Frais:</label>
+                                <p class="form-control-plaintext fw-bold">{{ editingFeeTypeName }}</p>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label for="tuitionAmount" class="form-label">Montant</label>
+                                <input type="number" class="form-control" id="tuitionAmount" v-model.number="editingTuition.montant" placeholder="0.00">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tuitionCurrency" class="form-label">Devise</label>
+                                <select class="form-select" id="tuitionCurrency" v-model="editingTuition.devise">
+                                    <option>USD</option>
+                                    <option>FC</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-danger me-auto" @click="deleteTuition" v-if="editingTuition && editingTuition.id && hasPermission('frais_annee_classe.delete')">
+                                <i class="bi bi-trash"></i> Supprimer
+                            </button>
+                            <button type="button" class="btn btn-primary" @click="saveTuition" :disabled="!editingTuition || editingTuition.montant <= 0">
+                                <i class="bi bi-check-circle"></i> Enregistrer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    
     <script type="text/x-template" id="table-component-template">
         <div class="container-fluid">
             <div class="card">
@@ -142,21 +571,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="add-row">
+                                    <tr class="add-row" v-if="hasPermission(tableName + '.create')">
                                         <td v-for="field in displayedFields" :key="'new-' + field.name">
                                             <template v-if="field.editable !== false">
-                                                <!-- Handle ENUM fields for adding new records -->
                                                 <select v-if="field.isEnum" v-model="newRecord[field.name]" class="form-select form-select-sm">
                                                     <option :value="undefined">-- Sélectionner --</option>
                                                     <option v-for="enumValue in field.enumValues" :value="enumValue">{{ enumValue }}</option>
                                                 </select>
-                                                <!-- Handle Foreign Key fields for adding new records -->
                                                 <select v-else-if="field.foreignKey" v-model="newRecord[field.name]" class="form-select form-select-sm">
                                                     <option :value="undefined">-- Sélectionner --</option>
                                                     <option v-for="item in relatedData[field.foreignKey.relatedTable]" :value="item[field.foreignKey.valueField]">{{ item[field.foreignKey.displayField] }}</option>
                                                 </select>
-                                                <!-- Default input for other types -->
-                                                <input v-else :type="field.type === 'int' || field.type === 'float' ? 'number' : 'text'" v-model="newRecord[field.name]" class="form-control form-control-sm" />
+                                                <input v-else :type="field.type === 'int' || field.type === 'decimal' ? 'number' : (field.type === 'date' ? 'date' : 'text')" v-model="newRecord[field.name]" class="form-control form-control-sm" />
                                             </template>
                                         </td>
                                         <td class="text-center">
@@ -166,30 +592,24 @@
                                     <tr v-for="item in filteredData" :key="item.id">
                                         <td v-for="field in displayedFields" :key="field.name" @dblclick="editCell(item, field)">
                                             <div v-if="editing.id === item.id && editing.field === field.name">
-                                                <!-- Handle ENUM fields for editing -->
                                                 <select v-if="field.isEnum" v-model="editing.value" @blur="saveCell(item, field.name)" @keyup.enter="saveCell(item, field.name)" @keyup.esc="cancelEdit" v-focus class="form-select form-select-sm">
                                                     <option v-for="enumValue in field.enumValues" :value="enumValue">{{ enumValue }}</option>
                                                 </select>
-                                                <!-- Handle Foreign Key fields for editing -->
                                                 <select v-else-if="field.foreignKey" v-model="editing.value" @blur="saveCell(item, field.name)" @keyup.enter="saveCell(item, field.name)" @keyup.esc="cancelEdit" v-focus class="form-select form-select-sm">
                                                      <option v-for="relatedItem in relatedData[field.foreignKey.relatedTable]" :value="relatedItem[field.foreignKey.valueField]">{{ relatedItem[field.foreignKey.displayField] }}</option>
                                                 </select>
-                                                <!-- Default input for other types -->
-                                                <input v-else :type="field.type === 'int' || field.type === 'float' ? 'number' : 'text'" v-model="editing.value" @blur="saveCell(item, field.name)" @keyup.enter="saveCell(item, field.name)" @keyup.esc="cancelEdit" v-focus class="form-control form-control-sm"/>
+                                                <input v-else :type="field.type === 'int' || field.type === 'decimal' ? 'number' : (field.type === 'date' ? 'date' : 'text')" v-model="editing.value" @blur="saveCell(item, field.name)" @keyup.enter="saveCell(item, field.name)" @keyup.esc="cancelEdit" v-focus class="form-control form-control-sm"/>
                                             </div>
                                             <div v-else>
-                                                <!-- Display for ENUM fields -->
-                                                <span v-if="field.isEnum">{{ item[field.name] }}</span>
-                                                <!-- Display for Foreign Key fields -->
-                                                <span v-else-if="field.foreignKey && relatedData[field.foreignKey.relatedTable]">
-                                                    {{ (relatedData[field.foreignKey.relatedTable].find(r => r[field.foreignKey.valueField] == item[field.name]) || {})[field.foreignKey.displayField] || item[field.name] }}
+                                                <span v-if="field.foreignKey && relatedData[field.foreignKey.relatedTable]">
+                                                    {{ getRelatedDisplay(item, field) || item[field.name] }}
                                                 </span>
-                                                <!-- Default display -->
+                                                <span v-else-if="field.type === 'tinyint'">{{ item[field.name] == 1 ? 'Oui' : 'Non' }}</span>
                                                 <span v-else>{{ item[field.name] }}</span>
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-danger btn-sm" @click="deleteRecord(item.id)"><i class="bi bi-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm" @click="deleteRecord(item.id)" v-if="hasPermission(tableName + '.delete')"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -228,71 +648,199 @@
             </div>
         </div>
     </script>
-
+    
     <script>
-        const API_BASE_URL = '<?php echo base_url(); ?>'; 
+        const API_BASE_URL = '<?php echo base_url(); // replaceAll with your actual API base URL ?>'; 
         const { createApp, ref, reactive, computed, onMounted, watch, nextTick } = Vue;
         const { createRouter, createWebHashHistory } = VueRouter;
 
-        // Updated tableMetadata with isEnum and enumValues
-        const tableMetadata = new Map([
-            ['user', { tablename: 'user', displayname: 'Utilisateurs', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'username', type: 'text', label: 'Nom d\'utilisateur'}, {name: 'email', type: 'text', label: 'Email'}, {name: 'phone', type: 'text', label: 'Téléphone'}, {name: 'password', type: 'text', label: 'Mot de passe', editable: false}, {name: 'access_token', type: 'text', label: 'Jeton', editable: false}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'fkclient', type: 'int', label: 'Client', foreignKey: {relatedTable: 'client', displayField: 'name_complet', valueField: 'id'}}, {name: 'fkagent', type: 'int', label: 'Agent', foreignKey: {relatedTable: 'agent', displayField: 'name_complet', valueField: 'id'}}, {name: 'pref_lang', type: 'enum', label: 'Langue', isEnum: true, enumValues: ['FR','EN','SW','L']}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['client', { tablename: 'client', displayname: 'Clients', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'solde_cdf', type: 'float', label: 'Solde CDF'}, {name: 'solde_usd', type: 'float', label: 'Solde USD'}, {name: 'name_complet', type: 'text', label: 'Nom Complet'}, {name: 'email', type: 'text', label: 'Email'}, {name: 'primary_phone', type: 'text', label: 'Tél. Principal'}, {name: 'phone_is_verified', type: 'enum', label: 'Tél. Vérifié', editable: false, isEnum: true, enumValues: ['TRUE','FALSE']}, {name: 'pincode', type: 'text', label: 'Code PIN', editable: false}, {name: 'devise_pref', type: 'enum', label: 'Devise Préf.', isEnum: true, enumValues: ['CDF','USD']}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false}, {name: 'profession', type: 'text', label: 'Profession'}, {name: 'adresse', type: 'text', label: 'Adresse'}, {name: 'photo', type: 'text', label: 'Photo'}, {name: 'statut_juridique', type: 'enum', label: 'Statut Juridique', isEnum: true, enumValues: ['PERSONNE PHYSIQUE','PERSONNE MORALE']}, {name: 'avoir_credit', type: 'enum', label: 'Avoir Crédit', isEnum: true, enumValues: ['OUI','NON']} ] }],
-            ['produit', { tablename: 'produit', displayname: 'Produits', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'code', type: 'text', label: 'Code'}, {name: 'designation', type: 'text', label: 'Désignation'}, {name: 'description', type: 'text', label: 'Description'}, {name: 'unite', type: 'text', label: 'Unité'}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['CDF','USD']}, {name: 'prix_vente', type: 'float', label: 'Prix Vente'}, {name: 'poids', type: 'float', label: 'Poids'}, {name: 'volume', type: 'float', label: 'Volume'}, {name: 'photo', type: 'text', label: 'Photo'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false}, {name: 'fkcategorie_prod', type: 'int', label: 'Catégorie', foreignKey: {relatedTable: 'categorie_prod', displayField: 'designation', valueField: 'id'}} ] }],
-            ['commande', { tablename: 'commande', displayname: 'Commandes', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'type_commande', type: 'enum', label: 'Type', isEnum: true, enumValues: ['NORMAL','EXPRESS']}, {name: 'delivered_at', type: 'text', label: 'Livré le', editable: false}, {name: 'status_cmd', type: 'enum', label: 'Statut Cmd', isEnum: true, enumValues: ['ATTENTE','LIVRE','REJETE','ACHEMINEMENT']}, {name: 'status_payement', type: 'enum', label: 'Statut Paiement', isEnum: true, enumValues: ['NO-PAYE','ACCOMPTE','PAYE']}, {name: 'fkclient', type: 'int', label: 'Client', foreignKey: {relatedTable: 'client', displayField: 'name_complet', valueField: 'id'}}, {name: 'fkadresse', type: 'int', label: 'Adresse', foreignKey: {relatedTable: 'adresse', displayField: 'libelle_kasokoo', valueField: 'id'}}, {name: 'total_cmd', type: 'float', label: 'Total'}, {name: 'frais_livraison', type: 'float', label: 'Frais Livraison'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['CDF','USD']}, {name: 'code', type: 'text', label: 'Code'}, {name: 'libelle', type: 'text', label: 'Libellé'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['achat', { tablename: 'achat', displayname: 'Achats', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false}, {name: 'delivered_at', type: 'text', label: 'Livré le', editable: false}, {name: 'status_payement', type: 'enum', label: 'Statut Paiement', isEnum: true, enumValues: ['NO-PAYE','ACCOMPTE','PAYE']}, {name: 'fkagent', type: 'int', label: 'Agent', foreignKey: {relatedTable: 'agent', displayField: 'name_complet', valueField: 'id'}}, {name: 'total_achat', type: 'float', label: 'Total Achat'}, {name: 'frais_logistique', type: 'float', label: 'Frais Logistique'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['CDF','USD']}, {name: 'code_cmd', type: 'text', label: 'Code CMD'}, {name: 'code_achat', type: 'text', label: 'Code Achat'}, {name: 'libelle_cmd', type: 'text', label: 'Libellé CMD'}, {name: 'libelle_achat', type: 'text', label: 'Libellé Achat'}, {name: 'status_cmd', type: 'enum', label: 'Statut CMD', isEnum: true, enumValues: ['RECU','STOCKAGE','ATTENTE','VALIDE']}, {name: 'fkfournisseur', type: 'int', label: 'Fournisseur', foreignKey: {relatedTable: 'fournisseur', displayField: 'denomination', valueField: 'id'}} ] }],
-            ['adresse', { tablename: 'adresse', displayname: 'Adresses', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkuser_create', type: 'int', label: 'Créé par', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'fkuser_validate', type: 'int', label: 'Validé par', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'longitude', type: 'float', label: 'Longitude'}, {name: 'latitude', type: 'float', label: 'Latitude'}, {name: 'is_registred', type: 'enum', label: 'Enregistrée', isEnum: true, enumValues: ['TRUE','FALSE']}, {name: 'code_OLC', type: 'text', label: 'Code OLC'}, {name: 'numero_rue', type: 'text', label: 'N° Rue'}, {name: 'description_batiment', type: 'text', label: 'Description Bâtiment'}, {name: 'libelle_client', type: 'text', label: 'Libellé Client'}, {name: 'libelle_kasokoo', type: 'text', label: 'Libellé Kasokoo'}, {name: 'avenue', type: 'text', label: 'Avenue'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['agent', { tablename: 'agent', displayname: 'Agents', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'name_complet', type: 'text', label: 'Nom Complet'}, {name: 'fonction', type: 'enum', label: 'Fonction', isEnum: true, enumValues: ['LIVREUR','ADMIN','LOGISTICIEN']}, {name: 'phone', type: 'text', label: 'Téléphone'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['caisse', { tablename: 'caisse', displayname: 'Caisses', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'designation', type: 'text', label: 'Désignation'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['categorie_prod', { tablename: 'categorie_prod', displayname: 'Catégories Produits', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'designation', type: 'text', label: 'Désignation'}, {name: 'description', type: 'text', label: 'Description'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['compte', { tablename: 'compte', displayname: 'Comptes', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['CDF','USD']}, {name: 'intutile', type: 'text', label: 'Intitulé'}, {name: 'type_compte', type: 'enum', label: 'Type de Compte', isEnum: true, enumValues: ['COMPTE_DE_GESTION','COMPTE_CLIENT','COMPTE_FOURNISSEUR']}, {name: 'fkclient', type: 'int', label: 'Client', foreignKey: {relatedTable: 'client', displayField: 'name_complet', valueField: 'id'}}, {name: 'fkfournisseur', type: 'int', label: 'Fournisseur', foreignKey: {relatedTable: 'fournisseur', displayField: 'denomination', valueField: 'id'}}, {name: 'fkcaisse', type: 'int', label: 'Caisse', foreignKey: {relatedTable: 'caisse', displayField: 'designation', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['droits', { tablename: 'droits', displayname: 'Droits', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'name', type: 'text', label: 'Nom'}, {name: 'code', type: 'text', label: 'Code'}, {name: 'fkmodule', type: 'int', label: 'Module', foreignKey: {relatedTable: 'module', displayField: 'name', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['droits_agent', { tablename: 'droits_agent', displayname: 'Droits Agents', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'fkagent', type: 'int', label: 'Agent', foreignKey: {relatedTable: 'agent', displayField: 'name_complet', valueField: 'id'}}, {name: 'fkdroit', type: 'int', label: 'Droit', foreignKey: {relatedTable: 'droits', displayField: 'name', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['fournisseur', { tablename: 'fournisseur', displayname: 'Fournisseurs', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'denomination', type: 'text', label: 'Dénomination'}, {name: 'adresse', type: 'text', label: 'Adresse'}, {name: 'phone', type: 'text', label: 'Téléphone'}, {name: 'email', type: 'text', label: 'Email'}, {name: 'fkadresse', type: 'int', label: 'Adresse FK', foreignKey: {relatedTable: 'adresse', displayField: 'libelle_kasokoo', valueField: 'id'}}, {name: 'forme_juridique', type: 'enum', label: 'Forme Juridique', isEnum: true, enumValues: ['PERSONNE PHYSIQUE','PERSONNE MORALE']}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['information_paiement', { tablename: 'information_paiement', displayname: 'Infos Paiement', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'operateur', type: 'enum', label: 'Opérateur', isEnum: true, enumValues: ['MPESA','ORANGE_MONEY','AIRTEL_MONEY']}, {name: 'numero_compte', type: 'text', label: 'N° Compte'}, {name: 'intutile_compte', type: 'text', label: 'Intitulé Compte'}, {name: 'banque', type: 'text', label: 'Banque'}, {name: 'fkclient', type: 'int', label: 'Client', foreignKey: {relatedTable: 'client', displayField: 'name_complet', valueField: 'id'}}, {name: 'fkcaisse', type: 'int', label: 'Caisse', foreignKey: {relatedTable: 'caisse', displayField: 'designation', valueField: 'id'}}, {name: 'fkfournisseur', type: 'int', label: 'Fournisseur', foreignKey: {relatedTable: 'fournisseur', displayField: 'denomination', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['ligne_achat', { tablename: 'ligne_achat', displayname: 'Lignes Achat', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkproduit', type: 'int', label: 'Produit', foreignKey: {relatedTable: 'produit', displayField: 'designation', valueField: 'id'}}, {name: 'fkfournisseur', type: 'int', label: 'Fournisseur', foreignKey: {relatedTable: 'fournisseur', displayField: 'denomination', valueField: 'id'}}, {name: 'fkachat', type: 'int', label: 'Achat', foreignKey: {relatedTable: 'achat', displayField: 'code_achat', valueField: 'id'}}, {name: 'quantite', type: 'float', label: 'Quantité'}, {name: 'montant', type: 'float', label: 'Montant'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['ligne_commande', { tablename: 'ligne_commande', displayname: 'Lignes Commande', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkproduit', type: 'int', label: 'Produit', foreignKey: {relatedTable: 'produit', displayField: 'designation', valueField: 'id'}}, {name: 'fkcommande', type: 'int', label: 'Commande', foreignKey: {relatedTable: 'commande', displayField: 'code', valueField: 'id'}}, {name: 'quantite', type: 'float', label: 'Quantité'}, {name: 'montant', type: 'float', label: 'Montant'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['ligne_operation', { tablename: 'ligne_operation', displayname: 'Lignes Opération', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkcompte', type: 'int', label: 'Compte', foreignKey: {relatedTable: 'compte', displayField: 'intutile', valueField: 'id'}}, {name: 'fkoperation', type: 'int', label: 'Opération', foreignKey: {relatedTable: 'operation', displayField: 'libelle', valueField: 'id'}}, {name: 'fkinfo_paiement', type: 'int', label: 'Info Paiement', foreignKey: {relatedTable: 'information_paiement', displayField: 'numero_compte', valueField: 'id'}}, {name: 'fkuser_create', type: 'int', label: 'Créé par', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'operation', type: 'enum', label: 'Opération', isEnum: true, enumValues: ['DEBIT','CREDIT']}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['livraison', { tablename: 'livraison', displayname: 'Livraisons', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkcommande', type: 'int', label: 'Commande', foreignKey: {relatedTable: 'commande', displayField: 'code', valueField: 'id'}}, {name: 'fkagent', type: 'int', label: 'Agent', foreignKey: {relatedTable: 'agent', displayField: 'name_complet', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false}, {name: 'delivered_at', type: 'text', label: 'Livré le', editable: false}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ENCOURS','LIVRE','NON_LIVRE']} ] }],
-            ['message', { tablename: 'message', displayname: 'Messages', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkuser', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'fkuser_destinataire', type: 'int', label: 'Destinataire', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'fkmessage_prec', type: 'int', label: 'Msg Préc.', foreignKey: {relatedTable: 'message', displayField: 'id', valueField: 'id'}}, {name: 'isread', type: 'enum', label: 'Lu', isEnum: true, enumValues: ['TRUE','FALSE']}, {name: 'media', type: 'text', label: 'Média'}, {name: 'media_type', type: 'enum', label: 'Type Média', isEnum: true, enumValues: ['IMAGE','AUDIO','VIDEO','DOC']}, {name: 'corps_message', type: 'text', label: 'Message'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['module', { tablename: 'module', displayname: 'Modules', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'name', type: 'text', label: 'Nom'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['operation', { tablename: 'operation', displayname: 'Opérations', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkuser_create', type: 'int', label: 'Créé par', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'libelle', type: 'text', label: 'Libellé'}, {name: 'type_operation', type: 'enum', label: 'Type Opération', isEnum: true, enumValues: ['DEPOT_CLIENT','RETRAIT_CLIENT','PAIEMENT_CMD','ACHAT_STOCK','CONVERSION_DEVISE','CREDIT_ACCORDE','DETTE_CONTRACTEE','AUTRE']}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['operation_achat', { tablename: 'operation_achat', displayname: 'Opérations Achat', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkachat', type: 'int', label: 'Achat', foreignKey: {relatedTable: 'achat', displayField: 'code_achat', valueField: 'id'}}, {name: 'fkoperation', type: 'int', label: 'Opération', foreignKey: {relatedTable: 'operation', displayField: 'libelle', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['operation_commande', { tablename: 'operation_commande', displayname: 'Opérations Commande', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkcommande', type: 'int', label: 'Commande', foreignKey: {relatedTable: 'commande', displayField: 'code', valueField: 'id'}}, {name: 'fkoperation', type: 'int', label: 'Opération', foreignKey: {relatedTable: 'operation', displayField: 'libelle', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['otp', { tablename: 'otp', displayname: 'Codes OTP', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'value', type: 'int', label: 'Valeur'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false}, {name: 'expire_at', type: 'text', label: 'Expire le', editable: false}, {name: 'sent_to', type: 'text', label: 'Envoyé à'}, {name: 'fkuser', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['SENT','CREATED','EXPIRED','CHECKED']} ] }],
-            ['otp_sender_device', { tablename: 'otp_sender_device', displayname: 'Appareils Envoi OTP', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'token', type: 'text', label: 'Jeton'}, {name: 'numero_sim', type: 'text', label: 'N° SIM'}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ACTIF','DESACTIVE','OCCUPE']}, {name: 'reseau', type: 'enum', label: 'Réseau', isEnum: true, enumValues: ['ORANGE','AIRTEL','VODACOM','TOUS']}, {name: 'sms_sent_at', type: 'text', label: 'SMS Envoyé le', editable: false}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['parametre', { tablename: 'parametre', displayname: 'Paramètres', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['CDF','USD']}, {name: 'taux_change', type: 'float', label: 'Taux Change'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false}, {name: 'adresse', type: 'text', label: 'Adresse'}, {name: 'phone', type: 'text', label: 'Téléphone'}, {name: 'email', type: 'text', label: 'Email'}, {name: 'logo', type: 'text', label: 'Logo'}, {name: 'app_version', type: 'text', label: 'Version App'} ] }],
-            ['publicite', { tablename: 'publicite', displayname: 'Publicités', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkproduit', type: 'int', label: 'Produit', foreignKey: {relatedTable: 'produit', displayField: 'designation', valueField: 'id'}}, {name: 'image', type: 'text', label: 'Image'}, {name: 'corps', type: 'text', label: 'Corps'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['transaction_cinetpay', { tablename: 'transaction_cinetpay', displayname: 'Trans. CinetPay', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fkclient', type: 'int', label: 'Client', foreignKey: {relatedTable: 'client', displayField: 'name_complet', valueField: 'id'}}, {name: 'montant', type: 'float', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['CDF','USD']}, {name: 'data_json', type: 'text', label: 'Données JSON', editable: false}, {name: 'status', type: 'text', label: 'Statut'}, {name: 'numero', type: 'text', label: 'Numéro'}, {name: 'transaction_id', type: 'text', label: 'ID Trans.'}, {name: 'transaction_token', type: 'text', label: 'Jeton Trans.'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['user_device', { tablename: 'user_device', displayname: 'Appareils Utilisateurs', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'uuid', type: 'text', label: 'UUID'}, {name: 'fcm_token', type: 'text', label: 'Jeton FCM', editable: false}, {name: 'device_info', type: 'text', label: 'Infos Appareil'}, {name: 'fkuser', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'username', valueField: 'id'}}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-            ['zone_couverture', { tablename: 'zone_couverture', displayname: 'Zones de Couverture', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'status', type: 'enum', label: 'Statut', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'designation', type: 'text', label: 'Désignation'}, {name: 'frontieres', type: 'text', label: 'Frontières'}, {name: 'created_at', type: 'text', label: 'Créé le', editable: false}, {name: 'updated_at', type: 'text', label: 'Modifié le', editable: false} ] }],
-        ]);
+        // Global state for authentication
+        const authState = reactive({
+            isLoggedIn: !!localStorage.getItem('access_token'),
+            accessToken: localStorage.getItem('access_token') || null,
+            userId: localStorage.getItem('user_id') || null,
+            userPermissions: JSON.parse(localStorage.getItem('user_permissions')) || []
+        });
+
+        // Define addNotification globally BEFORE apiCall
+        window.addNotification = (message, type = 'success') => {
+            const id = Date.now();
+            const toastContainer = document.querySelector('.toast-container');
+            const toastHTML = `<div id="toast-${id}" class="toast align-items-center text-white border-0 ${type === 'success' ? 'bg-success' : 'bg-danger'}" role="alert" aria-live="assertive" aria-atomic="true"><div class="d-flex"><div class="toast-body">${message}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button></div></div>`;
+            toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+            const toastEl = document.getElementById(`toast-${id}`);
+            const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+            toast.show();
+            toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+        };
+
+        // Global apiCall function
+        const apiCall = async (endpoint, method = 'GET', body = null) => {
+            try {
+                const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+                if (authState.accessToken) {
+                    headers['Authorization'] = `Bearer ${authState.accessToken}`;
+                }
+                const options = { method, headers };
+                if (body) options.body = JSON.stringify(body);
+                const fullUrl = `${API_BASE_URL}/${endpoint}`;
+                const response = await fetch(fullUrl, options);
+                
+                if (response.status === 401 || response.status === 403) {
+                    window.addNotification('Session expirée ou non autorisée.', 'danger');
+                    // Perform logout
+                    localStorage.clear();
+                    Object.assign(authState, { isLoggedIn: false, accessToken: null, userId: null, userPermissions: [] });
+                    router.push('/login');
+                    return null;
+                }
+
+                const responseData = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(responseData.message || `Erreur ${response.status}`);
+                }
+
+                // IMPORTANT: Extract data from the "result" key as requested
+                return responseData.result || responseData;
+
+            } catch (e) {
+                window.addNotification(`Erreur API: ${e.message}`, 'danger');
+                throw e;
+            }
+        };
+
+        // Metadata based on ecole_elie.sql schema
+      const tableMetadata = new Map([
+          ['user', { tablename: 'user', displayname: 'Utilisateurs', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'username', type: 'text', label: 'Nom d\'utilisateur'}, {name: 'password', type: 'text', label: 'Mot de passe', editable: false}, {name: 'phone', type: 'text', label: 'Téléphone'}, {name: 'access_token', type: 'text', label: 'Token d\'accès', editable: false}, {name: 'email', type: 'text', label: 'Email'}, {name: 'nom_complet', type: 'text', label: 'Nom Complet'}, {name: 'est_actif', type: 'enum', label: 'Actif', isEnum: true, enumValues: ['ACTIF','INACTIF']}, {name: 'date_creation', type: 'text', label: 'Créé le', editable: false} ] }],
+          ['eleve', { tablename: 'eleve', displayname: 'Élèves', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'postnom', type: 'text', label: 'Postnom'}, {name: 'prenom', type: 'text', label: 'Prénom'}, {name: 'date_naissance', type: 'date', label: 'Date Naissance'}, {name: 'genre', type: 'enum', label: 'Genre', isEnum: true, enumValues: ['M','F']}, {name: 'adresse', type: 'text', label: 'Adresse'}, {name: 'telephone_parent', type: 'text', label: 'Tél. Parent'}, {name: 'date_inscription', type: 'date', label: 'Inscrit le'}, {name: 'est_actif', type: 'enum', label: 'Actif', isEnum: true, enumValues: ['ACTIF','INACTIF']} ] }],
+          ['paiement', { tablename: 'paiement', displayname: 'Paiements', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'fk_frais', type: 'int', label: 'Frais', foreignKey: {relatedTable: 'frais_annee_classe', displayField: 'id', valueField: 'id'}}, {name: 'fk_eleve', type: 'int', label: 'Élève', foreignKey: {relatedTable: 'eleve', displayField: 'nom', valueField: 'id'}}, {name: 'date_paiement', type: 'date', label: 'Date Paiement'}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}} ] }],
+          ['classe', { tablename: 'classe', displayname: 'Classes', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'niveau_numerique', type: 'int', label: 'Niveau Numérique'} ] }],
+          ['annee_scolaire', { tablename: 'annee_scolaire', displayname: 'Années Scolaires', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom (ex: 2023-2024)'} ] }],
+          ['cours', { tablename: 'cours', displayname: 'Cours', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'description', type: 'text', label: 'Description'} ] }],
+          ['depense', { tablename: 'depense', displayname: 'Dépenses', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'date_depense', type: 'date', label: 'Date Dépense'}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'motif', type: 'text', label: 'Motif'}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}} ] }],
+          ['eleve_classe_annee', { tablename: 'eleve_classe_annee', displayname: 'Inscriptions', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_eleve', type: 'int', label: 'Élève', foreignKey: {relatedTable: 'eleve', displayField: 'nom', valueField: 'id'}}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}} ] }],
+          ['frais_annee_classe', { tablename: 'frais_annee_classe', displayname: 'Frais par Classe/Année', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_type_frais', type: 'int', label: 'Type de Frais', foreignKey: {relatedTable: 'type_frais', displayField: 'nom', valueField: 'id'}}, {name: 'montant', type: 'decimal', label: 'Montant'}, {name: 'devise', type: 'enum', label: 'Devise', isEnum: true, enumValues: ['FC','USD']}, {name: 'fk_classe', type: 'int', label: 'Classe', foreignKey: {relatedTable: 'classe', displayField: 'nom', valueField: 'id'}}, {name: 'fk_annee', type: 'int', label: 'Année Scolaire', foreignKey: {relatedTable: 'annee_scolaire', displayField: 'nom', valueField: 'id'}} ] }],
+          ['module', { tablename: 'module', displayname: 'Modules', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'description', type: 'text', label: 'Description'} ] }],
+          ['permission', { tablename: 'permission', displayname: 'Permissions', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_module', type: 'int', label: 'Module', foreignKey: {relatedTable: 'module', displayField: 'nom', valueField: 'id'}}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'code', type: 'text', label: 'Code'} ] }],
+          ['tranche_frais', { tablename: 'tranche_frais', displayname: 'Tranches de Frais', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'}, {name: 'pourcentage', type: 'decimal', label: 'Pourcentage'}, {name: 'fk_frais', type: 'int', label: 'Frais', foreignKey: {relatedTable: 'frais_annee_classe', displayField: 'id', valueField: 'id'}}, {name: 'date_limite', type: 'date', label: 'Date Limite'} ] }],
+          ['type_frais', { tablename: 'type_frais', displayname: 'Types de Frais', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'nom', type: 'text', label: 'Nom'} ] }],
+          ['user_permission', { tablename: 'user_permission', displayname: 'Permissions Utilisateur', fields: [ {name: 'id', type: 'int', label: 'ID', editable: false}, {name: 'fk_user', type: 'int', label: 'Utilisateur', foreignKey: {relatedTable: 'user', displayField: 'nom_complet', valueField: 'id'}}, {name: 'fk_permission', type: 'int', label: 'Permission', foreignKey: {relatedTable: 'permission', displayField: 'nom', valueField: 'id'}} ] }],
+]);
+
+
+        const Login = {
+            template: '#login-component-template',
+            setup() {
+                const username = ref('');
+                const password = ref('');
+                const loading = ref(false);
+                const loginError = ref(null);
+                
+                const fetchPermissions = async (userId) => {
+                    const endpoint = 'search';
+                    const payload = {
+                        table: 'user_permission',
+                        where: { fk_user: userId }
+                    };
+                    try {
+                        const userPermissions = await apiCall(endpoint, 'POST', payload);
+                        const allPermissions = await apiCall('permission', 'GET');
+
+                        
+
+                        if (userPermissions && allPermissions) {
+
+                            // if there is permissions
+
+                            permissionIds = userPermissions.map(p => p.fk_permission);
+
+                            var codes = [];
+
+                            for (var i = allPermissions.length - 1; i >= 0; i--) {
+                                var id = allPermissions[i].id
+                                if(permissionIds.indexOf(id)) {
+                                    codes.append(allPermissions[i].code)
+                                }
+                            }
+
+                            localStorage.setItem('user_permissions', JSON.stringify(codes));
+                            authState.userPermissions = codes;
+                            console.log(codes)
+                        }
+                    } catch (e) {
+
+                        console.error('Failed to fetch permissions:', e);
+                        // Optional: Handle error, e.g., set permissions to empty array
+                        localStorage.setItem('user_permissions', JSON.stringify([]));
+                        authState.userPermissions = [];
+                    }
+                };
+                
+                const handleLogin = async () => {
+                    loading.value = true;
+                    loginError.value = null;
+                    try {
+                        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: JSON.stringify({ username: username.value, password: password.value })
+                        });
+                        var data = await response.json();
+                        
+                        // Assuming the login response contains user and token under the "result" key
+                        const result = data.result;
+
+                        if (response.ok && result && result.id && result.access_token) {
+                            localStorage.setItem('access_token', result.access_token);
+                            localStorage.setItem('user_id', result.id);
+                            
+                            // Fetch permissions after successful login
+                            await fetchPermissions(result.id);
+
+                            Object.assign(authState, { 
+                                accessToken: result.access_token, 
+                                userId: result.id, 
+                                isLoggedIn: true 
+                            });
+
+                            window.addNotification('Connexion réussie!', 'success');
+                            router.push('/');
+                        } else { throw new Error(data.message || 'Échec de la connexion.'); }
+                    } catch (e) {
+                        loginError.value = e.message;
+                        window.addNotification(e.message, 'danger');
+                    } finally { loading.value = false; }
+                };
+                return { username, password, loading, loginError, handleLogin };
+            }
+        };
 
         const App = {
             setup() {
                 const tables = ref(Array.from(tableMetadata.keys()).sort());
-                const notifications = ref([]);
-                const removeNotification = (id) => notifications.value = notifications.value.filter(n => n.id !== id);
+                const formatTableName = (name) => (tableMetadata.get(name) || { displayname: name.replaceAll(/_/g, ' ') }).displayname;
                 
-                window.addNotification = (message, type = 'success') => {
-                    const id = Date.now();
-                    const toastContainer = document.querySelector('.toast-container');
-                    const toastHTML = `
-                        <div id="toast-${id}" class="toast align-items-center text-white border-0 ${type === 'success' ? 'bg-success' : 'bg-danger'}" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="d-flex">
-                                <div class="toast-body">${message}</div>
-                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                        </div>`;
-                    toastContainer.insertAdjacentHTML('beforeend', toastHTML);
-                    const toastEl = document.getElementById(`toast-${id}`);
-                    const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
-                    toast.show();
-                    toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+                const hasPermission = (permissionCode) => {
+                    // For simplicity, admin (user id 1) has all rights.
+                    // In production, rely purely on the permissions list.
+                    if (authState.userId == 1) return true;
+                    return (authState.userPermissions || []).includes(permissionCode);
+                };
+
+                const logout = async () => {
+                    // No need for API call if token is just cleared locally
+                    localStorage.clear();
+                    Object.assign(authState, { isLoggedIn: false, accessToken: null, userId: null, userPermissions: [] });
+                    router.push('/login');
+                    window.addNotification('Déconnexion réussie!', 'success');
                 };
                 
-                const formatTableName = (name) => (tableMetadata.get(name) || { displayname: name.replace(/_/g, ' ') }).displayname;
-                return { tables, notifications, formatTableName, removeNotification };
+                watch(() => authState.isLoggedIn, (loggedIn) => {
+                    document.body.classList.toggle('navbar-visible', loggedIn);
+                }, { immediate: true });
+
+                return { tables, formatTableName, isLoggedIn: computed(() => authState.isLoggedIn), logout, authState, hasPermission };
             }
         };
 
@@ -312,23 +860,20 @@
                 const managedFields = ref([]);
                 let columnSettingsModalInstance = null;
 
-                const currentTableMeta = computed(() => tableMetadata.get(props.tableName) || { tablename: props.tableName, displayname: props.tableName.replace(/_/g, ' '), fields: [] });
+                const hasPermission = (permissionCode) => {
+                    if (authState.userId == 1) return true;
+                    return (authState.userPermissions || []).includes(permissionCode);
+                };
+
+                const currentTableMeta = computed(() => tableMetadata.get(props.tableName) || { tablename: props.tableName, displayname: props.tableName.replaceAll(/_/g, ' '), fields: [] });
                 const displayedFields = computed(() => managedFields.value.filter(f => f.visible));
 
                 const setupColumns = () => {
                     const baseFields = currentTableMeta.value.fields;
-                    if (!baseFields || baseFields.length === 0) { managedFields.value = []; return; }
+                    if (!baseFields) { managedFields.value = []; return; }
                     const savedSettings = JSON.parse(localStorage.getItem(`table-settings-${props.tableName}`));
-                    
-                    let fields = baseFields.map(field => ({ ...field, visible: savedSettings ? (savedSettings.find(s => s.name === field.name) || {visible:false}).visible : (field.editable !== false || field.name === 'id') }));
-                    
-                    if (savedSettings) {
-                        fields.sort((a, b) => {
-                            const orderA = savedSettings.findIndex(s => s.name === a.name);
-                            const orderB = savedSettings.findIndex(s => s.name === b.name);
-                            return (orderA === -1 ? Infinity : orderA) - (orderB === -1 ? Infinity : orderB);
-                        });
-                    }
+                    let fields = baseFields.map(field => ({ ...field, visible: savedSettings ? (savedSettings.find(s => s.name === field.name) || {visible:true}).visible : (field.editable !== false || field.name === 'id' || field.name.startsWith('nom')) }));
+                    if (savedSettings) { fields.sort((a, b) => (savedSettings.findIndex(s => s.name === a.name) ?? Infinity) - (savedSettings.findIndex(s => s.name === b.name) ?? Infinity)); }
                     managedFields.value = fields;
                 };
 
@@ -339,122 +884,95 @@
                 };
 
                 const saveColumnSettings = () => {
-                    const settings = managedFields.value.map(({ name, visible }) => ({ name, visible }));
-                    localStorage.setItem(`table-settings-${props.tableName}`, JSON.stringify(settings));
+                    localStorage.setItem(`table-settings-${props.tableName}`, JSON.stringify(managedFields.value.map(({ name, visible }) => ({ name, visible }))));
                     columnSettingsModalInstance.hide();
-                    window.addNotification('Préférences de colonnes enregistrées.', 'success');
+                    window.addNotification('Préférences enregistrées.', 'success');
                 };
-
                 const openColumnSettingsModal = () => columnSettingsModalInstance.show();
 
-                const apiCall = async (endpoint, method = 'GET', body = null) => {
-                    try {
-                        const options = { method, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' } };
-                        if (body) options.body = JSON.stringify(body);
-                        const response = await fetch(`${API_BASE_URL}/${endpoint.replace(/_/g,'')}`, options);
-                        if (!response.ok) {
-                            const errorBody = await response.json().catch(() => ({ message: response.statusText }));
-                            throw new Error(errorBody.message || `Erreur ${response.status}`);
-                        }
-                        return response.status === 204 ? null : response.json();
-                    } catch (e) {
-                        window.addNotification(`Erreur API: ${e.message}`, 'danger');
-                        throw e;
-                    }
-                };
-                
                 const fetchData = async () => {
+                    if (!hasPermission(props.tableName + '.view')) { error.value = 'Droits insuffisants pour voir cette table.'; loading.value = false; data.value = []; return; }
                     try {
-                        const result = await apiCall(props.tableName);
-                        const dataKey = props.tableName.replace(/_/g,'') + 's';
-                        if (result && Array.isArray(result[dataKey])) {
-                            data.value = result[dataKey];
-                        } else if (Array.isArray(result)) { // Fallback if API returns a direct array
-                            data.value = result;
-                        } else {
-                            data.value = [];
-                            console.warn(`Aucune donnée trouvée pour la clé '${dataKey}' ou en tant que tableau direct.`);
-                        }
-                        setupColumns(); // Always setup columns after fetch
-                    } catch (e) { error.value = `Impossible de charger les données: ${e.message}`; }
+                        const result = await apiCall(props.tableName.replaceAll("_",""));
+                        data.value = result || [];
+                        setupColumns();
+                    } catch (e) {
+                        error.value = `Erreur chargement: ${e.message}`;
+                    } finally {
+                        loading.value = false;
+                    }
                 };
 
                 const fetchRelatedData = async () => {
                     const tablesToFetch = new Set(currentTableMeta.value.fields.filter(f => f.foreignKey).map(f => f.foreignKey.relatedTable));
                     for (const table of tablesToFetch) {
                         try {
-                            const result = await apiCall(table);
-                            const dataKey = table.replace(/_/g,'') + 's';
-                            relatedData[table] = (result && Array.isArray(result[dataKey])) ? result[dataKey] : (Array.isArray(result) ? result : []);
-                        } catch (e) { console.error(`Echec du chargement des données associées pour ${table}:`, e); }
+                            const result = await apiCall(table.replaceAll("_",""));
+                            relatedData[table] = result || [];
+                        } catch (e) { console.error(`Erreur données associées pour ${table}:`, e); }
                     }
                 };
                 
+                const getRelatedDisplay = (item, field) => {
+                    if (!field.foreignKey || !relatedData[field.foreignKey.relatedTable]) return item[field.name];
+                    const relatedItem = relatedData[field.foreignKey.relatedTable].find(r => r[field.foreignKey.valueField] == item[field.name]);
+                    if (!relatedItem) return item[field.name];
+
+                    // Special case for student full name
+                    if (field.foreignKey.relatedTable === 'eleve') {
+                        return `${relatedItem.nom || ''} ${relatedItem.postnom || ''} ${relatedItem.prenom || ''}`.trim();
+                    }
+                    return relatedItem[field.foreignKey.displayField];
+                };
+
                 const addRecord = async () => {
+                    if (!hasPermission(props.tableName + '.create')) return window.addNotification('Droits insuffisants.', 'danger');
                     try {
                         const payload = { ...newRecord.value };
-                        Object.keys(payload).forEach(key => (payload[key] === undefined || payload[key] === '') && delete payload[key]);
+                        Object.keys(payload).forEach(key => (payload[key] == null || payload[key] === '') && delete payload[key]);
                         if (Object.keys(payload).length === 0) return window.addNotification('Veuillez remplir au moins un champ.', 'danger');
-
-                        const added = await apiCall(props.tableName, 'POST', payload);
-                        data.value.push(added);
-                        newRecord.value = {};
-                        window.addNotification('Enregistrement ajouté!', 'success');
-                    } catch (e) { /* notification handled by apiCall */ }
+                        
+                        const added = await apiCall(props.tableName.replaceAll("_",""), 'POST', payload);
+                        if (added) {
+                            data.value.push(added);
+                            newRecord.value = {};
+                            window.addNotification('Enregistré!', 'success');
+                        }
+                    } catch (e) { /* handled by apiCall */ }
                 };
 
                 const deleteRecord = async (id) => {
+                    if (!hasPermission(props.tableName + '.delete')) return window.addNotification('Droits insuffisants.', 'danger');
                     if (!confirm('Voulez-vous vraiment supprimer cet enregistrement ?')) return;
                     try {
-                        await apiCall(`${props.tableName}/${id}`, 'DELETE');
+                        await apiCall(`${props.tableName.replaceAll("_","")}/${id}`, 'DELETE');
                         data.value = data.value.filter(item => item.id !== id);
-                        window.addNotification('Enregistrement supprimé.', 'success');
-                    } catch (e) { /* notification handled by apiCall */ }
+                        window.addNotification('Supprimé.', 'success');
+                    } catch (e) { /* handled by apiCall */ }
                 };
 
                 const editCell = (item, field) => {
-                    if (field.editable === false) return window.addNotification(`Le champ '${field.label}' n'est pas modifiable.`, 'danger');
+                    if (field.editable === false || !hasPermission(props.tableName + '.edit')) return;
                     editing.value = { id: item.id, field: field.name, value: item[field.name] };
                 };
 
                 const saveCell = async (item, fieldName) => {
                     if (editing.value.id === null) return;
                     const originalValue = item[fieldName];
-                    let newValue = editing.value.value;
+                    const newValue = editing.value.value;
+                    if (originalValue == newValue) { cancelEdit(); return; }
                     
-                    if (originalValue == newValue) {
-                        cancelEdit();
-                        return;
-                    }
-
-                    // Find the index of the item in the data array
                     const itemIndex = data.value.findIndex(d => d.id === item.id);
-                    if (itemIndex === -1) {
-                        cancelEdit();
-                        return;
-                    }
-                    // Get a reference to the actual reactive item
+                    if (itemIndex === -1) { cancelEdit(); return; }
                     const currentItemRef = data.value[itemIndex];
-                    // Store the current state of the item for potential rollback
-                    const oldItemState = { ...currentItemRef }; // Shallow copy
-
-                    // Optimistic update: Apply the new value locally immediately
-                    currentItemRef[fieldName] = newValue;
-
+                    const oldItemState = { ...currentItemRef };
+                    currentItemRef[fieldName] = newValue; // Optimistic update
+                    
                     try {
-                        const payload = { [fieldName]: newValue };
-                        const updatedItemFromServer = await apiCall(`${props.tableName}/${item.id}`, 'PUT', payload);
-                        
-                        // If the server returns a full updated item, use it to ensure consistency
-                        // This will also update any server-generated fields like 'updated_at'
-                        if (updatedItemFromServer) {
-                            Object.assign(currentItemRef, updatedItemFromServer);
-                        }
-                        window.addNotification('Cellule mise à jour.', 'success');
+                        await apiCall(`${props.tableName.replaceAll("_","")}/${item.id}`, 'PUT', { [fieldName]: newValue });
+                        window.addNotification('Mis à jour.', 'success');
                     } catch (e) {
-                        // Rollback to original state on error
-                        Object.assign(currentItemRef, oldItemState);
-                        // The apiCall function already handles displaying the error notification
+                        Object.assign(currentItemRef, oldItemState); // Revert on failure
                     } finally {
                         cancelEdit();
                     }
@@ -476,18 +994,24 @@
                     if (sortKey.value) {
                         filtered.sort((a, b) => {
                             const valA = a[sortKey.value], valB = b[sortKey.value];
-                            if (valA == null) return 1; if (valB == null) return -1;
-                            if (!isNaN(Number(valA)) && !isNaN(Number(valB))) return (Number(valA) - Number(valB)) * (sortOrder.value === 'asc' ? 1 : -1);
-                            return String(valA).localeCompare(String(valB)) * (sortOrder.value === 'asc' ? 1 : -1);
+                            if (valA == null) return 1;
+                            if (valB == null) return -1;
+                            return String(valA).localeCompare(String(valB), undefined, { numeric: true }) * (sortOrder.value === 'asc' ? 1 : -1);
                         });
                     }
                     return filtered;
                 });
 
                 const refreshData = () => {
-                    loading.value = true;
-                    error.value = null;
-                    Promise.all([fetchData(), fetchRelatedData()]).finally(() => loading.value = false);
+                    if (authState.isLoggedIn) {
+                        loading.value = true;
+                        error.value = null;
+                        Promise.all([fetchData(), fetchRelatedData()]).finally(() => loading.value = false);
+                    } else {
+                        data.value = [];
+                        error.value = 'Veuillez vous connecter.';
+                        loading.value = false;
+                    }
                 };
 
                 onMounted(() => {
@@ -497,13 +1021,424 @@
                 });
 
                 watch(() => props.tableName, refreshData);
+                watch([() => authState.isLoggedIn, () => authState.userPermissions], refreshData, {deep: true});
 
-                return { data, loading, error, searchQuery, sortKey, sortOrder, sortBy, filteredData, deleteRecord, addRecord, editing, editCell, saveCell, cancelEdit, newRecord, relatedData, currentTableMeta, refreshData, managedFields, displayedFields, openColumnSettingsModal, saveColumnSettings, moveColumn };
+                return { data, loading, error, searchQuery, sortKey, sortOrder, sortBy, filteredData, deleteRecord, addRecord, editing, editCell, saveCell, cancelEdit, newRecord, relatedData, currentTableMeta, refreshData, managedFields, displayedFields, openColumnSettingsModal, saveColumnSettings, moveColumn, hasPermission, getRelatedDisplay };
             },
             directives: { focus: { mounted(el) { nextTick(() => el.focus()); } } }
         };
 
-        const router = createRouter({ history: createWebHashHistory(), routes: [ { path: '/', component: { template: '<div class="text-center mt-5"><h2>Bienvenue !</h2><p>Veuillez sélectionner une table dans le menu de gauche.</p></div>' } }, { path: '/table/:tableName', component: TableComponent, props: true } ] });
+        const DailyPayments = {
+            template: '#daily-payments-template',
+            setup() {
+                const loading = ref(true);
+                const error = ref(null);
+                const payments = ref([]);
+                const relatedData = reactive({ eleve: [], classe: [], frais_annee_classe: [], user: [], type_frais: [] });
+                const paymentDate = ref(new Date().toISOString().slice(0, 10));
+
+                const years = ref([]);
+                const selectedYear = ref(null);
+                const pupilSearch = reactive({ nom: '', prenom: '' });
+                const searchResults = ref([]);
+                const searchLoading = ref(false);
+                const selectedPupil = ref({});
+                const pupilClass = ref({});
+                const availableTuitions = ref([]);
+                const newPayment = reactive({
+                    fk_eleve: null,
+                    fk_frais: null,
+                    fk_classe: null,
+                    montant: null,
+                    devise: 'USD'
+                });
+                const paymentLoading = ref(false);
+
+                const fetchInitialData = async () => {
+                    try {
+                        const [yearsData, classesData, feeTypesData, usersData] = await Promise.all([
+                            apiCall('anneescolaire'),
+                            apiCall('classe'),
+                            apiCall('typefrais'),
+                            apiCall('user'),
+                        ]);
+                        years.value = yearsData || [];
+                        relatedData.classe = classesData || [];
+                        relatedData.type_frais = feeTypesData || [];
+                        relatedData.user = usersData || [];
+                        if (years.value.length > 0) {
+                            selectedYear.value = years.value[years.value.length - 1].id;
+                        }
+                    } catch (e) {
+                        error.value = `Erreur de chargement des données: ${e.message}`;
+                    }
+                };
+
+                const fetchPayments = async () => {
+                    loading.value = true;
+                    error.value = null;
+                    try {
+                        const result = await apiCall(`search`, 'POST', {
+                            table: 'paiement',
+                            where: { date_paiement: paymentDate.value }
+                        });
+                        payments.value = result || [];
+                        await fetchRelatedPaymentData();
+                    } catch (e) {
+                        error.value = `Erreur: ${e.message}`;
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                const fetchRelatedPaymentData = async () => {
+                    const pupilIds = [...new Set(payments.value.map(p => p.fk_eleve))];
+                    const feeIds = [...new Set(payments.value.map(p => p.fk_frais))];
+
+                    if (pupilIds.length > 0) {
+                        const pupilsData = await apiCall('search', 'POST', { table: 'eleve', where_in: { id: pupilIds } });
+                        relatedData.eleve = pupilsData || [];
+                    }
+                    if (feeIds.length > 0) {
+                        const feesData = await apiCall('search', 'POST', { table: 'frais_annee_classe', where_in: { id: feeIds } });
+                        relatedData.frais_annee_classe = feesData || [];
+                    }
+                };
+
+                const searchPupils = async () => {
+                    if (!pupilSearch.nom && !pupilSearch.prenom) return;
+                    searchLoading.value = true;
+                    try {
+                        const payload = {
+                            table: "eleve",
+                            like: {},
+                            limit: 20
+                        };
+                        if(pupilSearch.nom) payload.like.nom = pupilSearch.nom;
+                        if(pupilSearch.prenom) payload.like.prenom = pupilSearch.prenom;
+
+                        const result = await apiCall('search', 'POST', payload);
+                        searchResults.value = result || [];
+                    } catch (e) {
+                        window.addNotification("Erreur recherche d'élève", 'danger');
+                    } finally {
+                        searchLoading.value = false;
+                    }
+                };
+
+                const selectPupil = async (pupil) => {
+                    selectedPupil.value = pupil;
+                    searchResults.value = [];
+                    pupilClass.value = {};
+                    availableTuitions.value = [];
+                    newPayment.fk_frais = null;
+                    newPayment.montant = null;
+
+                    if (!selectedYear.value) {
+                        window.addNotification("Veuillez d'abord sélectionner une année scolaire", "danger");
+                        return;
+                    }
+                    
+                    try {
+                        // Find pupil's class for the selected year
+                        const inscriptionData = await apiCall('search', 'POST', {
+                            table: 'eleve_classe_annee',
+                            where: { fk_eleve: pupil.id, fk_annee: selectedYear.value },
+                            limit: 1
+                        });
+
+                        if (inscriptionData && inscriptionData.length > 0) {
+                            const inscription = inscriptionData[0];
+                            newPayment.fk_classe = inscription.fk_classe;
+                            pupilClass.value = relatedData.classe.find(c => c.id === inscription.fk_classe) || {};
+
+                            // Fetch available tuitions for that class and year
+                            const tuitionsData = await apiCall('search', 'POST', {
+                                table: 'frais_annee_classe',
+                                where: { fk_classe: inscription.fk_classe, fk_annee: selectedYear.value }
+                            });
+                            availableTuitions.value = tuitionsData || [];
+                        } else {
+                            window.addNotification("Cet élève n'est pas inscrit dans une classe pour l'année sélectionnée.", "warning");
+                        }
+                    } catch(e) {
+                        window.addNotification("Erreur lors de la récupération des détails de l'élève.", "danger");
+                    }
+                };
+
+                const makePayment = async () => {
+                    paymentLoading.value = true;
+                    try {
+                        const payload = {
+                            ...newPayment,
+                            fk_eleve: selectedPupil.value.id,
+                            date_paiement: new Date().toISOString().slice(0, 10),
+                            fk_user: authState.userId
+                        };
+                        await apiCall('paiement', 'POST', payload);
+                        window.addNotification('Paiement enregistré!', 'success');
+                        
+                        // Reset form
+                        selectedPupil.value = {};
+                        pupilClass.value = {};
+                        availableTuitions.value = [];
+                        Object.assign(newPayment, { fk_eleve: null, fk_frais: null, fk_classe: null, montant: null, devise: 'USD' });
+
+                        await fetchPayments(); // Refresh list
+                    } catch(e) {
+                         window.addNotification(`Erreur: ${e.message}`, 'danger');
+                    } finally {
+                        paymentLoading.value = false;
+                    }
+                };
+
+                const getRelatedName = (id, table) => {
+                    const item = (relatedData[table] || []).find(d => d.id == id);
+                    if (!item) return `ID: ${id}`;
+                    if (table === 'eleve') return `${item.nom || ''} ${item.postnom || ''} ${item.prenom || ''}`.trim();
+                    if (table === 'user') return item.nom_complet || item.username;
+                    return item.nom || `ID: ${id}`;
+                };
+
+                const getFeeTypeNameFromPayment = (payment) => {
+                    const fee = (relatedData.frais_annee_classe || []).find(f => f.id === payment.fk_frais);
+                    return fee ? getRelatedName(fee.fk_type_frais, 'type_frais') : 'N/A';
+                };
+                
+                const formatCurrency = (amount, currency) => {
+                    if (amount === null || amount === undefined) return '';
+                    currency = currency == 'FC'? 'CDF' : currency;
+                    return new Intl.NumberFormat('fr-CD', { style: 'currency', currency: currency || 'USD' }).format(amount || 0);
+                };
+
+                const printReceipt = (payment) => {
+                    const schoolName = "COMPLEXE SCOLAIRE ELIE"; // Replace with your school name
+                    const receiptWindow = window.open('', 'PRINT', 'height=600,width=800');
+
+                    const pupilName = getRelatedName(payment.fk_eleve, 'eleve');
+                    const className = getRelatedName(payment.fk_classe, 'classe');
+                    const feeName = getFeeTypeNameFromPayment(payment);
+                    const cashierName = getRelatedName(payment.fk_user, 'user');
+                    const amountPaid = formatCurrency(payment.montant, payment.devise);
+
+                    receiptWindow.document.write('<html><head><title>Reçu de Paiement</title>');
+                    receiptWindow.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">');
+                    receiptWindow.document.write('<style>body { font-family: sans-serif; padding: 20px; } .receipt-container { border: 1px solid #ccc; padding: 20px; max-width: 600px; margin: auto; } h2, h3 { text-align: center; } table { width: 100%; margin-top: 20px; } td { padding: 5px; } .text-end { text-align: right; } .fw-bold { font-weight: bold; } .mt-5 { margin-top: 3rem; }</style>');
+                    receiptWindow.document.write('</head><body>');
+                    receiptWindow.document.write('<div class="receipt-container">');
+                    receiptWindow.document.write(`<h2>${schoolName}</h2>`);
+                    receiptWindow.document.write('<h3>Reçu de Paiement</h3>');
+                    receiptWindow.document.write(`<p class="text-end">Date: ${new Date(payment.date_paiement).toLocaleDateString()}</p>`);
+                    receiptWindow.document.write(`<p>Reçu N°: ${payment.id}</p>`);
+                    receiptWindow.document.write('<hr>');
+                    receiptWindow.document.write('<table>');
+                    receiptWindow.document.write(`<tr><td>Élève:</td><td class="fw-bold">${pupilName}</td></tr>`);
+                    receiptWindow.document.write(`<tr><td>Classe:</td><td>${className}</td></tr>`);
+                    receiptWindow.document.write(`<tr><td>Motif du paiement:</td><td>${feeName}</td></tr>`);
+                    receiptWindow.document.write(`<tr><td class="fw-bold">Montant Payé:</td><td class="fw-bold text-end">${amountPaid}</td></tr>`);
+                    receiptWindow.document.write('</table>');
+                    receiptWindow.document.write('<hr>');
+                    receiptWindow.document.write(`<p>Perçu par: ${cashierName}</p>`);
+                    receiptWindow.document.write('<p class="mt-5 text-end">Signature: ___________________</p>');
+                    receiptWindow.document.write('</div>');
+                    receiptWindow.document.write('</body></html>');
+                    receiptWindow.document.close();
+                    receiptWindow.focus();
+                    
+                    setTimeout(() => { // Timeout to ensure content is loaded
+                        receiptWindow.print();
+                        receiptWindow.close();
+                    }, 250);
+                };
+
+                const totalUSD = computed(() => payments.value.filter(p => p.devise === 'USD').reduce((sum, p) => sum + parseFloat(p.montant), 0));
+                const totalFC = computed(() => payments.value.filter(p => p.devise === 'FC').reduce((sum, p) => sum + parseFloat(p.montant), 0));
+
+                onMounted(() => {
+                    fetchInitialData();
+                    fetchPayments();
+                });
+
+                watch(paymentDate, fetchPayments);
+
+                return { loading, error, payments, fetchPayments, getRelatedName, formatCurrency, totalUSD, totalFC, paymentDate, years, selectedYear, pupilSearch, searchResults, searchPupils, searchLoading, selectPupil, selectedPupil, pupilClass, availableTuitions, newPayment, makePayment, paymentLoading, getFeeTypeNameFromPayment, printReceipt };
+            }
+        };
+
+        const Reports = {
+            template: '#reports-template',
+            setup() {
+                // Logic for reports can be added here in the future
+                return {};
+            }
+        };
+
+        const ScolarYearTuition = {
+            template: '#scolar-year-tuition-template',
+            setup() {
+                const loading = ref(true);
+                const error = ref(null);
+                const selectedYear = ref(null);
+                const years = ref([]);
+                const classes = ref([]);
+                const feeTypes = ref([]);
+                const tuitionData = ref([]);
+                const editingTuition = ref(null);
+                let modalInstance = null;
+
+                const hasPermission = (permissionCode) => {
+                    if (authState.userId == 1) return true;
+                    return (authState.userPermissions || []).includes(permissionCode);
+                };
+
+                const formatCurrency = (amount, currency) => {
+                    if (amount === null || amount === undefined) return 'N/A';
+                    currency = currency == 'FC' ? 'CDF' : currency;
+                    return new Intl.NumberFormat('fr-CD', { style: 'currency', currency: currency || 'USD' }).format(amount);
+                };
+                
+                const fetchInitialData = async () => {
+                    try {
+                        const [yearsData, classesData, feeTypesData] = await Promise.all([
+                            apiCall('anneescolaire'),
+                            apiCall('classe'),
+                            apiCall('typefrais')
+                        ]);
+                        years.value = yearsData || [];
+                        classes.value = (classesData || []).sort((a,b) => a.niveau_numerique - b.niveau_numerique);
+                        feeTypes.value = feeTypesData || [];
+                        if (years.value.length > 0) {
+                            selectedYear.value = years.value[years.value.length - 1].id;
+                            await fetchTuitionData();
+                        }
+                    } catch (e) {
+                        error.value = `Erreur de chargement des données initiales: ${e.message}`;
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                const fetchTuitionData = async () => {
+                    if (!selectedYear.value) return;
+                    loading.value = true;
+                    error.value = null;
+                    try {
+                        const payload = { table: 'frais_annee_classe', where: { fk_annee: selectedYear.value } };
+                        const result = await apiCall('search', 'POST', payload);
+                        tuitionData.value = result || [];
+                    } catch (e) {
+                        error.value = `Erreur lors de la récupération des frais: ${e.message}`;
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+                
+                const getTuitionRecord = (feeTypeId, classeId) => {
+                     return tuitionData.value.find(d => d.fk_type_frais == feeTypeId && d.fk_classe == classeId);
+                };
+
+                const getTuitionAmount = (feeTypeId, classeId) => {
+                    const record = getTuitionRecord(feeTypeId, classeId);
+                    return record ? formatCurrency(record.montant, record.devise) : '--';
+                };
+
+                const openEditModal = (feeTypeId, classeId) => {
+                    const existingRecord = getTuitionRecord(feeTypeId, classeId);
+                    if (existingRecord) {
+                        editingTuition.value = { ...existingRecord }; // Edit existing
+                    } else {
+                        editingTuition.value = { // Create new
+                            id: null,
+                            fk_type_frais: feeTypeId,
+                            fk_classe: classeId,
+                            fk_annee: selectedYear.value,
+                            montant: null,
+                            devise: 'USD'
+                        };
+                    }
+                    modalInstance.show();
+                };
+
+                const saveTuition = async () => {
+                    const tuition = editingTuition.value;
+                    if (!tuition || !tuition.montant || tuition.montant <= 0) {
+                        window.addNotification('Le montant doit être un nombre positif.', 'danger');
+                        return;
+                    }
+                    
+                    try {
+                        if (tuition.id) { // Update
+                             if (!hasPermission('frais_annee_classe.edit')) throw new Error('Droits insuffisants pour modifier.');
+                            await apiCall(`fraisanneeclasse/${tuition.id}`, 'PUT', { montant: tuition.montant, devise: tuition.devise });
+                        } else { // Create
+                             if (!hasPermission('frais_annee_classe.create')) throw new Error('Droits insuffisants pour créer.');
+                            const payload = { ...tuition };
+                            delete payload.id;
+                            await apiCall('fraisanneeclasse', 'POST', payload);
+                        }
+                        window.addNotification('Frais enregistré avec succès!', 'success');
+                        modalInstance.hide();
+                        await fetchTuitionData(); // Refresh data
+                    } catch (e) {
+                        window.addNotification(`Erreur: ${e.message}`, 'danger');
+                    }
+                };
+
+                const deleteTuition = async () => {
+                    const tuitionId = editingTuition.value?.id;
+                    if (!tuitionId || !hasPermission('frais_annee_classe.delete')) return;
+                    
+                    if (confirm('Êtes-vous sûr de vouloir supprimer ces frais ?')) {
+                        try {
+                            await apiCall(`fraisanneeclasse/${tuitionId}`, 'DELETE');
+                            window.addNotification('Frais supprimé.', 'success');
+                            modalInstance.hide();
+                            await fetchTuitionData(); // Refresh data
+                        } catch (e) {
+                             window.addNotification(`Erreur: ${e.message}`, 'danger');
+                        }
+                    }
+                };
+
+                const modalTitle = computed(() => (editingTuition.value?.id ? 'Modifier' : 'Ajouter') + ' Frais Scolaire');
+                const editingYearName = computed(() => years.value.find(y => y.id == selectedYear.value)?.nom || '');
+                const editingClassName = computed(() => classes.value.find(c => c.id == editingTuition.value?.fk_classe)?.nom || '');
+                const editingFeeTypeName = computed(() => feeTypes.value.find(f => f.id == editingTuition.value?.fk_type_frais)?.nom || '');
+
+                onMounted(() => {
+                    const modalEl = document.getElementById('tuitionEditModal');
+                    if(modalEl) modalInstance = new bootstrap.Modal(modalEl);
+                    fetchInitialData();
+                });
+
+                return { loading, error, selectedYear, years, classes, feeTypes, fetchTuitionData, getTuitionAmount, getTuitionRecord, openEditModal, editingTuition, saveTuition, deleteTuition, modalTitle, editingYearName, editingClassName, editingFeeTypeName, hasPermission };
+            }
+        };
+
+        const router = createRouter({ 
+            history: createWebHashHistory(), 
+            routes: [ 
+                { path: '/', component: { template: '<div class="text-center mt-5"><h2>Bienvenue sur le tableau de bord de gestion scolaire !</h2><p>Veuillez sélectionner une option dans le menu de gauche.</p></div>' } }, 
+                { path: '/table/:tableName', component: TableComponent, props: true },
+                { path: '/users', redirect: '/table/user' },
+                { path: '/daily-payments', component: DailyPayments },
+                { path: '/reports', component: Reports },
+                { path: '/scolar-year-tuition', component: ScolarYearTuition },
+                { path: '/user-management', component: Login },
+                { path: '/login', component: Login }
+            ] 
+        });
+
+        router.beforeEach((to, from, next) => {
+            if (to.path !== '/login' && !authState.isLoggedIn) {
+                next('/login');
+            } else if (to.path === '/login' && authState.isLoggedIn) {
+                next('/');
+            } else {
+                next();
+            }
+        });
+
         const app = createApp(App);
         app.use(router);
         app.mount('#app');
