@@ -110,6 +110,20 @@
             border: 1px solid #dee2e6;
             border-radius: .25rem;
         }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-receipt, #printable-receipt * {
+                visibility: visible;
+            }
+            #printable-receipt {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -183,7 +197,7 @@
             <div class="row g-4">
                 <!-- Payment Zone -->
                 <div class="col-lg-5">
-                    <div class="card w-100">
+                    <div class="card h-100">
                         <div class="card-header"><h4 class="mb-0">Effectuer un Paiement</h4></div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -197,9 +211,6 @@
                             <div class="row g-2 mb-2">
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Nom" v-model="pupilSearch.nom" @keyup.enter="searchPupils">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Postnom" v-model="pupilSearch.postnom" @keyup.enter="searchPupils">
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Prénom" v-model="pupilSearch.prenom" @keyup.enter="searchPupils">
@@ -283,6 +294,7 @@
                                             <th>Frais Payé</th>
                                             <th class="text-end">Montant</th>
                                             <th>Perçu par</th>
+                                            <th class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -292,16 +304,21 @@
                                             <td>{{ getFeeTypeNameFromPayment(payment) }}</td>
                                             <td class="text-end">{{ formatCurrency(payment.montant, payment.devise) }}</td>
                                             <td>{{ getRelatedName(payment.fk_user, 'user') }}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-outline-secondary" @click="printReceipt(payment)" title="Imprimer le reçu">
+                                                    <i class="bi bi-printer"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                      <tfoot>
                                         <tr>
-                                            <th colspan="3" class="text-end">Total USD:</th>
+                                            <th colspan="4" class="text-end">Total USD:</th>
                                             <td class="text-end fw-bold">{{ formatCurrency(totalUSD, 'USD') }}</td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <th colspan="3" class="text-end">Total FC:</th>
+                                            <th colspan="4" class="text-end">Total FC:</th>
                                             <td class="text-end fw-bold">{{ formatCurrency(totalFC, 'FC') }}</td>
                                             <td></td>
                                         </tr>
@@ -835,7 +852,6 @@
                         if (added) {
                             data.value.push(added);
                             newRecord.value = {};
-                            refreshData()
                             window.addNotification('Enregistré!', 'success');
                         }
                     } catch (e) { /* handled by apiCall */ }
@@ -939,7 +955,7 @@
 
                 const years = ref([]);
                 const selectedYear = ref(null);
-                const pupilSearch = reactive({ nom: '',postnom: '', prenom: '' });
+                const pupilSearch = reactive({ nom: '', prenom: '' });
                 const searchResults = ref([]);
                 const searchLoading = ref(false);
                 const selectedPupil = ref({});
@@ -1006,29 +1022,18 @@
                 };
 
                 const searchPupils = async () => {
-
-
-                    
-                    if (!pupilSearch.nom && !pupilSearch.postnom && !pupilSearch.prenom) return;
+                    if (!pupilSearch.nom && !pupilSearch.prenom) return;
                     searchLoading.value = true;
                     try {
-                        var payload = {
+                        const payload = {
                             table: "eleve",
                             like: {},
                             limit: 20
                         };
-
-
                         if(pupilSearch.nom) payload.like.nom = pupilSearch.nom;
-                        if(pupilSearch.postnom) payload.like.postnom = pupilSearch.postnom;
                         if(pupilSearch.prenom) payload.like.prenom = pupilSearch.prenom;
 
-                        console.log('search pupil');
-
-                        console.log(payload);
-
                         const result = await apiCall('search', 'POST', payload);
-
                         searchResults.value = result || [];
                     } catch (e) {
                         window.addNotification("Erreur recherche d'élève", 'danger');
@@ -1122,6 +1127,46 @@
                     return new Intl.NumberFormat('fr-CD', { style: 'currency', currency: currency || 'USD' }).format(amount || 0);
                 };
 
+                const printReceipt = (payment) => {
+                    const schoolName = "COMPLEXE SCOLAIRE ELIE"; // Replace with your school name
+                    const receiptWindow = window.open('', 'PRINT', 'height=600,width=800');
+
+                    const pupilName = getRelatedName(payment.fk_eleve, 'eleve');
+                    const className = getRelatedName(payment.fk_classe, 'classe');
+                    const feeName = getFeeTypeNameFromPayment(payment);
+                    const cashierName = getRelatedName(payment.fk_user, 'user');
+                    const amountPaid = formatCurrency(payment.montant, payment.devise);
+
+                    receiptWindow.document.write('<html><head><title>Reçu de Paiement</title>');
+                    receiptWindow.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">');
+                    receiptWindow.document.write('<style>body { font-family: sans-serif; padding: 20px; } .receipt-container { border: 1px solid #ccc; padding: 20px; max-width: 600px; margin: auto; } h2, h3 { text-align: center; } table { width: 100%; margin-top: 20px; } td { padding: 5px; } .text-end { text-align: right; } .fw-bold { font-weight: bold; } .mt-5 { margin-top: 3rem; }</style>');
+                    receiptWindow.document.write('</head><body>');
+                    receiptWindow.document.write('<div class="receipt-container">');
+                    receiptWindow.document.write(`<h2>${schoolName}</h2>`);
+                    receiptWindow.document.write('<h3>Reçu de Paiement</h3>');
+                    receiptWindow.document.write(`<p class="text-end">Date: ${new Date(payment.date_paiement).toLocaleDateString()}</p>`);
+                    receiptWindow.document.write(`<p>Reçu N°: ${payment.id}</p>`);
+                    receiptWindow.document.write('<hr>');
+                    receiptWindow.document.write('<table>');
+                    receiptWindow.document.write(`<tr><td>Élève:</td><td class="fw-bold">${pupilName}</td></tr>`);
+                    receiptWindow.document.write(`<tr><td>Classe:</td><td>${className}</td></tr>`);
+                    receiptWindow.document.write(`<tr><td>Motif du paiement:</td><td>${feeName}</td></tr>`);
+                    receiptWindow.document.write(`<tr><td class="fw-bold">Montant Payé:</td><td class="fw-bold text-end">${amountPaid}</td></tr>`);
+                    receiptWindow.document.write('</table>');
+                    receiptWindow.document.write('<hr>');
+                    receiptWindow.document.write(`<p>Perçu par: ${cashierName}</p>`);
+                    receiptWindow.document.write('<p class="mt-5 text-end">Signature: ___________________</p>');
+                    receiptWindow.document.write('</div>');
+                    receiptWindow.document.write('</body></html>');
+                    receiptWindow.document.close();
+                    receiptWindow.focus();
+                    
+                    setTimeout(() => { // Timeout to ensure content is loaded
+                        receiptWindow.print();
+                        receiptWindow.close();
+                    }, 250);
+                };
+
                 const totalUSD = computed(() => payments.value.filter(p => p.devise === 'USD').reduce((sum, p) => sum + parseFloat(p.montant), 0));
                 const totalFC = computed(() => payments.value.filter(p => p.devise === 'FC').reduce((sum, p) => sum + parseFloat(p.montant), 0));
 
@@ -1132,7 +1177,7 @@
 
                 watch(paymentDate, fetchPayments);
 
-                return { loading, error, payments, fetchPayments, getRelatedName, formatCurrency, totalUSD, totalFC, paymentDate, years, selectedYear, pupilSearch, searchResults, searchPupils, searchLoading, selectPupil, selectedPupil, pupilClass, availableTuitions, newPayment, makePayment, paymentLoading, getFeeTypeNameFromPayment };
+                return { loading, error, payments, fetchPayments, getRelatedName, formatCurrency, totalUSD, totalFC, paymentDate, years, selectedYear, pupilSearch, searchResults, searchPupils, searchLoading, selectPupil, selectedPupil, pupilClass, availableTuitions, newPayment, makePayment, paymentLoading, getFeeTypeNameFromPayment, printReceipt };
             }
         };
 
